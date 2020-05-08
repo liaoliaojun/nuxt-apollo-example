@@ -11,6 +11,8 @@
 
 <script lang="ts">
   import Vue from 'vue'
+  import GlobalClick from '~/util/global-click'
+  import VisibilityChange from '~/util/visibility-change'
 
   export default Vue.extend({
     data () {
@@ -21,6 +23,13 @@
 
     created () {
       this.activeIndex = this.$route.name || 'index'
+    },
+
+    mounted () {
+      // 全局点击
+      GlobalClick()
+      // tab页切换
+      VisibilityChange()
     },
   })
 </script>
