@@ -1,8 +1,29 @@
 <template>
-  <div>
+  <div class="mx-auto" style="width: 1200px;">
+    <el-menu :default-active="activeIndex" router mode="horizontal" active-text-color="#477de9">
+      <el-menu-item index="index" :route="{name: 'index'}">首页</el-menu-item>
+      <el-menu-item index="graphql" :route="{name: 'graphql'}">graphql</el-menu-item>
+      <el-menu-item index="theme" :route="{name: 'theme'}">主题</el-menu-item>
+    </el-menu>
     <nuxt />
   </div>
 </template>
+
+<script lang="ts">
+  import Vue from 'vue'
+
+  export default Vue.extend({
+    data () {
+      return {
+        activeIndex: 'index',
+      }
+    },
+
+    created () {
+      this.activeIndex = this.$route.name || 'index'
+    },
+  })
+</script>
 
 <style>
 html {

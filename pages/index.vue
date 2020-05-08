@@ -1,79 +1,54 @@
 <template>
-  <div class="container">
+  <div class="text-center mt-4">
+    <h5 class="text-2xl">{{ domain }}</h5>
     <div>
-      <el-button>123</el-button>
-      <logo />
-      <h1 class="title">
-        my-nuxt
-      </h1>
-      <h2 class="subtitle">
-        demo12
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+      <dl v-if="data" class="text-xl">
+        <dt class="inline-block">email:</dt>
+        <dd class="inline-block">{{ data.email }}</dd>
+        <br>
+        <dt class="inline-block">author:</dt>
+        <dd class="inline-block">{{ data.author }}</dd>
+        <br>
+        <dt class="inline-block">wechat:</dt>
+        <dd class="flex justify-center">
+          <img src="~@/assets/img/qrcode.jpg" width="150" height="150" alt="qrcode">
+        </dd>
+      </dl>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+  import gql from 'graphql-tag'
   import Vue from 'vue'
-  import Logo from '~/components/Logo.vue'
 
   export default Vue.extend({
-    components: {
-      Logo,
+    async asyncData (context) {
+      const data = await context.app.apolloProvider.defaultClient.query({
+        query: gql`
+          query getInfo {
+            config {
+              email
+              author
+            }
+          }
+        `,
+      }).then((res: any) => {
+        return res?.data?.config ?? {}
+      }).catch(() => {
+        return {}
+      })
+      return {data}
+    },
+
+    data () {
+      return {
+        domain: '',
+      }
+    },
+
+    mounted () {
+      this.domain = window.location.hostname
     },
   })
 </script>
-
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-  @apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
