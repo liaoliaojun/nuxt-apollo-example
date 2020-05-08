@@ -23,8 +23,8 @@
   import Vue from 'vue'
 
   export default Vue.extend({
-    async asyncData (context) {
-      const data = await context.app.apolloProvider.defaultClient.query({
+    async asyncData ({app, req}) {
+      const data = await app.apolloProvider.defaultClient.query({
         query: gql`
           query getInfo {
             config {
@@ -38,17 +38,7 @@
       }).catch(() => {
         return {}
       })
-      return {data}
-    },
-
-    data () {
-      return {
-        domain: '',
-      }
-    },
-
-    mounted () {
-      this.domain = window.location.hostname
+      return {data, domain: req?.headers?.host}
     },
   })
 </script>
