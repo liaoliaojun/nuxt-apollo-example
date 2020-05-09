@@ -3,7 +3,7 @@ MAINTAINER liaoliaojun
 ENV NODE_ENV=production
 COPY . /app
 WORKDIR /app
-RUN yarn --prod --frozen-lockfile
+RUN yarn
 RUN yarn run build
 ENV NUXT_HOST 0.0.0.0
 ENV NUXT_PORT 80
