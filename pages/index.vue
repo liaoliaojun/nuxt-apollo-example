@@ -1,5 +1,6 @@
 <template>
   <div class="text-center mt-4">
+    <el-button>123</el-button>
     <h5 class="text-2xl">{{ domain }}</h5>
     <div>
       <dl v-if="data" class="text-xl">

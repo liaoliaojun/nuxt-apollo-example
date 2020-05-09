@@ -1,3 +1,4 @@
+import {resolve} from 'path'
 
 export default {
   mode: 'universal',
@@ -23,6 +24,7 @@ export default {
   ** Global CSS
   */
   css: [
+    'element-ui/lib/theme-chalk/index.css',
   ],
   /*
   ** Plugins to load before mounting the App
@@ -74,5 +76,9 @@ export default {
         httpEndpoint: 'https://www.liaoliaojun.com/graphql',
       },
     },
+  },
+  tailwindcss: {
+    configPath: resolve(__dirname, './tailwind.config.js'),
+    cssPath: '~/assets/css/tailwind.css',
   },
 }
