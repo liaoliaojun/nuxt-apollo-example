@@ -20,25 +20,25 @@
 </template>
 
 <script lang="ts">
-  import gql from 'graphql-tag'
   import Vue from 'vue'
 
   export default Vue.extend({
-    async asyncData ({app, req}) {
-      const data = await app.apolloProvider.defaultClient.query({
-        query: gql`
-          query getInfo {
-            config {
-              email
-              author
-            }
-          }
-        `,
-      }).then((res: any) => {
-        return res?.data?.config ?? {}
-      }).catch(() => {
-        return {}
-      })
+    async asyncData ({req}) {
+      // const data = await app.apolloProvider.defaultClient.query({
+      //   query: gql`
+      //     query getInfo {
+      //       config {
+      //         email
+      //         author
+      //       }
+      //     }
+      //   `,
+      // }).then((res: any) => {
+      //   return res?.data?.config ?? {}
+      // }).catch(() => {
+      //   return {}
+      // })
+      const data = {email: '1', author: '2'}
       return {data, domain: req?.headers?.host}
     },
   })
