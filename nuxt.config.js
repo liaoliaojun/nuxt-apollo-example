@@ -7,7 +7,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: '了了君的小破站~' || process.env.npm_package_name,
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
@@ -74,7 +74,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: 'https://www.liaoliaojun.com/graphql',
+        httpEndpoint: 'https://api.liaoliaojun.com:3000/graphql',
       },
     },
   },
