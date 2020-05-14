@@ -1,5 +1,5 @@
 import {resolve} from 'path'
-// import fs from 'fs'
+import fs from 'fs'
 
 export default {
   mode: 'universal',
@@ -82,10 +82,10 @@ export default {
     configPath: resolve(__dirname, './tailwind.config.js'),
     cssPath: '~/assets/css/tailwind.css',
   },
-  // server: {
-  //   https: {
-  //     key: fs.readFileSync(resolve(__dirname, 'ssl/liaoliaojun.com.key')),
-  //     cert: fs.readFileSync(resolve(__dirname, 'ssl/liaoliaojun.com.crt')),
-  //   },
-  // },
+  server: {
+    https: {
+      key: fs.readFileSync(resolve(__dirname, 'ssl/liaoliaojun.com.key')),
+      cert: fs.readFileSync(resolve(__dirname, 'ssl/liaoliaojun.com.crt')),
+    },
+  },
 }
