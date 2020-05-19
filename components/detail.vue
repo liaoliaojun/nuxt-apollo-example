@@ -1,8 +1,13 @@
 <template>
-  <div class="bg2 py-4 px-8 text-2xl leading-10">
-    <h1 class="font-bold">{{ title }}</h1>
-    <div style="text-indent: 1em;">
-      <p class="text-xl">{{ content }}</p>
+  <div
+    :class="{'overflow-hidden': !isMain}"
+    :style="{height: isMain ? 'auto' : 'calc(1.5rem + 40px + (40px * 3))'}"
+  >
+    <div class="bg2 py-4 px-8 text-2xl leading-10">
+      <h1 class="font-bold">{{ title }}</h1>
+      <div style="text-indent: 1em;">
+        <p class="text-xl">{{ content }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -21,6 +26,11 @@
       content: {
         type: String,
         default: '',
+      },
+
+      isMain: {
+        type: Boolean,
+        default: false,
       },
     },
     // async asyncData ({req}) {

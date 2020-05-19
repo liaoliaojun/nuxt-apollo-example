@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto h-screen flex flex-col" style="width: 1200px;">
+  <div class="mx-auto h-screen flex flex-col">
     <!-- <el-menu :default-active="activeIndex" router mode="horizontal" active-text-color="#477de9">
       <el-menu-item index="index" :route="{name: 'index'}">首页</el-menu-item>
       <el-menu-item index="graphql" :route="{name: 'graphql'}">graphql</el-menu-item>
