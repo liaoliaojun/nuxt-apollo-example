@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto" style="width: 1200px;">
+  <div class="mx-auto h-screen flex flex-col" style="width: 1200px;">
     <!-- <el-menu :default-active="activeIndex" router mode="horizontal" active-text-color="#477de9">
       <el-menu-item index="index" :route="{name: 'index'}">首页</el-menu-item>
       <el-menu-item index="graphql" :route="{name: 'graphql'}">graphql</el-menu-item>
@@ -12,7 +12,15 @@
         <li class="ml-12 cursor-pointer first:ml-0 hover:text-blue">未来</li>
       </ul>
     </header>
-    <nuxt />
+
+    <nuxt class="flex-auto" />
+
+    <footer class="bg3 mt-4">
+      <dl class="py-3 px-8 flex">
+        <dt>联系邮箱：</dt>
+        <dd>1030219089a@gmail.com</dd>
+      </dl>
+    </footer>
   </div>
 </template>
 
