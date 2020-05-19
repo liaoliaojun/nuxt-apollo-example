@@ -1,14 +1,16 @@
 <template>
   <div class="bg2 py-2 px-8 text-xl">
     <ul>
-      <li
+      <nuxt-link
         v-for="(item, index) in data"
         :key="index"
         class="flex justify-between items-center leading-loose cursor-pointer hover:text-blue"
+        tag="li"
+        :to="'detail/' + item.id"
       >
         <h3>{{ item.title }}</h3>
         <span>{{ item.createDate }}</span>
-      </li>
+      </nuxt-link>
     </ul>
   </div>
 </template>
