@@ -5,8 +5,8 @@
       <el-menu-item index="graphql" :route="{name: 'graphql'}">graphql</el-menu-item>
       <el-menu-item index="theme" :route="{name: 'theme'}">主题</el-menu-item>
     </el-menu> -->
-    <header class="bg1">
-      <ul class="flex text-2xl py-4 px-8">
+    <header class="mb-8 bg1">
+      <ul class="flex text-2xl py-3 px-8">
         <li class="ml-12 cursor-pointer first:ml-0 hover:text-blue">前端记</li>
         <li class="ml-12 cursor-pointer first:ml-0 hover:text-blue">蓝星前沿</li>
         <li class="ml-12 cursor-pointer first:ml-0 hover:text-blue">未来</li>
@@ -45,6 +45,13 @@
 .bg1 {
   background-image: url('~@/assets/img/bg1.jpg');
 }
+.bg2 {
+  background-image: url('~@/assets/img/bg2.jpg');
+}
+.bg3 {
+  background-image: url('~@/assets/img/bg3.jpg');
+}
+
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
