@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <the-detail :title="title" :content="content" />
+    <the-detail :title="title" :content="content" class="cursor-pointer" />
     <the-list :data="list" class="flex-auto mt-8" />
   </div>
 </template>

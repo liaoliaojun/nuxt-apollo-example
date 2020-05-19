@@ -17,7 +17,11 @@
 
     <footer class="bg3 mt-4">
       <dl class="py-3 px-8 flex">
-        <dt>联系邮箱：</dt>
+        <dt class="ml-8 first:ml-0">作者：</dt>
+        <dd>了了君</dd>
+        <dt class="ml-8 first:ml-0">地址：</dt>
+        <dd :title="domain">{{ domain }}</dd>
+        <dt class="ml-8 first:ml-0">联系邮箱：</dt>
         <dd>1030219089a@gmail.com</dd>
       </dl>
     </footer>
@@ -30,9 +34,14 @@
   import VisibilityChange from '~/util/visibility-change'
 
   export default Vue.extend({
+    // async asyncData ({req}) {
+    //   return {domain: req?.headers?.host ?? '1'}
+    // },
+  
     data () {
       return {
         activeIndex: 'index',
+        domain: 'liaoliaojun.com',
       }
     },
 
@@ -41,6 +50,8 @@
     },
 
     mounted () {
+      this.domain =  window?.location?.hostname ?? ''
+
       // 全局点击
       GlobalClick()
       // tab页切换
@@ -50,61 +61,61 @@
 </script>
 
 <style>
-.bg1 {
-  background-image: url('~@/assets/img/bg1.jpg');
-}
-.bg2 {
-  background-image: url('~@/assets/img/bg2.jpg');
-}
-.bg3 {
-  background-image: url('~@/assets/img/bg3.jpg');
-}
+  .bg1 {
+    background-image: url('~@/assets/img/bg1.jpg');
+  }
+  .bg2 {
+    background-image: url('~@/assets/img/bg2.jpg');
+  }
+  .bg3 {
+    background-image: url('~@/assets/img/bg3.jpg');
+  }
 
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
+  html {
+    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    word-spacing: 1px;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+  }
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-}
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+    margin: 0;
+  }
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
+  .button--green {
+    display: inline-block;
+    border-radius: 4px;
+    border: 1px solid #3b8070;
+    color: #3b8070;
+    text-decoration: none;
+    padding: 10px 30px;
+  }
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
+  .button--green:hover {
+    color: #fff;
+    background-color: #3b8070;
+  }
 
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
+  .button--grey {
+    display: inline-block;
+    border-radius: 4px;
+    border: 1px solid #35495e;
+    color: #35495e;
+    text-decoration: none;
+    padding: 10px 30px;
+    margin-left: 15px;
+  }
 
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
+  .button--grey:hover {
+    color: #fff;
+    background-color: #35495e;
+  }
 </style>
