@@ -1,20 +1,21 @@
 <template>
-  <div class="text-center mt-4">
-    <el-button>123</el-button>
-    <h5 class="text-2xl">{{ domain }}</h5>
-    <div>
-      <dl v-if="data" class="text-xl">
-        <dt class="inline-block">email:</dt>
-        <dd class="inline-block">{{ data.email }}</dd>
-        <br>
-        <dt class="inline-block">author:</dt>
-        <dd class="inline-block">{{ data.author }}</dd>
-        <br>
-        <dt class="inline-block">wechat:</dt>
-        <dd class="flex justify-center">
-          <img src="~@/assets/img/qrcode.jpg" width="150" height="150" alt="qrcode">
-        </dd>
-      </dl>
+  <div>
+    <div class="text-center mt-4">
+      <h5 class="text-2xl">{{ domain }}</h5>
+      <div>
+        <dl v-if="data" class="text-xl">
+          <dt class="inline-block">email:</dt>
+          <dd class="inline-block">{{ data.email }}</dd>
+          <br>
+          <dt class="inline-block">author:</dt>
+          <dd class="inline-block">{{ data.author }}</dd>
+          <br>
+          <dt class="inline-block">wechat:</dt>
+          <dd class="flex justify-center">
+            <img src="~@/assets/img/qrcode.jpg" width="150" height="150" alt="qrcode">
+          </dd>
+        </dl>
+      </div>
     </div>
   </div>
 </template>

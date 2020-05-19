@@ -52,4 +52,7 @@ module.exports = {
       fill: theme => theme('colors'),
     },
   },
+  variants: {
+    margin: ['responsive', 'first'],
+  },
 }
