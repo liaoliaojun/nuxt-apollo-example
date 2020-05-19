@@ -1,5 +1,5 @@
 <template>
-  <div class="bg3 py-4 px-8 text-2xl leading-10">
+  <div class="bg2 py-4 px-8 text-2xl leading-10">
     <h1 class="font-bold">{{ title }}</h1>
     <div style="text-indent: 1em;">
       <p class="text-xl">{{ content }}</p>

@@ -4,7 +4,7 @@
       <li
         v-for="(item, index) in data"
         :key="index"
-        class="flex justify-between items-center leading-loose"
+        class="flex justify-between items-center leading-loose cursor-pointer hover:text-blue"
       >
         <h3>{{ item.title }}</h3>
         <span>{{ item.createDate }}</span>

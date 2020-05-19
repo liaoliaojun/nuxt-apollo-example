@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="flex flex-col">
     <the-detail :title="title" :content="content" />
-    <the-list :data="list" class="mt-8" />
+    <the-list :data="list" class="flex-auto mt-8" />
   </div>
 </template>
 
@@ -29,6 +29,15 @@
           resolve([
             {title: '未来世界属于“去中心化应用”', createDate: '2020.05.20'},
             {title: '为什么不应该跟风《后浪？》', createDate: '2020.05.20'},
+            {title: '中文网站排版', createDate: '2020.05.20'},
+            {title: 'Serverless实践', createDate: '2020.05.20'},
+            {title: '万物理论', createDate: '2020.05.20'},
+            {title: '后天改善面部-口呼吸', createDate: '2020.05.20'},
+            {title: 'NS 动物之森，塞尔达传说”', createDate: '2020.05.20'},
+            {title: 'Docker', createDate: '2020.05.20'},
+            {title: 'Ipv6的世界”', createDate: '2020.05.20'},
+            {title: 'Graphql', createDate: '2020.05.20'},
+            {title: 'Typescript', createDate: '2020.05.20'},
           ])
         }, 500)
       })
