@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
-    <the-article :title="title" :content="content" class="cursor-pointer" />
-    <the-articles :data="articles" class="flex-auto mt-8" />
+    <the-article :title="title" :content="content" class="cursor-pointer mt-4" />
+    <the-articles :data="articles" class="flex-auto mt-4" />
   </div>
 </template>
 
