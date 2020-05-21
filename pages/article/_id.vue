@@ -1,14 +1,14 @@
 <template>
   <div class="flex flex-col">
     id：{{ id }}
-    <the-detail :title="title" :content="content" is-main class="flex-auto" />
+    <the-article :title="title" :content="content" is-main class="flex-auto" />
   </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue'
   // import gql from 'graphql-tag'
-  import TheDetail from '~/components/detail.vue'
+  import TheArticle from '~/components/article.vue'
 
   type Items = {
     title: string,
@@ -21,7 +21,7 @@
     },
 
     components: {
-      TheDetail,
+      TheArticle,
     },
 
     async asyncData ({params}) {

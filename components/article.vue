@@ -1,5 +1,5 @@
 <template>
-  <div
+  <article
     :class="{'overflow-hidden': !isMain}"
     :style="{height: isMain ? 'auto' : 'calc(1.5rem + 40px + (40px * 3))'}"
   >
@@ -9,7 +9,7 @@
         <p class="text-xl">{{ content }}</p>
       </div>
     </div>
-  </div>
+  </article>
 </template>
 
 <script lang="ts">

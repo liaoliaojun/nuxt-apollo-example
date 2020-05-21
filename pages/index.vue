@@ -1,16 +1,15 @@
 <template>
   <div class="flex flex-col">
-    <the-detail :title="title" :content="content" class="cursor-pointer" />
-    <the-list :data="list" class="flex-auto mt-8" />
+    <the-article :title="title" :content="content" class="cursor-pointer" />
+    <the-articles :data="list" class="flex-auto mt-8" />
   </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue'
   // import gql from 'graphql-tag'
-
-  import TheList from '~/components/list.vue'
-  import TheDetail from '~/components/detail.vue'
+  import TheArticle from '~/components/article.vue'
+  import TheArticles from '~/components/articles.vue'
 
   type Items = {
     title: string,
@@ -20,8 +19,8 @@
 
   export default Vue.extend({
     components: {
-      TheList,
-      TheDetail,
+      TheArticle,
+      TheArticles,
     },
 
     async asyncData ({req}) {

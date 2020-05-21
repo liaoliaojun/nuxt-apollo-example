@@ -6,7 +6,7 @@
         :key="index"
         class="flex justify-between items-center leading-loose cursor-pointer hover:text-blue"
         tag="li"
-        :to="'detail/' + item.id"
+        :to="'article/' + item.id"
       >
         <h3>{{ item.title }}</h3>
         <span>{{ item.createDate }}</span>
