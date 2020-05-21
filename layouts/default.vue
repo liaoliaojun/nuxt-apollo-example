@@ -7,9 +7,15 @@
     </el-menu> -->
     <header class="mb-8 bg1">
       <ul class="flex text-2xl py-3 px-8">
-        <li class="ml-12 cursor-pointer first:ml-0 hover:text-blue">前端记</li>
-        <li class="ml-12 cursor-pointer first:ml-0 hover:text-blue">蓝星前沿</li>
-        <li class="ml-12 cursor-pointer first:ml-0 hover:text-blue">未来</li>
+        <nuxt-link
+          v-for="(item, index) in nav"
+          :key="index"
+          class="ml-12 cursor-pointer first:ml-0 hover:text-blue"
+          tag="li"
+          :to="item.route"
+        >
+          {{ item.name }}
+        </nuxt-link>
       </ul>
     </header>
 
@@ -42,6 +48,20 @@
       return {
         activeIndex: 'index',
         domain: 'liaoliaojun.com',
+        nav: [
+          {
+            name: '前端记',
+            route: '/',
+          },
+          {
+            name: '蓝星前沿',
+            route: '/',
+          },
+          {
+            name: '未来',
+            route: '/article/12',
+          },
+        ],
       }
     },
 

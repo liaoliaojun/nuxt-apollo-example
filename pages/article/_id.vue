@@ -17,7 +17,7 @@
 
   export default Vue.extend({
     validate ({params}) {
-      return !isNaN(+params.id)
+      return !!params.id
     },
 
     components: {

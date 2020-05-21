@@ -83,6 +83,7 @@ export default {
     cssPath: '~/assets/css/tailwind.css',
   },
   server: {
+    port: 3001,
     https: {
       key: fs.readFileSync(resolve(__dirname, 'ssl/liaoliaojun.com.key')),
       cert: fs.readFileSync(resolve(__dirname, 'ssl/liaoliaojun.com.crt')),

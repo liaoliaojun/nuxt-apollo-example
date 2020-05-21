@@ -1,0 +1,3 @@
+mutation addArticle ($input: ArticleInput) {
+  result: addArticle (input: $input)
+}

@@ -6,10 +6,10 @@
         :key="index"
         class="flex justify-between items-center leading-loose cursor-pointer hover:text-blue"
         tag="li"
-        :to="'article/' + item.id"
+        :to="'article/' + item.article_id"
       >
-        <h3>{{ item.title }}</h3>
-        <span>{{ item.createDate }}</span>
+        <h3>{{ item.article_title }}</h3>
+        <span>{{ item.article_date }}</span>
       </nuxt-link>
     </ul>
   </div>

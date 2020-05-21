@@ -1,21 +1,20 @@
 <template>
   <div class="flex flex-col">
     <the-article :title="title" :content="content" class="cursor-pointer" />
-    <the-articles :data="list" class="flex-auto mt-8" />
+    <the-articles :data="articles" class="flex-auto mt-8" />
   </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue'
-  // import gql from 'graphql-tag'
   import TheArticle from '~/components/article.vue'
   import TheArticles from '~/components/articles.vue'
+  // @ts-ignore
+  import queryArticle from '~/graphql/query/article.gql'
+  // @ts-ignore
+  import queryArticles from '~/graphql/query/articles.gql'
 
-  type Items = {
-    title: string,
-    createDate: string,
-    id: number|string,
-  }
+  import {Article} from '~/types/index'
 
   export default Vue.extend({
     components: {
@@ -23,28 +22,38 @@
       TheArticles,
     },
 
-    async asyncData ({req}) {
-      const list: Array<Items> = await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve([
-            {id: 1, title: '未来世界属于“去中心化应用”', createDate: '2020.05.20'},
-            {id: 2, title: '为什么不应该跟风《后浪？》', createDate: '2020.05.20'},
-            {id: 3, title: '中文网站排版', createDate: '2020.05.20'},
-            {id: 4, title: 'Serverless实践', createDate: '2020.05.20'},
-            {id: 5, title: '万物理论', createDate: '2020.05.20'},
-            {id: 6, title: '后天改善面部-口呼吸', createDate: '2020.05.20'},
-            {id: 7, title: 'NS 动物之森，塞尔达传说”', createDate: '2020.05.20'},
-            {id: 8, title: 'Docker', createDate: '2020.05.20'},
-            {id: 9, title: 'Ipv6的世界”', createDate: '2020.05.20'},
-            {id: 10, title: 'Graphql', createDate: '2020.05.20'},
-            {id: 11, title: 'Typescript', createDate: '2020.05.20'},
-          ])
-        }, 500)
+    async asyncData ({app: {apolloProvider}, req}) {
+      let firstArticle: Article = {article_title: '', article_content: ''}
+
+      // 查询文章列表
+      const articles: Array<Article> = await apolloProvider.defaultClient.query({
+        query: queryArticles,
+      }).then((res: any) => {
+        return res?.data?.result ?? []
+      }).catch(() => {
+        return []
       })
 
-      const title: string = list?.[0]?.title ?? ''
-      const content: string = '俩字缩进，关于我们的事情。造成这种困惑的原因在于，你没有从传统的纯文本以/n换行符表示段落结束和开始的习惯中进入标记语言的思维，因此不理解文本段落就应该用p来表示。br仅仅是提供在必要时候强制换行（比如用于表示程序代码的换行）的格式标记。俩字缩进，关于我们的事情。造成这种困惑的原因在于，你没有从传统的纯文本以/n换行符表示段落结束和开始的习惯中进入标记语言的思维，因此不理解文本段落就应该用p来表示。br仅仅是提供在必要时候强制换行（比如用于表示程序代码的换行）的格式标记。俩字缩进，关于我们的事情。造成这种困惑的原因在于，你没有从传统的纯文本以/n换行符表示段落结束和开始的习惯中进入标记语言的思维，因此不理解文本段落就应该用p来表示。br仅仅是提供在必要时候强制换行（比如用于表示程序代码的换行）的格式标记。'
-      return {list, title, content, domain: req?.headers?.host}
+      // 查询第一个文章的内容
+      if (articles.length) {
+        firstArticle = await apolloProvider.defaultClient.query({
+          query: queryArticle,
+          variables: {
+            article_id: articles[0].article_id,
+          },
+        }).then((res: any) => {
+          return res?.data?.result ?? {article_title: '', article_content: ''}
+        }).catch(() => {
+          return {article_title: '', article_content: ''}
+        })
+      }
+
+      return {
+        articles,
+        title: firstArticle.article_title,
+        content: firstArticle.article_content,
+        domain: req?.headers?.host,
+      }
     },
   })
 </script>
