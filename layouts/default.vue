@@ -5,14 +5,14 @@
       <el-menu-item index="graphql" :route="{name: 'graphql'}">graphql</el-menu-item>
       <el-menu-item index="theme" :route="{name: 'theme'}">主题</el-menu-item>
     </el-menu> -->
-    <header class="mb-8 bg1">
-      <ul class="flex text-2xl py-3 px-8">
+    <header class="media-padding bg1">
+      <ul class="flex flex-row-reverse text-xl lg:text-2xl">
         <nuxt-link
           v-for="(item, index) in nav"
           :key="index"
-          class="ml-12 cursor-pointer first:ml-0 hover:text-blue"
+          class="cursor-pointer first:mr-0 hover:text-blue mr-8 lg:mr-12 "
           tag="li"
-          :to="item.route"
+          :to="{name: item.routeName}"
         >
           {{ item.name }}
         </nuxt-link>
@@ -21,14 +21,20 @@
 
     <nuxt class="flex-auto" />
 
-    <footer class="bg3 mt-4">
-      <dl class="py-3 px-8 flex">
-        <dt class="ml-8 first:ml-0">作者：</dt>
-        <dd>了了君</dd>
-        <dt class="ml-8 first:ml-0">地址：</dt>
-        <dd :title="domain">{{ domain }}</dd>
-        <dt class="ml-8 first:ml-0">联系邮箱：</dt>
-        <dd>1030219089a@gmail.com</dd>
+    <footer class="bg3 media-padding mt-4">
+      <dl class="text-xs md:text-sm lg:text-base flex flex-col lg:flex-row">
+        <div class="flex mr-8 last:mr-0">
+          <dt>作者：</dt>
+          <dd>了了君</dd>
+        </div>
+        <div class="flex mr-8 last:mr-0">
+          <dt>地址：</dt>
+          <dd :title="domain">{{ domain }}</dd>
+        </div>
+        <div class="flex mr-8 last:mr-0">
+          <dt>联系邮箱：</dt>
+          <dd>1030219089a@gmail.com</dd>
+        </div>
       </dl>
     </footer>
   </div>
@@ -43,23 +49,23 @@
     // async asyncData ({req}) {
     //   return {domain: req?.headers?.host ?? '1'}
     // },
-  
+
     data () {
       return {
         activeIndex: 'index',
         domain: 'liaoliaojun.com',
         nav: [
           {
-            name: '前端记',
-            route: '/',
-          },
-          {
             name: '蓝星前沿',
-            route: '/',
+            routeName: 'theme',
           },
           {
             name: '未来',
-            route: '/article/12',
+            routeName: 'graphql',
+          },
+          {
+            name: '前端记',
+            routeName: 'index',
           },
         ],
       }
@@ -70,7 +76,7 @@
     },
 
     mounted () {
-      this.domain =  window?.location?.hostname ?? ''
+      this.domain = window?.location?.hostname ?? ''
 
       // 全局点击
       GlobalClick()
@@ -89,6 +95,20 @@
   }
   .bg3 {
     background-image: url('~@/assets/img/bg3.jpg');
+  }
+
+  .nuxt-link-active {
+    @apply text-blue;
+  }
+
+  .media-padding {
+    @apply px-3 py-2;
+  }
+
+  @screen lg {
+    .media-padding {
+      @apply px-8 py-3;
+    }
   }
 
   html {

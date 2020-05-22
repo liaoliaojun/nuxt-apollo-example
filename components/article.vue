@@ -1,12 +1,12 @@
 <template>
   <article
     :class="{'overflow-hidden': !isMain}"
-    :style="{maxHeight: isMain ? 'auto' : 'calc(1.5rem + 40px + (40px * 3))'}"
+    :style="{maxHeight: isMain ? 'auto' : 'calc(1em + 40px + (40px * 3))'}"
   >
-    <div class="bg2 py-4 px-8 text-2xl leading-10">
+    <div class="bg2 media-padding text-xl lg:text-2xl xl:text-3xl leading-10">
       <h1 class="font-bold">{{ title }}</h1>
       <div style="text-indent: 1em;">
-        <p class="text-xl">{{ content }}</p>
+        <p class="text-base lg:text-xl">{{ content }}</p>
       </div>
     </div>
   </article>

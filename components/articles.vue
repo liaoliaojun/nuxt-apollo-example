@@ -1,15 +1,15 @@
 <template>
-  <div class="bg2 py-2 px-8 text-xl">
+  <div class="bg2 media-padding text-base lg:text-xl">
     <ul>
       <nuxt-link
         v-for="(item, index) in data"
         :key="index"
-        class="flex justify-between items-center leading-loose cursor-pointer hover:text-blue"
+        class="flex justify-between items-start leading-loose cursor-pointer hover:text-blue"
         tag="li"
         :to="'article/' + item.article_id"
       >
         <h3>{{ item.article_title }}</h3>
-        <span>{{ item.article_date }}</span>
+        <span class="ml-2">{{ item.article_date }}</span>
       </nuxt-link>
     </ul>
   </div>
