@@ -16,10 +16,6 @@
   }
 
   export default Vue.extend({
-    validate ({params}) {
-      return !!params.id
-    },
-
     components: {
       TheArticle,
     },

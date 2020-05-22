@@ -14,7 +14,9 @@
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.0-rc19",
     "element-ui": "^2.13.1",
+    "github-markdown-css": "^4.0.0",
     "graphql-tag": "^2.10.3",
+    "marked": "^1.1.0",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
@@ -23,6 +25,7 @@
     "@nuxtjs/eslint-config-typescript": "^1.0.0",
     "@nuxtjs/eslint-module": "^1.0.0",
     "@nuxtjs/tailwindcss": "^2.0.0",
+    "@types/marked": "^0.7.4",
     "babel-eslint": "^10.0.1",
     "core-js": "3",
     "eslint": "^6.1.0",

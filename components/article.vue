@@ -3,10 +3,12 @@
     :class="{'overflow-hidden': !isMain}"
     :style="{maxHeight: isMain ? 'auto' : 'calc(1em + 40px + (40px * 3))'}"
   >
-    <div class="bg2 media-padding text-xl lg:text-2xl xl:text-3xl leading-10">
+    <div class="bg2 media-padding text-xl lg:text-2xl xl:text-3xl leading-10 h-full">
       <h1 class="font-bold">{{ title }}</h1>
       <div style="text-indent: 1em;">
-        <p class="text-base lg:text-xl">{{ content }}</p>
+        <!-- eslint-disable -->
+        <div class="markdown-body text-base lg:text-xl" v-html="content" />
+        <!-- eslint-enable -->
       </div>
     </div>
   </article>
@@ -14,7 +16,6 @@
 
 <script lang="ts">
   import Vue from 'vue'
-  // import gql from 'graphql-tag'
 
   export default Vue.extend({
     props: {
@@ -53,7 +54,4 @@
     // },
   })
 </script>
-
-<style>
-
-</style>
+<style src="github-markdown-css"></style>
