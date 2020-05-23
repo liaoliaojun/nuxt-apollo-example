@@ -1,23 +1,22 @@
 <template>
   <article
-    :class="{'overflow-hidden': !isMain}"
-    :style="{maxHeight: isMain ? 'auto' : 'calc(1em + 40px + (40px * 3))'}"
+    :class="[{'overflow-hidden': !isMain}, {'h-64 md:h-56 lg:h-40': !isMain}, {'auto': isMain}]"
+    class="relative text-xl lg:text-2xl xl:text-3xl"
   >
-    <div class="bg2 media-padding text-xl lg:text-2xl xl:text-3xl leading-10 h-full">
+    <div class="bg2 media-padding leading-10 h-full">
       <h1 class="font-bold">{{ title }}</h1>
-      <div style="text-indent: 1em;">
-        <!-- eslint-disable -->
-        <div class="markdown-body text-base lg:text-xl" v-html="content" />
-        <!-- eslint-enable -->
-      </div>
+      <!-- eslint-disable -->
+      <div v-show="!isMain" class="absolute top-0 left-0 w-full h-full" style="box-shadow: inset 0px -13px 10px -4px rgba(255, 255, 255, .9);" />
+      <div class="markdown-body text-base" v-html="'&nbsp;&emsp;' + content" />
+      <!-- eslint-enable -->
     </div>
   </article>
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
+  import {defineComponent} from '@vue/composition-api'
 
-  export default Vue.extend({
+  export default defineComponent({
     props: {
       title: {
         type: String,
