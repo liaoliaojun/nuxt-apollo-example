@@ -7,15 +7,11 @@
     </el-menu> -->
     <header class="media-padding bg1">
       <ul class="flex flex-row-reverse text-xl lg:text-2xl">
-        <nuxt-link
-          v-for="(item, index) in nav"
-          :key="index"
-          class="cursor-pointer first:mr-0 hover:text-blue mr-8 lg:mr-12 "
-          tag="li"
-          :to="{name: item.routeName}"
-        >
-          {{ item.name }}
-        </nuxt-link>
+        <li v-for="(item, index) in nav" :key="index" class="cursor-pointer first:mr-0 hover:text-blue mr-8 lg:mr-12">
+          <nuxt-link tag="a" :to="{name: item.routeName}">
+            {{ item.name }}
+          </nuxt-link>
+        </li>
       </ul>
     </header>
 
