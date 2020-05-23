@@ -32,7 +32,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    {src: '~/plugins/element-ui'},
+    {src: '~/plugins/composition-api'},
   ],
   /*
   ** Nuxt.js dev-modules

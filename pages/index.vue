@@ -6,7 +6,8 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
+  import {defineComponent} from '@vue/composition-api'
+
   import TheArticle from '~/components/article.vue'
   import TheArticles from '~/components/articles.vue'
   // @ts-ignore
@@ -16,7 +17,7 @@
 
   import {Article} from '~/types/index'
 
-  export default Vue.extend({
+  export default defineComponent({
     components: {
       TheArticle,
       TheArticles,

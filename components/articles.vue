@@ -16,10 +16,10 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
+  import {defineComponent} from '@vue/composition-api'
   // import gql from 'graphql-tag'
 
-  export default Vue.extend({
+  export default defineComponent({
     props: {
       data: {
         type: Array,
