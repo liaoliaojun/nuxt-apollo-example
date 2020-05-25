@@ -60,8 +60,6 @@
 
       // 添加文字
       const submit = () => {
-        console.log(compiledMarkdown)
-        console.log(compiledMarkdown.value)
         if (!state.key || !state.title || !state.content) {
           alert('请填写完整信息')
           return

@@ -1,5 +1,7 @@
 import {resolve} from 'path'
 import fs from 'fs'
+import axios from 'axios'
+// import {createApolloFetch} from 'apollo-fetch'
 
 export default {
   mode: 'universal',
@@ -45,6 +47,7 @@ export default {
   */
   modules: [
     '@nuxtjs/apollo',
+    '@nuxtjs/sitemap',
   ],
   /*
   ** Build configuration
@@ -86,6 +89,32 @@ export default {
     https: {
       key: fs.readFileSync(resolve(__dirname, 'ssl/liaoliaojun.com.key')),
       cert: fs.readFileSync(resolve(__dirname, 'ssl/liaoliaojun.com.crt')),
+    },
+  },
+  // 设置网站地图
+  sitemap: {
+    path: '/sitemap.xml',
+    gzip: true,
+    routes: async () => {
+      // https://graphql.org/graphql-js/graphql-clients/
+      // const apolloFetch = createApolloFetch({uri: 'https://api.liaoliaojun.com:3000/graphql'})
+      const query = `
+        query queryArticles {
+          result: articles {
+            # 文章id
+            article_id
+          }
+        }
+      `
+      return await axios.post('https://api.liaoliaojun.com:3000/graphql', {query}, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      })
+      .then(res => {
+        return (res.data.data.result || []).map((article) => `/article/${article.article_id}`)
+      }).catch((error) => console.log(`dynamic routes error: ${error}`))
     },
   },
 }
