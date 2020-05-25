@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col">
-    <div class="cursor-pointer" @click="addLike">
+  <div class="flex flex-col mt-4">
+    <!-- <div class="cursor-pointer" @click="addLike">
       点赞{{ likeCount }}
-    </div>
+    </div> -->
     <the-article :title="title" :content="content" is-main class="flex-auto" />
   </div>
 </template>
@@ -27,6 +27,7 @@
     async asyncData ({store, app: {apolloProvider}, params}) {
       const {article_title, article_content, article_like_count}: Article = await apolloProvider.defaultClient.query({
         query: queryArticle,
+        fetchPolicy: 'no-cache',
         variables: {
           article_id: params.id,
         },

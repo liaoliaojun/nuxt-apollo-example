@@ -1,12 +1,12 @@
 <template>
   <div class="flex media-padding">
-    <form class="flex flex-col mr-4" style="min-width: 40vw;">
+    <form class="flex flex-col mr-4" style="min-width: 40vw;" @submit.prevent>
       <input v-model="state.title" type="text" placeholder="请输入标题" class="input-wrapper">
       <textarea v-model="state.content" cols="30" rows="10" placeholder="请输入文章内容" class="p-4 mt-4 textarea-wrapper" />
 
       <div class="mt-4 text-right">
         <input v-model="state.key" type="text" placeholder="请输入key" class="input-wrapper">
-        <button type="submit" class="btn mt-2">提交</button>
+        <button type="submit" class="btn mt-2" @click="submit">提交</button>
       </div>
     </form>
     <the-article :title="state.title" :content="compiledMarkdown" is-main class="flex-auto" style="min-width: 40vw;" />
@@ -14,31 +14,89 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
+  import {defineComponent, reactive, computed, watch} from '@vue/composition-api'
+
   import marked from 'marked'
   import TheArticle from '~/components/article.vue'
+  // @ts-ignore
+  import MutationAddArticle from '~/graphql/mutation/add_article.gql'
 
-  const state = Vue.observable({
-    title: '',
-    content: '',
-    key: '',
-  })
+  import {SubmitArticle} from '~/types/index'
 
-  export default Vue.extend({
+  export default defineComponent({
     components: {
       TheArticle,
     },
 
-    data () {
-      return {
-        state,
-      }
+    props: {
+      title: {
+        type: String,
+        default: '',
+      },
+      content: {
+        type: String,
+        default: '',
+      },
+      isUpdate: {
+        type: Boolean,
+        default: false,
+      },
     },
 
-    computed: {
-      compiledMarkdown () {
-        return marked(state.content)
-      },
+    setup (props, vm: any) {
+      const state: SubmitArticle = reactive({
+        title: props.title || '',
+        content: props.content || '',
+        key: '',
+      })
+      const compiledMarkdown = computed(() => marked(state.content, {
+        gfm: true,
+      }))
+
+      watch(() => [props.title, props.content], () => {
+        state.title = props.title
+        state.content = props.content
+      })
+
+      // 添加文字
+      const submit = () => {
+        console.log(compiledMarkdown)
+        console.log(compiledMarkdown.value)
+        if (!state.key || !state.title || !state.content) {
+          alert('请填写完整信息')
+          return
+        }
+        if (props.isUpdate) {
+          vm.emit('submit', {
+            key: state.key,
+            title: state.title,
+            content: compiledMarkdown.value || '',
+          })
+          return
+        }
+        vm.root.$apollo.mutate({
+          mutation: MutationAddArticle,
+          variables: {
+            input: {
+              key: state.key,
+              article_title: state.title,
+              article_content: compiledMarkdown.value || '',
+            },
+          },
+        }).then((res: any) => {
+          if (res.data.result === '0') {
+            alert('提交失败!')
+          } else {
+            alert('提交成功！')
+          }
+        })
+      }
+
+      return {
+        submit,
+        state,
+        compiledMarkdown,
+      }
     },
   })
 </script>
