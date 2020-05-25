@@ -7,14 +7,15 @@
       <h1 class="font-bold">{{ title }}</h1>
       <!-- eslint-disable -->
       <div v-show="!isMain" class="absolute top-0 left-0 w-full h-full" style="box-shadow: inset 0px -13px 10px -4px rgba(255, 255, 255, .9);" />
-      <div class="markdown-body text-base" v-html="'&nbsp;&emsp;' + content" />
+      <div class="markdown-body text-base" v-html="'&nbsp;&emsp;' + contentHTML" />
       <!-- eslint-enable -->
     </div>
   </article>
 </template>
 
 <script lang="ts">
-  import {defineComponent} from '@vue/composition-api'
+  import escapeHTML from 'escape-html'
+  import {defineComponent, computed} from '@vue/composition-api'
 
   export default defineComponent({
     props: {
@@ -33,6 +34,14 @@
         default: false,
       },
     },
+    
+    setup (props) {
+      const contentHTML = computed(() => escapeHTML(props.content))
+      return {
+        contentHTML,
+      }
+    },
+
     // async asyncData ({req}) {
     //   // const data = await app.apolloProvider.defaultClient.query({
     //   //   query: gql`
