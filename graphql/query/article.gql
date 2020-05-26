@@ -6,6 +6,8 @@ query queryArticle ($article_id: ID!) {
     article_title
     # 文章内容
     article_content
+    # marked原文
+    article_marked_content
     # 浏览量
     article_views
     # 发表时间

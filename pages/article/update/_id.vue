@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <add-article is-update :title="title" :content="content" @submit="update" />
-  </div>
+  <add-article is-update :title="article_title" :marked-content="article_marked_content" @submit="update" />
 </template>
 
 <script lang="ts">
@@ -23,18 +21,19 @@
       const {root} = vm
       const id = computed(() => root.$route?.params?.id)
       const state = reactive({
-        title: '',
-        content: '',
+        article_title: '',
+        article_marked_content: '',
       })
-      const update = (state: SubmitArticle) => {
+      const update = (submitState: SubmitArticle) => {
         root.$apollo.mutate({
           mutation: MutationUpdateArticle,
           variables: {
             input: {
               article_id: id.value,
-              key: state.key,
-              article_title: state.title,
-              article_content: state.content || '',
+              key: submitState.key,
+              article_title: submitState.article_title,
+              article_content: submitState.article_content || '',
+              article_marked_content: submitState.article_marked_content || '',
             },
           },
         }).then((res: any) => {
@@ -57,8 +56,8 @@
         }).catch(() => {
           return {}
         })
-        state.title = data.article_title
-        state.content = data.article_content
+        state.article_title = data.article_title
+        state.article_marked_content = data.article_marked_content
       }
       query()
 

@@ -5,6 +5,8 @@ export type Article = {
   article_title: string,
   // 文章内容
   article_content: string,
+  // marked原文
+  article_marked_content?: string,
   // 浏览量
   article_views?: number,
   // 发表时间
@@ -17,7 +19,8 @@ export type Article = {
 
 export type SubmitArticle = {
   article_id?: string|number,
-  title: string,
-  content: string,
+  article_title: string,
+  article_content?: string,
+  article_marked_content?: string,
   key: string,
 }

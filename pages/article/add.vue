@@ -1,15 +1,15 @@
 <template>
   <div class="flex media-padding">
     <form class="flex flex-col mr-4" style="min-width: 40vw;" @submit.prevent>
-      <input v-model="state.title" type="text" placeholder="请输入标题" class="input-wrapper">
-      <textarea v-model="state.content" cols="30" rows="10" placeholder="请输入文章内容" class="p-4 mt-4 textarea-wrapper" />
+      <input v-model="state.article_title" type="text" placeholder="请输入标题" class="input-wrapper">
+      <textarea v-model="state.article_marked_content" cols="30" rows="10" placeholder="请输入文章内容" class="p-4 mt-4 textarea-wrapper" />
 
       <div class="mt-4 text-right">
         <input v-model="state.key" type="text" placeholder="请输入key" class="input-wrapper">
         <button type="submit" class="btn mt-2" @click="submit">提交</button>
       </div>
     </form>
-    <the-article :title="state.title" :content="compiledMarkdown" is-main class="flex-auto" style="min-width: 40vw;" />
+    <the-article :title="state.article_title" :content="compiledMarkdown" is-main class="flex-auto" style="min-width: 40vw;" />
   </div>
 </template>
 
@@ -33,7 +33,7 @@
         type: String,
         default: '',
       },
-      content: {
+      markedContent: {
         type: String,
         default: '',
       },
@@ -45,30 +45,38 @@
 
     setup (props, vm: any) {
       const state: SubmitArticle = reactive({
-        title: props.title || '',
-        content: props.content || '',
         key: '',
+        article_title: props.title || '',
+        article_marked_content: props.markedContent || '',
       })
-      const compiledMarkdown = computed(() => marked(state.content, {
-        gfm: true,
-      }))
+      // @ts-ignore
+      const compiledMarkdown = computed(() => {
+        if (state.article_marked_content) {
+          return marked(state.article_marked_content, {
+            gfm: true,
+          })
+        } else {
+          return ''
+        }
+      })
 
-      watch(() => [props.title, props.content], () => {
-        state.title = props.title
-        state.content = props.content
+      watch(() => [props.title, props.markedContent], () => {
+        state.article_title = props.title
+        state.article_marked_content = props.markedContent
       })
 
       // 添加文字
       const submit = () => {
-        if (!state.key || !state.title || !state.content) {
+        if (!state.key || !state.article_title || !state.article_marked_content) {
           alert('请填写完整信息')
           return
         }
         if (props.isUpdate) {
           vm.emit('submit', {
             key: state.key,
-            title: state.title,
-            content: compiledMarkdown.value || '',
+            article_title: state.article_title,
+            article_content: compiledMarkdown.value || '',
+            article_marked_content: state.article_marked_content || '',
           })
           return
         }
@@ -77,8 +85,9 @@
           variables: {
             input: {
               key: state.key,
-              article_title: state.title,
+              article_title: state.article_title,
               article_content: compiledMarkdown.value || '',
+              article_marked_content: state.article_marked_content || '',
             },
           },
         }).then((res: any) => {

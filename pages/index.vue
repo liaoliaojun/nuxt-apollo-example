@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-  import {defineComponent} from '@vue/composition-api'
+  import {defineComponent, onMounted} from '@vue/composition-api'
 
   import TheArticle from '~/components/article.vue'
   import TheArticles from '~/components/articles.vue'
@@ -14,6 +14,8 @@
   import queryArticle from '~/graphql/query/article.gql'
   // @ts-ignore
   import queryArticles from '~/graphql/query/articles.gql'
+  // @ts-ignore
+  import setVisitor from '~/graphql/mutation/set_visitor.gql'
 
   import {Article} from '~/types/index'
 
@@ -22,6 +24,8 @@
       TheArticle,
       TheArticles,
     },
+
+    props: {},
 
     async asyncData ({app: {apolloProvider}, req}) {
       let firstArticle: Article = {article_title: '', article_content: ''}
@@ -55,6 +59,16 @@
         content: firstArticle.article_content,
         domain: req?.headers?.host,
       }
+    },
+
+    setup (props, vm: any) {
+      onMounted(() => {
+        // 上传访客信息
+        vm.root.$apollo.mutate({
+          mutation: setVisitor,
+        })
+      })
+      return {}
     },
   })
 </script>
