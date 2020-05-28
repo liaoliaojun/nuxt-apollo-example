@@ -1,15 +1,16 @@
 <template>
   <article
-    :class="[{'overflow-hidden': !isMain}, {'h-64 md:h-56 lg:h-40': !isMain}, {'auto': isMain}]"
+    :class="[{'overflow-hidden': !isMain}, {'h-64': !isMain}, {'auto': isMain}]"
     class="relative text-xl lg:text-2xl xl:text-3xl"
   >
     <div class="bg2 media-padding leading-10 h-full">
       <h1 class="font-bold">{{ title }}</h1>
       <!-- eslint-disable -->
-      <div v-show="!isMain" class="absolute top-0 left-0 w-full h-full" style="box-shadow: inset 0px -13px 10px -4px rgba(255, 255, 255, .9);" />
+      <div v-show="!isMain" class="absolute top-0 left-0 w-full h-full" style="box-shadow: rgba(145, 107, 107, 0.9) 0px -20px 19px -5px inset;" />
       <div class="markdown-body text-base" v-html="contentHTML" />
       <!-- eslint-enable -->
     </div>
+    <div v-show="!isMain" class="absolute text-center text-white text-base w-full bottom-0">点击文章，展开全文</div>
   </article>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <the-article :title="title" :content="content" class="cursor-pointer mt-4" />
+    <the-article :is-main="isMain" :count="count" :title="title" :content="content" class="mt-4" :class="!isMain ? 'cursor-pointer' : ''" @click.native="isMain = true" />
     <the-articles :data="articles" class="flex-auto mt-4" />
   </div>
 </template>
@@ -21,6 +21,12 @@
     components: {
       TheArticle,
       TheArticles,
+    },
+
+    data () {
+      return {
+        isMain: false,
+      }
     },
 
     props: {},
@@ -50,7 +56,6 @@
           return {article_title: '', article_content: ''}
         })
       }
-
       return {
         articles,
         title: firstArticle.article_title,
