@@ -37,18 +37,19 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
+  import {defineComponent, reactive, toRefs, onMounted} from '@vue/composition-api'
+
   import GlobalClick from '~/util/global-click'
   import VisibilityChange from '~/util/visibility-change'
+  // @ts-ignore
+  import setVisitor from '~/graphql/mutation/set_visitor.gql'
 
-  export default Vue.extend({
-    // async asyncData ({req}) {
-    //   return {domain: req?.headers?.host ?? '1'}
-    // },
+  export default defineComponent({
+    props: {},
 
-    data () {
-      return {
-        activeIndex: 'index',
+    setup (_, ctx: any) {
+      const state = reactive({
+        activeIndex: ctx.root.$route.name || 'index',
         domain: 'liaoliaojun.com',
         nav: [
           {
@@ -64,20 +65,24 @@
             routeName: 'index',
           },
         ],
+      })
+
+      onMounted(() => {
+        // 全局点击
+        GlobalClick()
+        // tab页切换
+        VisibilityChange()
+
+        state.domain = window?.location?.hostname ?? 'liaoliaojun.com'
+
+        ctx.root.$apollo.mutate({
+          mutation: setVisitor,
+        })
+      })
+
+      return {
+        ...toRefs(state),
       }
-    },
-
-    created () {
-      this.activeIndex = this.$route.name || 'index'
-    },
-
-    mounted () {
-      this.domain = window?.location?.hostname ?? ''
-
-      // 全局点击
-      GlobalClick()
-      // tab页切换
-      VisibilityChange()
     },
   })
 </script>
