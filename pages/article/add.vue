@@ -2,7 +2,7 @@
   <div class="flex media-padding">
     <form class="flex flex-col mr-4" style="min-width: 40vw;" @submit.prevent>
       <input v-model="state.article_title" type="text" placeholder="请输入标题" class="input-wrapper">
-      <textarea v-model="state.article_marked_content" cols="30" rows="10" placeholder="请输入文章内容" class="p-4 mt-4 textarea-wrapper" />
+      <textarea ref="textareaInput" v-model="state.article_marked_content" cols="30" rows="10" placeholder="请输入文章内容" class="p-4 mt-4 textarea-wrapper" @keydown="tab" />
 
       <div class="mt-4 text-right">
         <input v-model="state.key" type="text" placeholder="请输入key" class="input-wrapper">
@@ -99,7 +99,29 @@
         })
       }
 
+      const tab = (e: any) => {
+        if (e.keyCode === 9) {
+          const textarea = vm.refs.textareaInput
+
+          const start = textarea.selectionStart
+          const end = textarea.selectionEnd
+
+          const target = e.target
+          const value = target.value
+
+          // set textarea value to: text before caret + tab + text after caret
+          target.value = value.substring(0, start) + '  ' + value.substring(end)
+
+          // put caret at right position again (add one for the tab)
+          textarea.selectionStart = textarea.selectionEnd = start + 2
+
+          // prevent the focus lose
+          e.preventDefault()
+        }
+      }
+
       return {
+        tab,
         submit,
         state,
         compiledMarkdown,

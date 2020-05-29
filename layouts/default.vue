@@ -53,15 +53,15 @@
         domain: 'liaoliaojun.com',
         nav: [
           {
-            name: '蓝星前沿',
+            name: '蓝星最新',
             routeName: 'theme',
           },
           {
-            name: '未来',
+            name: '憧憬未来',
             routeName: 'graphql',
           },
           {
-            name: '前端记',
+            name: '文章',
             routeName: 'index',
           },
         ],
