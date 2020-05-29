@@ -5,7 +5,7 @@
       <textarea ref="textareaInput" v-model="state.article_marked_content" cols="30" rows="10" placeholder="请输入文章内容" class="p-4 mt-4 textarea-wrapper" @keydown="tab" />
 
       <div class="mt-4 text-right">
-        <input v-model="state.key" type="text" placeholder="请输入key" class="input-wrapper">
+        <input v-model="state.key" type="password" placeholder="请输入key" class="input-wrapper">
         <button type="submit" class="btn mt-2" @click="submit">提交</button>
       </div>
     </form>
@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-  import {defineComponent, reactive, computed, watch} from '@vue/composition-api'
+  import {defineComponent, reactive, computed, watch, onMounted} from '@vue/composition-api'
 
   import marked from 'marked'
   import TheArticle from '~/components/article.vue'
@@ -119,6 +119,10 @@
           e.preventDefault()
         }
       }
+
+      onMounted(() => {
+        state.key = localStorage.getItem('app-key') ?? ''
+      })
 
       return {
         tab,
