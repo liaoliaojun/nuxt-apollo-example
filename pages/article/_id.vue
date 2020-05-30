@@ -22,10 +22,21 @@
       TheArticle,
     },
 
+    head () {
+      return {
+        // @ts-ignore
+        title: this.title,
+        meta: [
+          // @ts-ignore
+          {hid: this.id, name: 'description', content: '这是我的博客，热爱编程。该博客使用的技术栈有 前端：Nuxtjs, ApolloClient/Graphql，TailwindCss，Css，Js，Css/Css3，Canvas, Vue、React。后台：Node，ApolloServer, Docker，Nginx'},
+        ],
+      }
+    },
+
     props: {},
 
     async asyncData ({store, app: {apolloProvider}, params}) {
-      const {article_title, article_content, article_like_count}: Article = await apolloProvider.defaultClient.query({
+      const {article_title, article_content, article_like_count, article_id}: Article = await apolloProvider.defaultClient.query({
         query: queryArticle,
         fetchPolicy: 'no-cache',
         variables: {
@@ -37,7 +48,7 @@
         return {article_title: '', article_content: ''}
       })
       store.commit('article/setLikeCount', article_like_count || 0)
-      return {title: article_title, content: article_content}
+      return {title: article_title, content: article_content, id: article_id}
     },
 
     setup (_, {root: {$store}}) {

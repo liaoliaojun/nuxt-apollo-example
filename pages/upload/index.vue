@@ -39,15 +39,7 @@
     props: {},
 
     setup (_, ctx: any) {
-      const files: Ref<Array<File>> = ref([
-        {
-          encoding: '',
-          filename: '831af18dd35ddf32.jpeg',
-          id: '0MB_MPss1',
-          mimetype: '',
-          path: 'files/0MB_MPss1-831af18dd35ddf32.jpeg',
-        },
-      ])
+      const files: Ref<Array<File>> = ref([])
       const fileUrl: Ref<string> = ref('')
 
       const onUploadImage = async ({target}: any) => {
