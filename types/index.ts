@@ -24,3 +24,11 @@ export type SubmitArticle = {
   article_marked_content?: string,
   key: string,
 }
+
+export type File = {
+  id: number
+  path: string
+  filename: string
+  mimetype: string
+  encoding: string
+}
