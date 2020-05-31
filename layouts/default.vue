@@ -15,7 +15,7 @@
       </ul>
     </header>
 
-    <nuxt class="flex-auto" />
+    <nuxt class="flex-auto overflow-y-auto" />
 
     <footer class="bg3 media-padding mt-4">
       <dl class="text-xs md:text-sm lg:text-base flex flex-col lg:flex-row">

@@ -26,10 +26,10 @@
 </template>
 
 <script lang="ts">
+  import {File} from '~/types/index'
   import {defineComponent, ref, Ref} from '@vue/composition-api'
 
   import useUpload from '~/hooks/upload'
-  import {File} from '~/types/index'
 
   export default defineComponent({
     props: {},
@@ -48,7 +48,6 @@
         }
       }
 
-      
       const onUploadNetwork = async () => {
         const data = await urlUpload(fileUrl.value)
         if (data !== null) {

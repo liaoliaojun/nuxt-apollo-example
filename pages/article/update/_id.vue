@@ -1,5 +1,5 @@
 <template>
-  <add-article is-update :title="article_title" :marked-content="article_marked_content" @submit="update" />
+  <add-article is-update :bg-path="bg_path" :title="article_title" :marked-content="article_marked_content" @submit="update" />
 </template>
 
 <script lang="ts">
@@ -23,6 +23,7 @@
       const state = reactive({
         article_title: '',
         article_marked_content: '',
+        bg_path: '',
       })
       const update = (submitState: SubmitArticle) => {
         root.$apollo.mutate({
@@ -34,6 +35,7 @@
               article_title: submitState.article_title,
               article_content: submitState.article_content || '',
               article_marked_content: submitState.article_marked_content || '',
+              bg_path: submitState.bg_path || null,
             },
           },
         }).then((res: any) => {
@@ -58,6 +60,7 @@
         })
         state.article_title = data.article_title
         state.article_marked_content = data.article_marked_content
+        state.bg_path = data.bg_path
       }
       query()
 

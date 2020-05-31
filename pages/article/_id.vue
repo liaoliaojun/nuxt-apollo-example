@@ -3,7 +3,7 @@
     <!-- <div class="cursor-pointer" @click="addLike">
       点赞{{ likeCount }}
     </div> -->
-    <the-article :title="title" :content="content" is-main class="flex-auto" />
+    <the-article :bg-path="bgPath" :title="title" :content="content" is-main class="flex-auto" />
   </div>
 </template>
 
@@ -36,7 +36,7 @@
     props: {},
 
     async asyncData ({store, app: {apolloProvider}, params}) {
-      const {article_title, article_content, article_like_count, article_id}: Article = await apolloProvider.defaultClient.query({
+      const {article_title, article_content, article_like_count, article_id, bg_path}: Article = await apolloProvider.defaultClient.query({
         query: queryArticle,
         fetchPolicy: 'no-cache',
         variables: {
@@ -48,7 +48,7 @@
         return {article_title: '', article_content: ''}
       })
       store.commit('article/setLikeCount', article_like_count || 0)
-      return {title: article_title, content: article_content, id: article_id}
+      return {title: article_title, content: article_content, bgPath: bg_path, id: article_id}
     },
 
     setup (_, {root: {$store}}) {

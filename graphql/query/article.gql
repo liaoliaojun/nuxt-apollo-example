@@ -16,5 +16,7 @@ query queryArticle ($article_id: ID!) {
     article_like_count
     # 点赞的ip地址
     article_like_ips
+    # 背景图地址(/保存至本服务器)
+    bg_path
   }
 }

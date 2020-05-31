@@ -28,9 +28,11 @@
     "@nuxtjs/sitemap": "^2.3.0",
     "@nuxtjs/tailwindcss": "^2.0.0",
     "@types/marked": "^0.7.4",
+    "@typescript-eslint/eslint-plugin": "^3.0.2",
     "babel-eslint": "^10.0.1",
     "core-js": "3",
     "eslint": "^6.1.0",
-    "eslint-plugin-nuxt": ">=0.4.2"
+    "eslint-plugin-nuxt": ">=0.4.2",
+    "prettier": "^2.0.5"
   }
 }

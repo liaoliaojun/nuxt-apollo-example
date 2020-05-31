@@ -7,14 +7,15 @@ module.exports = {
     node: true,
   },
   extends: [
+    'plugin:prettier/recommended',
     'plugin:vue/essential',
     'plugin:vue/strongly-recommended',
     'plugin:vue/recommended',
     'eslint:recommended',
   ],
-  parserOptions: {
-    parser: 'babel-eslint',
-  },
+  // parserOptions: {
+  //   parser: 'babel-eslint',
+  // },
   rules: {
     'vue/max-attributes-per-line': [warnInDev, {
       singleline: 9,

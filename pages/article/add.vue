@@ -5,23 +5,29 @@
       <textarea ref="textareaInput" v-model="state.article_marked_content" cols="30" rows="10" placeholder="请输入文章内容" class="p-4 mt-4 textarea-wrapper" @keydown="tab" />
 
       <div class="mt-4 text-right">
-        <input v-model="state.key" type="password" placeholder="请输入key" class="input-wrapper">
-        <button type="submit" class="btn mt-2" @click="submit">提交</button>
+        <div class="flex">
+          <input v-model="imageUrl" type="text" placeholder="输入配图图片地址，生成图片ID" class="input-wrapper">
+          <button class="border px-2 ml-3 text-blue whitespace-no-wrap" @click="onUploadNetwork">上传图片至服务器</button>
+        </div>
+        <input v-model="state.bg_path" type="text" placeholder="图片ID" class="input-wrapper mt-3">
+        <input v-model="state.key" type="text" placeholder="请输入key" class="input-wrapper my-3">
+        <button type="submit" class="btn" @click="submit">提交</button>
       </div>
     </form>
-    <the-article :title="state.article_title" :content="compiledMarkdown" is-main class="flex-auto" style="min-width: 40vw;" />
+    <the-article :bg-path="state.bg_path" :title="state.article_title" :content="compiledMarkdown" is-main class="flex-auto" style="min-width: 40vw;" />
   </div>
 </template>
 
 <script lang="ts">
-  import {defineComponent, reactive, computed, watch, onMounted} from '@vue/composition-api'
+  import {SubmitArticle, File} from '~/types/index'
+  import {defineComponent, reactive, ref, Ref, computed, watch, onMounted} from '@vue/composition-api'
 
   import marked from 'marked'
   import TheArticle from '~/components/article.vue'
   // @ts-ignore
   import MutationAddArticle from '~/graphql/mutation/add_article.gql'
 
-  import {SubmitArticle} from '~/types/index'
+  import useUpload from '~/hooks/upload'
 
   export default defineComponent({
     components: {
@@ -41,18 +47,26 @@
         type: Boolean,
         default: false,
       },
+      bgPath: {
+        type: String,
+        default: '',
+      },
     },
 
-    setup (props, vm: any) {
+    setup (props, ctx: any) {
+      const {urlUpload} = useUpload(ctx)
+
+      const imageUrl: Ref<String> = ref('')
       const state: SubmitArticle = reactive({
         key: '',
         article_title: props.title || '',
         article_marked_content: props.markedContent || '',
+        bg_path: props.bgPath || '',
       })
-      // @ts-ignore
+  
       const compiledMarkdown = computed(() => {
         if (state.article_marked_content) {
-          return marked(state.article_marked_content, {
+          return marked((state.article_marked_content as string), {
             gfm: true,
           })
         } else {
@@ -60,27 +74,23 @@
         }
       })
 
-      watch(() => [props.title, props.markedContent], () => {
-        state.article_title = props.title
-        state.article_marked_content = props.markedContent
-      })
-
-      // 添加文字
+      // 提交文章
       const submit = () => {
         if (!state.key || !state.article_title || !state.article_marked_content) {
           alert('请填写完整信息')
           return
         }
         if (props.isUpdate) {
-          vm.emit('submit', {
+          ctx.emit('submit', {
             key: state.key,
             article_title: state.article_title,
             article_content: compiledMarkdown.value || '',
             article_marked_content: state.article_marked_content || '',
+            bg_path: state.bg_path,
           })
           return
         }
-        vm.root.$apollo.mutate({
+        ctx.root.$apollo.mutate({
           mutation: MutationAddArticle,
           variables: {
             input: {
@@ -88,6 +98,7 @@
               article_title: state.article_title,
               article_content: compiledMarkdown.value || '',
               article_marked_content: state.article_marked_content || '',
+              bg_path: state.bg_path,
             },
           },
         }).then((res: any) => {
@@ -101,7 +112,7 @@
 
       const tab = (e: any) => {
         if (e.keyCode === 9) {
-          const textarea = vm.refs.textareaInput
+          const textarea = ctx.refs.textareaInput
 
           const start = textarea.selectionStart
           const end = textarea.selectionEnd
@@ -120,6 +131,22 @@
         }
       }
 
+      // 上传网络图片
+      const onUploadNetwork = async () => {
+        if (!imageUrl.value) return
+        const data = await urlUpload(imageUrl.value)
+        if ((data as File).path) {
+          state.bg_path = (data as File).path
+        }
+        alert('上传网络图片成功')
+      }
+
+      watch(() => [props.title, props.markedContent, props.bgPath], () => {
+        state.article_title = props.title
+        state.article_marked_content = props.markedContent
+        state.bg_path = props.bgPath
+      })
+
       onMounted(() => {
         state.key = localStorage.getItem('app-key') ?? ''
       })
@@ -129,6 +156,8 @@
         submit,
         state,
         compiledMarkdown,
+        imageUrl,
+        onUploadNetwork,
       }
     },
   })
