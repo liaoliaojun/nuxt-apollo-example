@@ -20,6 +20,7 @@
       <li v-for="file in files" :key="file.id">
         <span>id: {{ file.id }}</span>
         <span>name: {{ file.filename }}</span>
+        <span>path: {{ file.path }}</span>
       </li>
     </ul>
   </div>
