@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto h-screen flex flex-col">
-    <header class="flex justify-center bg-white shadow-sm app-header">
+    <header class="flex justify-center bg-white shadow-lg app-header z-10">
       <ul class="flex flex-row-reverse text-sm lg:text-base">
         <li v-for="(item, index) in nav" :key="index" class="h-full first:mr-0 mr-5 lg:mr-8">
           <nuxt-link tag="a" :to="{name: item.routeName}" class="llj-btn cursor-pointer flex items-center h-12 px-6 hover:bg-gray-300">
@@ -10,7 +10,10 @@
       </ul>
     </header>
 
-    <nuxt class="flex-auto overflow-y-auto bg-gray-300" />
+    <!-- <nuxt class="flex-auto overflow-y-auto bg-gray-300" /> -->
+    <div class="flex-auto overflow-y-auto bg-gray-300">
+      <nuxt class="body-width mx-auto"/>
+    </div>
 
     <footer class="bg3 media-padding mt-4">
       <dl class="text-xs md:text-sm lg:text-base flex flex-col lg:flex-row">

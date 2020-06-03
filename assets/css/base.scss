@@ -4,6 +4,10 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.body-width {
+  width: 1080px;
+}
+
 .media-padding {
   @apply px-3 py-2;
 }
