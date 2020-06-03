@@ -5,10 +5,10 @@
       <el-menu-item index="graphql" :route="{name: 'graphql'}">graphql</el-menu-item>
       <el-menu-item index="theme" :route="{name: 'theme'}">主题</el-menu-item>
     </el-menu> -->
-    <header class="media-padding bg1">
-      <ul class="flex flex-row-reverse text-xl lg:text-2xl">
-        <li v-for="(item, index) in nav" :key="index" class="cursor-pointer first:mr-0 hover:text-blue mr-8 lg:mr-12">
-          <nuxt-link tag="a" :to="{name: item.routeName}">
+    <header class="flex justify-center bg-white shadow-sm app-header">
+      <ul class="flex flex-row-reverse text-sm lg:text-base">
+        <li v-for="(item, index) in nav" :key="index" class="h-full first:mr-0 mr-5 lg:mr-8">
+          <nuxt-link tag="a" :to="{name: item.routeName}" class="cursor-pointer flex items-center h-12 px-6 hover:bg-gray-300">
             {{ item.name }}
           </nuxt-link>
         </li>
@@ -53,15 +53,15 @@
         domain: 'liaoliaojun.com',
         nav: [
           {
-            name: '蓝星最新',
+            name: '友邻',
             routeName: 'theme',
           },
           {
-            name: '憧憬未来',
+            name: '留言',
             routeName: 'graphql',
           },
           {
-            name: '文章',
+            name: '首页',
             routeName: 'index',
           },
         ],
@@ -87,7 +87,17 @@
   })
 </script>
 
-<style>
+<style lang="scss">
+  .app-header {
+    .nuxt-link-exact-active {
+      @apply bg-gray-400;
+
+      &:hover {
+        @apply bg-gray-300;
+      }
+    }
+  }
+
   .bg1 {
     background-image: url('~@/assets/img/bg1.jpg');
   }
@@ -96,10 +106,6 @@
   }
   .bg3 {
     background-image: url('~@/assets/img/bg3.jpg');
-  }
-
-  .nuxt-link-active {
-    @apply text-blue;
   }
 
   .media-padding {
