@@ -1,0 +1,60 @@
+html, body {
+  font-family: 'PingFang SC',arial,verdana,helvetica,'HanHei SC',STHeitiSC-Light,Microsoft Yahei,sans-serif;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.media-padding {
+  @apply px-3 py-2;
+}
+
+@screen lg {
+  .media-padding {
+    @apply px-8 py-3;
+  }
+}
+
+.llj-btn {
+  @apply overflow-hidden relative;
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    //设置径向渐变
+    background-image: radial-gradient(circle, #666 10%, transparent 10%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .3s, opacity .5s;
+  }
+
+  &:active:after {
+    transform: scale(0, 0);
+    opacity: .3;
+    //设置初始状态
+    transition: 0s;
+  }
+}
+
+// 滚动条
+::-webkit-scrollbar {
+  width: 6px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 13px;
+  background-color: #D8D8D8;
+}
+::-webkit-scrollbar-button {
+  display: none;
+}

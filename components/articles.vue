@@ -1,14 +1,23 @@
 <template>
-  <div class="bg2 media-padding text-base lg:text-xl">
+  <div class="bg2 media-padding" style="width: 50vw;">
+    <h3 class="text-xl">全部文章</h3>
     <ul>
-      <li v-for="(item, index) in data" :key="index">
+      <li v-for="(item, index) in data" :key="index" class="mt-5">
         <nuxt-link
-          class="flex justify-between items-start leading-loose cursor-pointer hover:text-blue"
+          class="block cursor-pointer overflow-hidden rounded-lg hover:text-blue"
           tag="a"
           :to="'article/' + item.article_id"
         >
-          <h3>{{ item.article_title }}</h3>
-          <span class="ml-2">{{ item.article_date }}</span>
+          <div
+            class="bg-no-repeat bg-cover bg-center"
+            :style="`height: 50vh; backgroundImage: url(https://api.liaoliaojun.com:3000/${item.bg_path})`">
+          </div>
+          <div class="bg-white p-5">
+            <h3 class="text-xl">{{ item.article_title }}</h3>
+            <span class="text-sm">五月 26, 2020</span>
+            <p class="mt-4">Nps是一款轻量级、高性能、功能强大的内网穿透代理服务器。几乎支持所有协议，支持内网http代理、内网socks5代理、p2p等，简洁但功能强大的WEB管理界面...</p>
+          </div>
+          <!-- <span class="ml-2">{{ item.article_date }}</span> -->
         </nuxt-link>
       </li>
     </ul>

@@ -1,21 +1,16 @@
 <template>
   <div class="mx-auto h-screen flex flex-col">
-    <!-- <el-menu :default-active="activeIndex" router mode="horizontal" active-text-color="#477de9">
-      <el-menu-item index="index" :route="{name: 'index'}">首页</el-menu-item>
-      <el-menu-item index="graphql" :route="{name: 'graphql'}">graphql</el-menu-item>
-      <el-menu-item index="theme" :route="{name: 'theme'}">主题</el-menu-item>
-    </el-menu> -->
     <header class="flex justify-center bg-white shadow-sm app-header">
       <ul class="flex flex-row-reverse text-sm lg:text-base">
         <li v-for="(item, index) in nav" :key="index" class="h-full first:mr-0 mr-5 lg:mr-8">
-          <nuxt-link tag="a" :to="{name: item.routeName}" class="cursor-pointer flex items-center h-12 px-6 hover:bg-gray-300">
+          <nuxt-link tag="a" :to="{name: item.routeName}" class="llj-btn cursor-pointer flex items-center h-12 px-6 hover:bg-gray-300">
             {{ item.name }}
           </nuxt-link>
         </li>
       </ul>
     </header>
 
-    <nuxt class="flex-auto overflow-y-auto" />
+    <nuxt class="flex-auto overflow-y-auto bg-gray-300" />
 
     <footer class="bg3 media-padding mt-4">
       <dl class="text-xs md:text-sm lg:text-base flex flex-col lg:flex-row">
@@ -96,73 +91,5 @@
         @apply bg-gray-300;
       }
     }
-  }
-
-  .bg1 {
-    background-image: url('~@/assets/img/bg1.jpg');
-  }
-  .bg2 {
-    background-image: url('~@/assets/img/bg2.jpg');
-  }
-  .bg3 {
-    background-image: url('~@/assets/img/bg3.jpg');
-  }
-
-  .media-padding {
-    @apply px-3 py-2;
-  }
-
-  @screen lg {
-    .media-padding {
-      @apply px-8 py-3;
-    }
-  }
-
-  html {
-    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-      Roboto, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 16px;
-    word-spacing: 1px;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    box-sizing: border-box;
-  }
-
-  *,
-  *:before,
-  *:after {
-    box-sizing: border-box;
-    margin: 0;
-  }
-
-  .button--green {
-    display: inline-block;
-    border-radius: 4px;
-    border: 1px solid #3b8070;
-    color: #3b8070;
-    text-decoration: none;
-    padding: 10px 30px;
-  }
-
-  .button--green:hover {
-    color: #fff;
-    background-color: #3b8070;
-  }
-
-  .button--grey {
-    display: inline-block;
-    border-radius: 4px;
-    border: 1px solid #35495e;
-    color: #35495e;
-    text-decoration: none;
-    padding: 10px 30px;
-    margin-left: 15px;
-  }
-
-  .button--grey:hover {
-    color: #fff;
-    background-color: #35495e;
   }
 </style>

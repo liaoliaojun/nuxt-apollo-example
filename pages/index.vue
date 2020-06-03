@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
-    <the-article :is-main="isMain" :title="title" :content="content" class="mt-4" :class="!isMain ? 'cursor-pointer' : ''" @click.native="isMain = true" />
-    <the-articles :data="articles" class="flex-auto mt-4" />
+    <!-- <the-article :is-main="isMain" :title="title" :content="content" class="mt-4" :class="!isMain ? 'cursor-pointer' : ''" @click.native="isMain = true" /> -->
+    <the-articles :data="articles" class="flex-auto" />
   </div>
 </template>
 
