@@ -9,6 +9,7 @@
           :to="'article/' + item.article_id"
         >
           <div
+            v-if="item.bg_path"
             class="bg-no-repeat bg-cover bg-center"
             :style="`height: 50vh; backgroundImage: url(https://api.liaoliaojun.com:3000/${item.bg_path})`">
           </div>
@@ -16,6 +17,14 @@
             <h3 class="text-xl">{{ item.article_title }}</h3>
             <span class="text-sm">五月 26, 2020</span>
             <p class="mt-4">Nps是一款轻量级、高性能、功能强大的内网穿透代理服务器。几乎支持所有协议，支持内网http代理、内网socks5代理、p2p等，简洁但功能强大的WEB管理界面...</p>
+            <div class=" flex items-center justify-end text-base leading-none">
+              <i class="iconfont icon-browse_fill text-2xl mr-1"></i>
+              <span>30</span>
+              <i class="iconfont icon-praise_fill text-2xl ml-4 mr-1"></i>
+              <span>3</span>
+              <i class="iconfont icon-message_fill text-2xl ml-4 mr-1"></i>
+              <span>3</span>
+            </div>
           </div>
           <!-- <span class="ml-2">{{ item.article_date }}</span> -->
         </nuxt-link>
