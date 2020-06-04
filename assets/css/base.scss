@@ -1,3 +1,7 @@
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 html, body {
   font-family: 'PingFang SC',arial,verdana,helvetica,'HanHei SC',STHeitiSC-Light,Microsoft Yahei,sans-serif;
   -webkit-font-smoothing: subpixel-antialiased;
@@ -5,7 +9,14 @@ html, body {
 }
 
 .body-width {
-  width: 1080px;
+  width: 100%;
+  min-width: 320px;
+}
+
+@screen lg {
+  .body-width {
+    width: 1024px;
+  }
 }
 
 .media-padding {
@@ -18,6 +29,7 @@ html, body {
   }
 }
 
+// 按钮点击动画
 .llj-btn {
   @apply overflow-hidden relative;
 
@@ -47,7 +59,7 @@ html, body {
   }
 }
 
-// 滚动条
+// 滚动条样式
 ::-webkit-scrollbar {
   width: 6px;
   height: 7px;
@@ -63,9 +75,15 @@ html, body {
   display: none;
 }
 
+// nuxt过渡效果
 .page-enter-active, .page-leave-active {
   transition: opacity .5s;
 }
 .page-enter, .page-leave-active {
   opacity: 0;
+}
+
+// 修改button默认样式
+button {
+  outline: inherit !important;
 }

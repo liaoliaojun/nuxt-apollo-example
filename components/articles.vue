@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 61.8%;" class="mt-4">
+  <div class="articles-view mt-4">
     <h3 class="text-xl">全部文章</h3>
     <ul>
       <li v-for="(item, index) in data" :key="index" class="mt-5">
@@ -10,8 +10,8 @@
         >
           <div
             v-if="item.bg_path"
-            class="bg-no-repeat bg-cover bg-center"
-            :style="`height: 50vh; backgroundImage: url(https://api.liaoliaojun.com:3000/${item.bg_path})`">
+            class="bg-box bg-no-repeat bg-cover bg-center"
+            :style="`backgroundImage: url(https://api.liaoliaojun.com:3000/${item.bg_path})`">
           </div>
           <div class="bg-white p-5">
             <h3 class="text-xl">{{ item.article_title }}</h3>
@@ -65,6 +65,20 @@
   })
 </script>
 
-<style>
+<style lang="scss">
+  .articles-view {
+    width: 100%;
+    .bg-box {
+      height: 30vh;
+    }
+  }
 
+  @screen lg {
+    .articles-view  {
+      width: 61.8%;
+      .bg-box {
+        height: 50vh;
+      }
+    }
+  }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex media-padding">
+  <div class="flex px-4 mt-5">
     <form class="flex flex-col mr-4" style="min-width: 40vw;" @submit.prevent>
       <input v-model="state.article_title" type="text" placeholder="请输入标题" class="input-wrapper">
       <textarea ref="textareaInput" v-model="state.article_marked_content" cols="30" rows="10" placeholder="请输入文章内容" class="p-4 mt-4 textarea-wrapper" @keydown="tab" />

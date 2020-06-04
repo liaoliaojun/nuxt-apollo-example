@@ -26,6 +26,10 @@
 </template>
 
 <script>
+  // import {defineComponent} from '@vue/composition-api'
+  const Hammer = () => import('hammerjs')
+  // import Hammer from 'hammerjs'
+
   export default {
     props: {
       itemLen: {
@@ -53,9 +57,24 @@
 
     mounted () {
       this.setTimer()
+      this.initHammer()
     },
 
     methods: {
+      async initHammer () {
+        const hammer = await Hammer().then(mod => mod.default || mod)
+        const hammerEl = new hammer.Manager(this.$el)
+        const Swipe = new hammer.Swipe({direction: 6})
+
+        // Add the recognizer to the manager
+        hammerEl.add(Swipe)
+        hammerEl.on('swipeleft', (e) => {
+          this.toggle(this.activeIndex + 1)
+        })
+        hammerEl.on('swiperight', (e) => {
+          this.toggle(this.activeIndex > 0 ? this.activeIndex - 1 : this.itemLen - 1)
+        })
+      },
       toggle (index) {
         // 无缝滚动
         if (index > this.itemLen) {

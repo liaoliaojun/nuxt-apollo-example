@@ -1,6 +1,6 @@
 <template>
-  <div class="h-full">
-    <div v-if="bgPath" class="w-full bg-cover bg-center bg-no-repeat" :style="`height: 61.8vh;backgroundImage:url(https://api.liaoliaojun.com:3000/${bgPath})`"></div>
+  <div class="article-view h-full">
+    <div v-if="bgPath" class="w-full bg-cover bg-center bg-no-repeat bg-box" :style="`backgroundImage:url(https://api.liaoliaojun.com:3000/${bgPath})`"></div>
     <article class="relative text-xl lg:text-2xl xl:text-3xl h-full">
       <div class="p-8 bg-white leading-10 h-full">
         <h1 class="font-bold">{{ title }}</h1>
@@ -69,3 +69,19 @@
   })
 </script>
 <style src="github-markdown-css"></style>
+
+<style lang="scss">
+  .article-view {
+    .bg-box {
+      height: 30vh;
+    }
+  }
+
+  @screen lg {
+    .article-view  {
+      .bg-box {
+        height: 61.8vh;
+      }
+    }
+  }
+</style>

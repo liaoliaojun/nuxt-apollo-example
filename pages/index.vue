@@ -1,16 +1,16 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col px-4 lg:px-0">
     <h3 class="text-xl my-4">猜你喜欢</h3>
     <!-- 轮播置顶 -->
-    <the-carousel :itemLen="upArticles.length" :time="10000" width="100%">
+    <the-carousel :itemLen="upArticles.length" :time="6000" width="100%">
       <template #default="{index}">
         <div
           v-for="(item) in upArticles"
           :key="`${index}-${item.article_id}`"
           class="w-full bg-no-repeat bg-cover bg-center rounded-lg relative"
-          :style="`height: 61.8vh; backgroundImage: url(https://api.liaoliaojun.com:3000/${item.bg_path})`"
+          :style="`height: 70vh; backgroundImage: url(https://api.liaoliaojun.com:3000/${item.bg_path})`"
         >
-          <div class="absolute w-full py-6 px-12" style="bottom: 50px;">
+          <div class="absolute w-full p-5" style="bottom: 50px;">
             <nuxt-link
               tag="a"
               :to="'article/' + item.article_id"

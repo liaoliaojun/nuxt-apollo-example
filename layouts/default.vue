@@ -1,27 +1,30 @@
 <template>
   <div class="mx-auto h-screen flex flex-col">
     <div class="bg-white shadow-lg z-10">
-      <header class="body-width mx-auto flex items-center relative justify-center app-header">
-        <h2 class="text-xl left-0 font-bold llj-btn cursor-pointer" style="position: absolute;">
+      <header class="app-header body-width mx-auto flex items-center relative justify-center md:justify-between px-4 lg:px-0" style="height: 48px;">
+        <h2 class="text-xl block font-bold llj-btn cursor-pointer">
           <nuxt-link tag="a" to="/">了了君</nuxt-link>
         </h2>
-        <ul class="flex text-sm lg:text-base">
+        <ul class="hidden text-sm md:text-base md:flex">
           <li v-for="(item, index) in nav" :key="index" class="h-full first:ml-0 ml-5 lg:ml-8">
             <nuxt-link tag="a" :to="{name: item.routeName}" class="llj-btn cursor-pointer flex items-center h-12 px-6 hover:bg-gray-300">
               {{ item.name }}
             </nuxt-link>
           </li>
         </ul>
-        <h4 class="text-xs absolute right-0">合作邮箱：me@liaoliaojun.com</h4>
+        <h4 class="hidden text-xs md:block text-gray-700">合作邮箱：me@liaoliaojun.com</h4>
+        <button class="llj-btn block md:hidden" style="position: absolute; right: 1.1rem;">
+          <i class="iconfont icon-caidan text-2xl"></i>
+        </button>
       </header>
     </div>
 
     <!-- <nuxt class="flex-auto overflow-y-auto bg-gray-300" /> -->
-    <div class="flex-auto flex flex-col overflow-y-auto bg-gray-300">
+    <div class="flex-auto flex flex-col overflow-y-auto bg-gray-300 lg:px-0">
       <nuxt class="flex-auto body-width mx-auto"/>
 
       <footer class="body-width mx-auto mt-6">
-        <dl class="text-xs md:text-sm lg:text-sm flex flex-col lg:flex-row py-2">
+        <dl class="text-xs md:text-sm flex flex-col lg:flex-row py-2 text-gray-700">
           <!-- <div class="flex mr-8 last:mr-0">
             <dt>作者：</dt>
             <dd>liaoliaojun</dd>
