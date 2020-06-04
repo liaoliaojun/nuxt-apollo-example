@@ -28,10 +28,10 @@
     </div>
 
     <!-- <nuxt class="flex-auto overflow-y-auto bg-gray-300" /> -->
-    <div id="app-container" class="flex-auto flex flex-col overflow-y-auto bg-gray-300">
+    <div id="app-container" class="flex-auto flex flex-col bg-gray-300">
       <nuxt class="flex-auto body-width mx-auto"/>
 
-      <footer class="body-width mx-auto mt-6 px-4 lg:px-0">
+      <footer class="body-width mx-auto px-4 lg:px-0">
         <dl class="text-xs md:text-sm flex flex-col lg:flex-row py-2 text-gray-700">
           <!-- <div class="flex mr-8 last:mr-0">
             <dt>作者：</dt>
