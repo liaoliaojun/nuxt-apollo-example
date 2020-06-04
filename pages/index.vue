@@ -10,8 +10,8 @@
           class="w-full bg-no-repeat bg-cover bg-center rounded-lg relative"
           :style="`height: 61.8vh; backgroundImage: url(https://api.liaoliaojun.com:3000/${item.bg_path})`"
         >
-          <div class="absolute w-full py-6 px-12" style="bottom: 80px;">
-            <h2 class="text-white text-3xl">{{index}}{{ item.article_title }}</h2>
+          <div class="absolute w-full py-6 px-12" style="bottom: 50px;">
+            <h2 class="text-white text-3xl">{{ item.article_title }}</h2>
           </div>
         </div>
       </template>
