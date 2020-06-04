@@ -20,6 +20,24 @@ export default {
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
     ],
   },
+  router: {
+    scrollBehavior: (to, from, savedPosition) => {
+      return new Promise((resolve) => {
+        window.$nuxt.$once('triggerScroll', () => {
+          // 跳转时，滚动至顶部
+          if (document.querySelector('#app-container')) {
+            try {
+              // scroll to anchor by returning the selector
+              document.querySelector('#app-container').scrollTop = 0
+            } catch (e) {
+              console.warn('Failed to save scroll position. Please add CSS.escape() polyfill (https://github.com/mathiasbynens/CSS.escape).')
+            }
+          }
+          resolve({x: 0, y: 0})
+        })
+      })
+    },
+  },
   /*
   ** Customize the progress-bar color
   */
