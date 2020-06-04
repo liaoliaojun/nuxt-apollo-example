@@ -16,7 +16,7 @@
           <div class="bg-white p-5">
             <h3 class="text-xl">{{ item.article_title }}</h3>
             <span class="text-sm">五月 26, 2020</span>
-            <p class="mt-4">Nps是一款轻量级、高性能、功能强大的内网穿透代理服务器。几乎支持所有协议，支持内网http代理、内网socks5代理、p2p等，简洁但功能强大的WEB管理界面...</p>
+            <p class="mt-4">{{item.article_content}}</p>
             <div class=" flex items-center justify-end text-base leading-none text-gray-700 mt-4">
               <i class="iconfont icon-browse_fill text-2xl mr-1"></i>
               <span>30</span>

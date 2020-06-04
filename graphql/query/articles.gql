@@ -5,7 +5,7 @@ query queryArticles {
     # 文章标题
     article_title
     # # 文章内容
-    # article_content
+    article_content
     # # 浏览量
     # article_views
     # 发表时间

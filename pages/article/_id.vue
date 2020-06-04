@@ -3,7 +3,7 @@
     <!-- <div class="cursor-pointer" @click="addLike">
       点赞{{ likeCount }}
     </div> -->
-    <the-article :bg-path="bgPath" :title="title" :content="content" is-main class="flex-auto" />
+    <the-article :bg-path="bgPath" :title="title" :content="content" class="flex-auto" />
   </div>
 </template>
 
