@@ -2,20 +2,23 @@
   <div class="mx-auto h-screen flex flex-col">
     <div class="bg-white shadow-lg z-10">
       <header class="body-width mx-auto flex items-center relative justify-center app-header">
-        <ul class="flex flex-row-reverse text-sm lg:text-base">
-          <li v-for="(item, index) in nav" :key="index" class="h-full first:mr-0 mr-5 lg:mr-8">
+        <h2 class="text-xl left-0 font-bold llj-btn cursor-pointer" style="position: absolute;">
+          <nuxt-link tag="a" to="/">了了君</nuxt-link>
+        </h2>
+        <ul class="flex text-sm lg:text-base">
+          <li v-for="(item, index) in nav" :key="index" class="h-full first:ml-0 ml-5 lg:ml-8">
             <nuxt-link tag="a" :to="{name: item.routeName}" class="llj-btn cursor-pointer flex items-center h-12 px-6 hover:bg-gray-300">
               {{ item.name }}
             </nuxt-link>
           </li>
         </ul>
-        <h3 class="text-xs absolute right-0">合作邮箱：me@liaoliaojun.com</h3>
+        <h4 class="text-xs absolute right-0">合作邮箱：me@liaoliaojun.com</h4>
       </header>
     </div>
 
     <!-- <nuxt class="flex-auto overflow-y-auto bg-gray-300" /> -->
-    <div class="flex-auto overflow-y-auto bg-gray-300">
-      <nuxt class="body-width mx-auto"/>
+    <div class="flex-auto flex flex-col overflow-y-auto bg-gray-300">
+      <nuxt class="flex-auto body-width mx-auto"/>
 
       <footer class="body-width mx-auto mt-6">
         <dl class="text-xs md:text-sm lg:text-sm flex flex-col lg:flex-row py-2">
@@ -54,16 +57,20 @@
         domain: 'liaoliaojun.com',
         nav: [
           {
-            name: '友邻',
-            routeName: 'theme',
+            name: '首页',
+            routeName: 'index',
           },
           {
             name: '留言',
-            routeName: 'graphql',
+            routeName: 'guestbook',
           },
           {
-            name: '首页',
-            routeName: 'index',
+            name: '友邻',
+            routeName: 'links',
+          },
+          {
+            name: '更新日志',
+            routeName: 'changelogs',
           },
         ],
       })
@@ -90,7 +97,7 @@
 
 <style lang="scss">
   .app-header {
-    .nuxt-link-exact-active {
+    ul .nuxt-link-exact-active {
       @apply bg-gray-400;
 
       &:hover {
