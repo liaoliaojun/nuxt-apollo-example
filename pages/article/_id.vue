@@ -26,10 +26,10 @@
       return {
         // @ts-ignore
         title: this.title,
-        meta: [
-          // @ts-ignore
-          {hid: this.id, name: 'description', content: '这是我的博客，热爱编程。该博客使用的技术栈有 前端：Nuxtjs, ApolloClient/Graphql，TailwindCss，Css，Js，Css/Css3，Canvas, Vue、React。后台：Node，ApolloServer, Docker，Nginx'},
-        ],
+        // meta: [
+        //   // @ts-ignore
+        //   {hid: this.id, name: 'description', content: '这是我的博客，热爱编程。该博客使用的技术栈有 前端：Nuxtjs, ApolloClient/Graphql，TailwindCss，Css，Js，Css/Css3，Canvas, Vue、React。后台：Node，ApolloServer, Docker，Nginx'},
+        // ],
       }
     },
 

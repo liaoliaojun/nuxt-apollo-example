@@ -9,7 +9,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: '了了君的小破站~' || process.env.npm_package_name,
+    title: '了了君的小站' || process.env.npm_package_name,
     meta: [
       {charset: 'utf-8'},
       {'http-equiv': 'X-UA-Compatible', content: 'IE=Edge'},
