@@ -5,10 +5,10 @@
       <div class="p-8 bg-white leading-10 h-full">
         <h1 class="font-bold">{{ title }}</h1>
         <div class="flex justify-between text-sm text-gray-700">
-          <span>五月 26, 2020</span>
+          <span>{{ date }}</span>
           <div class="flex items-center">
             <i class="iconfont icon-browse_fill text-2xl mr-1"></i>
-            <span>30</span>
+            <span>{{ views }}</span>
           </div>
         </div>
         <!-- eslint-disable -->
@@ -37,6 +37,21 @@
       bgPath: {
         type: String,
         default: '',
+      },
+
+      date: {
+        type: String,
+        default: '',
+      },
+
+      views: {
+        type: Number,
+        default: 0,
+      },
+
+      likeCount: {
+        type: Number,
+        default: 0,
       },
     },
     

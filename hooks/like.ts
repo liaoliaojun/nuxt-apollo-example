@@ -1,0 +1,29 @@
+import {Article} from '~/types/index'
+
+// @ts-ignore
+import MutateArticleKike from '~/graphql/mutation/add_article_like.gql'
+
+export default function useLike (ctx: any): UseReturn {
+  const setLike = async (article: Article) => {
+    const {article_like_count} = article
+    article.article_like_count = (article_like_count || 0) + 1
+    const isSuccess: Boolean = await ctx.root.$apollo.mutate({
+      mutation: MutateArticleKike,
+      variables: {
+        article_id: article.article_id,
+      },
+    }).then((x: any) => x.data?.result)
+    if (!isSuccess) {
+      article.article_like_count = article_like_count || 0
+      alert('您已经点赞过了哦~')
+    }
+  }
+
+  return {
+    setLike,
+  }
+}
+
+interface UseReturn {
+  setLike (article: Article): void
+}

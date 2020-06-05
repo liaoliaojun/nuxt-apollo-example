@@ -3,7 +3,7 @@
     <!-- <div class="cursor-pointer" @click="addLike">
       点赞{{ likeCount }}
     </div> -->
-    <the-article :bg-path="bgPath" :title="title" :content="content" class="flex-auto" />
+    <the-article :bg-path="bgPath" :title="title" :content="content" :date="date" :views="views" :like-count="likeCount" class="flex-auto" />
   </div>
 </template>
 
@@ -36,7 +36,7 @@
     props: {},
 
     async asyncData ({store, app: {apolloProvider}, params}) {
-      const {article_title, article_content, article_like_count, article_id, bg_path}: Article = await apolloProvider.defaultClient.query({
+      const {article_title, article_content, article_id, bg_path, article_date, article_views, article_like_count}: Article = await apolloProvider.defaultClient.query({
         query: queryArticle,
         fetchPolicy: 'no-cache',
         variables: {
@@ -48,19 +48,24 @@
         return {article_title: '', article_content: ''}
       })
       store.commit('article/setLikeCount', article_like_count || 0)
-      return {title: article_title, content: article_content, bgPath: bg_path, id: article_id}
-    },
-
-    setup (_, {root: {$store}}) {
-      const likeCount = computed(() => $store.state.article.count)
-
-      const addLike = () => {
-        $store.commit('article/addLikeCount')
-      }
       return {
-        addLike,
-        likeCount,
+        title: article_title, content: article_content,
+        bgPath: bg_path, date: article_date,
+        views: article_views, likeCount: article_like_count,
+        id: article_id,
       }
     },
+
+    // setup (_, {root: {$store}}) {
+    //   const likeCount = computed(() => $store.state.article.count)
+
+    //   const addLike = () => {
+    //     $store.commit('article/addLikeCount')
+    //   }
+    //   return {
+    //     addLike,
+    //     likeCount,
+    //   }
+    // },
   })
 </script>

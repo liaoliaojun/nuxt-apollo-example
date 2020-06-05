@@ -15,15 +15,15 @@
           </div>
           <div class="bg-white p-5">
             <h3 class="text-xl">{{ item.article_title }}</h3>
-            <span class="text-sm">五月 26, 2020</span>
-            <p class="mt-4">{{item.article_content}}</p>
-            <div class=" flex items-center justify-end text-base leading-none text-gray-700 mt-4">
+            <span class="text-sm text-gray-700">{{ item.article_date }}</span>
+            <p class="mt-4">{{ item.article_content }}</p>
+            <div class="flex items-center justify-end text-base leading-none cursor-default text-gray-700 mt-4" @click.stop.prevent>
               <i class="iconfont icon-browse_fill text-2xl mr-1"></i>
-              <span>30</span>
-              <i class="iconfont icon-praise_fill text-2xl ml-4 mr-1" @click.stop="setKike"></i>
-              <span>3</span>
-              <i class="iconfont icon-message_fill text-2xl ml-4 mr-1"></i>
-              <span>3</span>
+              <span>{{ item.article_views || 0 }}</span>
+              <i class="iconfont icon-praise_fill text-2xl ml-4 mr-1 cursor-pointer hover:text-gray-800" @click.stop.prevent="setLike(item)"></i>
+              <span>{{ item.article_like_count || 0 }}</span>
+              <!-- <i class="iconfont icon-message_fill text-2xl ml-4 mr-1"></i>
+              <span>3</span> -->
             </div>
           </div>
           <!-- <span class="ml-2">{{ item.article_date }}</span> -->
@@ -35,7 +35,8 @@
 
 <script lang="ts">
   import {defineComponent} from '@vue/composition-api'
-  // import gql from 'graphql-tag'
+
+  import useLike from '~/hooks/like'
 
   export default defineComponent({
     props: {
@@ -44,24 +45,14 @@
         default: () => [],
       },
     },
-    // async asyncData ({req}) {
-    //   // const data = await app.apolloProvider.defaultClient.query({
-    //   //   query: gql`
-    //   //     query getInfo {
-    //   //       config {
-    //   //         email
-    //   //         author
-    //   //       }
-    //   //     }
-    //   //   `,
-    //   // }).then((res: any) => {
-    //   //   return res?.data?.config ?? {}
-    //   // }).catch(() => {
-    //   //   return {}
-    //   // })
-    //   console.log(req)
-    //   return {domain: req?.headers?.host}
-    // },
+
+    setup (props, ctx: any) {
+      const {setLike} = useLike(ctx)
+
+      return {
+        setLike,
+      }
+    },
   })
 </script>
 

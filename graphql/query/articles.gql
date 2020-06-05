@@ -7,7 +7,7 @@ query queryArticles {
     # # 文章内容
     article_content
     # # 浏览量
-    # article_views
+    article_views
     # 发表时间
     article_date
     # 文章点赞数

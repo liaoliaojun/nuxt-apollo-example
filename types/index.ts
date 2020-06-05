@@ -1,37 +1,37 @@
 export type Article = {
   // 文章id
-  article_id?: String|Number,
+  article_id?: string|number
   // 文章标题
-  article_title: String,
+  article_title: string
   // 文章内容
-  article_content: String,
+  article_content: string
   // marked原文
-  article_marked_content?: String,
+  article_marked_content?: string
   // 浏览量
-  article_views?: Number,
+  article_views?: number
   // 发表时间
-  article_date?: String,
+  article_date?: string
   // 文章点赞数
-  article_like_count?: Number,
+  article_like_count?: number
   // 点赞的ip地址
-  article_like_ips?: Array<String>,
+  article_like_ips?: Array<string>
   // 背景图地址(/保存至本服务器)
-  bg_path?: String,
+  bg_path?: string
 }
 
 export type SubmitArticle = {
-  article_id?: String|Number,
-  article_title: String,
-  article_content?: String,
-  article_marked_content?: String,
-  bg_path?: String,
-  key: String,
+  article_id?: string|number
+  article_title: string
+  article_content?: string
+  article_marked_content?: string
+  bg_path?: string
+  key: string
 }
 
 export type File = {
-  id: String|Number,
-  path: String,
-  filename: String,
-  mimetype: String,
-  encoding: String,
+  id: string|number
+  path: string
+  filename: string
+  mimetype: string
+  encoding: string
 }
