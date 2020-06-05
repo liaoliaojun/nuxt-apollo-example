@@ -4,16 +4,21 @@
       点赞{{ likeCount }}
     </div> -->
     <the-article :bg-path="bgPath" :title="title" :content="content" :date="date" :views="views" :like-count="likeCount" class="flex-auto" />
+    <!-- 隐藏入口 -->
+    <div v-if="showEntry" class="flex">
+      <button class="llj-btn border hover:text-blue-500" @click="$router.push({path: '/article/update/' + id})">编辑</button>
+      <button class="llj-btn ml-2 border hover:text-blue-500" @click="deleted(id)">删除</button>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-  import {defineComponent, computed} from '@vue/composition-api'
+  import {defineComponent, computed, ref, Ref, onMounted} from '@vue/composition-api'
   import TheArticle from '~/components/article.vue'
   // @ts-ignore
   import queryArticle from '~/graphql/query/article.gql'
   // @ts-ignore
-  // import addArticleLike from '~/graphql/query/add_article_like.gql'
+  import mutateDeleteArticle from '~/graphql/mutation/delete_article.gql'
 
   import {Article} from '~/types/index'
 
@@ -56,16 +61,32 @@
       }
     },
 
-    // setup (_, {root: {$store}}) {
-    //   const likeCount = computed(() => $store.state.article.count)
+    setup (_, ctx: any) {
+      const showEntry: Ref<boolean> = ref(false)
+      const deleted = async (article_id: string) => {
+        if (!article_id) return
+        const isSuccess: boolean|string = await ctx.root.$apollo.mutate({
+          mutation: mutateDeleteArticle,
+          variables: {
+            input: {
+              article_id,
+              key: localStorage.getItem('app-key') ?? '',
+            },
+          },
+        }).then((x: any) => x.data?.result)
+        if (isSuccess === article_id) {
+          alert('删除成功')
+        }
+      }
 
-    //   const addLike = () => {
-    //     $store.commit('article/addLikeCount')
-    //   }
-    //   return {
-    //     addLike,
-    //     likeCount,
-    //   }
-    // },
+      onMounted(() => {
+        showEntry.value = Boolean(localStorage.getItem('app-key'))
+      })
+
+      return {
+        deleted,
+        showEntry,
+      }
+    },
   })
 </script>
