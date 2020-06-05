@@ -1,6 +1,6 @@
 <template>
-  <div class="flex px-4 mt-5">
-    <form class="flex flex-col mr-4" style="min-width: 40vw;" @submit.prevent>
+  <div class="flex px-4 mt-5 relative w-full">
+    <form class="flex flex-col mr-4" style="min-width: 48%;" @submit.prevent>
       <input v-model="state.article_title" type="text" placeholder="请输入标题" class="input-wrapper">
       <textarea ref="textareaInput" v-model="state.article_marked_content" cols="30" rows="10" placeholder="请输入文章内容" class="p-4 mt-4 textarea-wrapper" @keydown="tab" />
 
@@ -11,14 +11,44 @@
         </div>
         <input v-model="state.bg_path" type="text" placeholder="图片ID" class="input-wrapper mt-3">
         <input v-model="state.key" type="text" placeholder="请输入key" class="input-wrapper my-3">
-        <button type="submit" class="btn" @click="submit">提交</button>
+        <div class="bg-white py-2 px-3 text-left mb-2">
+          <el-switch v-model="state.is_top" active-text="置顶" inactive-text="不置顶" />
+          <input v-model="state.top_weight" type="number" placeholder="置顶权重" class="input-wrapper my-3">
+          <div>
+            <el-tag
+              v-for="tag in state.tags"
+              :key="tag"
+              size="medium"
+              closable
+              @close="handleClose(tag)"
+              class="ml-4 first:ml-0"
+            >
+              {{ tag }}
+            </el-tag>
+            <el-input
+              v-if="tagInputVisible"
+              v-model="tagInputValue"
+              ref="tagInput"
+              size="small"
+              class="input-new-tag w-40 mt-3"
+              @keyup.enter.native="handleInputConfirm"
+              @blur="handleInputConfirm"
+            >
+            </el-input>
+            <el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
+          </div>
+        </div>
+        <el-button type="submit" size="small" @click="submit">提交</el-button>
       </div>
     </form>
-    <the-article :bg-path="state.bg_path" :title="state.article_title" :content="compiledMarkdown" is-main class="flex-auto" style="min-width: 40vw;" />
+    <div class="flex-auto overflow-y-scroll h-full absolute rounded-lg" style="right: 1rem; min-width: 50%; max-width: 50%;">
+      <the-article :bg-path="state.bg_path" :title="state.article_title" :content="compiledMarkdown" is-main />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
+  import {Tag as ElTag, Switch as ElSwitch, Input as ElInput, Button as ElButton} from 'element-ui'
   import {SubmitArticle, File} from '~/types/index'
   import {defineComponent, reactive, ref, Ref, computed, watch, onMounted} from '@vue/composition-api'
 
@@ -32,37 +62,52 @@
   export default defineComponent({
     components: {
       TheArticle,
+      ElTag,
+      ElInput,
+      ElSwitch,
+      ElButton,
     },
 
     props: {
-      title: {
-        type: String,
-        default: '',
-      },
-      markedContent: {
-        type: String,
-        default: '',
+      data: {
+        type: Object,
+        default: () => {},
       },
       isUpdate: {
         type: Boolean,
         default: false,
       },
-      bgPath: {
-        type: String,
-        default: '',
-      },
+      // title: {
+      //   type: String,
+      //   default: '',
+      // },
+      // markedContent: {
+      //   type: String,
+      //   default: '',
+      // },
+      // bgPath: {
+      //   type: String,
+      //   default: '',
+      // },
     },
 
     setup (props, ctx: any) {
       const {urlUpload} = useUpload(ctx)
+      const imageUrl: Ref<string> = ref('')
 
-      const imageUrl: Ref<String> = ref('')
       const state: SubmitArticle = reactive({
         key: '',
-        article_title: props.title || '',
-        article_marked_content: props.markedContent || '',
-        bg_path: props.bgPath || '',
+        article_title: '',
+        article_marked_content: '',
+        bg_path: '',
+        is_top: false,
+        top_weight: 10,
+        tags: [],
       })
+
+      // 标签相关状态
+      const tagInputVisible: Ref<boolean> = ref(false)
+      const tagInputValue: Ref<string> = ref('')
   
       const compiledMarkdown = computed(() => {
         if (state.article_marked_content) {
@@ -87,6 +132,9 @@
             article_content: compiledMarkdown.value || '',
             article_marked_content: state.article_marked_content || '',
             bg_path: state.bg_path,
+            is_top: state.is_top,
+            top_weight: Number(state.top_weight) || 10,
+            tags: state.tags || [],
           })
           return
         }
@@ -99,6 +147,9 @@
               article_content: compiledMarkdown.value || '',
               article_marked_content: state.article_marked_content || '',
               bg_path: state.bg_path,
+              is_top: state.is_top,
+              top_weight: Number(state.top_weight) || 10,
+              tags: state.tags || [],
             },
           },
         }).then((res: any) => {
@@ -141,11 +192,38 @@
         alert('上传网络图片成功')
       }
 
-      watch(() => [props.title, props.markedContent, props.bgPath], () => {
-        state.article_title = props.title
-        state.article_marked_content = props.markedContent
-        state.bg_path = props.bgPath
-      })
+      // 删除标签 
+      const handleClose = (tag: string) => {
+        state.tags.splice(state.tags.indexOf(tag), 1)
+      }
+
+      // 显示输入框
+      const showInput = () => {
+        tagInputVisible.value = true
+        ctx.root.$nextTick(() => {
+          if (!ctx.root.$refs?.tagInput?.input) return
+          ctx.root.$refs?.tagInput?.input.focus()
+        })
+      }
+
+      // 插入标签
+      const handleInputConfirm = () => {
+        if (tagInputValue.value) {
+          state.tags.push(tagInputValue.value)
+        }
+        tagInputVisible.value = false
+        tagInputValue.value = ''
+      }
+
+      watch(() => props.data, () => {
+        if (!props.data?.article_title) return
+        state.bg_path = props.data.bg_path
+        state.article_title = props.data.article_title
+        state.article_marked_content = props.data.article_marked_content
+        state.is_top = props.data.is_top
+        state.top_weight = props.data.top_weight
+        state.tags = props.data.tags || []
+      }, {deep: true})
 
       onMounted(() => {
         state.key = localStorage.getItem('app-key') ?? ''
@@ -158,6 +236,11 @@
         compiledMarkdown,
         imageUrl,
         onUploadNetwork,
+        tagInputValue,
+        tagInputVisible,
+        handleClose,
+        showInput,
+        handleInputConfirm,
       }
     },
   })

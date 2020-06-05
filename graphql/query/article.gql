@@ -18,5 +18,11 @@ query queryArticle ($article_id: ID!) {
     article_like_ips
     # 背景图地址(/保存至本服务器)
     bg_path
+    # 是否置顶（放置于首页轮播图）
+    is_top
+    # 置顶权重
+    top_weight
+    # 标签
+    tags
   }
 }

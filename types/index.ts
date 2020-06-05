@@ -26,6 +26,9 @@ export type SubmitArticle = {
   article_marked_content?: string
   bg_path?: string
   key: string
+  is_top: boolean
+  top_weight: number
+  tags: Array<string>
 }
 
 export type File = {

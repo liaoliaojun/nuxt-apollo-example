@@ -1,5 +1,6 @@
 <template>
-  <add-article is-update :bg-path="bg_path" :title="article_title" :marked-content="article_marked_content" @submit="update" />
+  <!--  :bg-path="bg_path" :title="article_title" :marked-content="article_marked_content" -->
+  <add-article is-update :data="state" @submit="update" />
 </template>
 
 <script lang="ts">
@@ -24,6 +25,9 @@
         article_title: '',
         article_marked_content: '',
         bg_path: '',
+        is_top: false,
+        top_weight: 10,
+        tags: [],
       })
       const update = (submitState: SubmitArticle) => {
         root.$apollo.mutate({
@@ -36,6 +40,9 @@
               article_content: submitState.article_content || '',
               article_marked_content: submitState.article_marked_content || '',
               bg_path: submitState.bg_path || null,
+              is_top: submitState.is_top,
+              top_weight: Number(submitState.top_weight) || 10,
+              tags: submitState.tags || [],
             },
           },
         }).then((res: any) => {
@@ -61,11 +68,15 @@
         state.article_title = data.article_title
         state.article_marked_content = data.article_marked_content
         state.bg_path = data.bg_path
+        state.is_top = data.is_top
+        state.top_weight = data.top_weight
+        state.tags = data.tags || []
       }
       query()
 
       return {
-        ...toRefs(state),
+        state,
+        // ...toRefs(state),
         update,
       }
     },
