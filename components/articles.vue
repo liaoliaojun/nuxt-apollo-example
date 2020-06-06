@@ -8,11 +8,12 @@
           tag="a"
           :to="'article/' + item.article_id"
         >
-          <div
+          <!-- <div
             v-if="item.bg_path"
             class="bg-box bg-no-repeat bg-cover bg-center"
             :style="`backgroundImage: url(https://api.liaoliaojun.com:3000/${item.bg_path})`">
-          </div>
+          </div> -->
+          <the-lazybg v-if="item.bg_path" :file-url="item.bg_path" class="bg-box" />
           <div class="bg-white p-5">
             <h3 class="text-xl">{{ item.article_title }}</h3>
             <span class="text-sm text-gray-700">{{ item.article_date }}</span>
@@ -37,8 +38,13 @@
   import {defineComponent} from '@vue/composition-api'
 
   import useLike from '~/hooks/like'
+  import TheLazybg from '~/components/lazybg.vue'
 
   export default defineComponent({
+    components: {
+      TheLazybg,
+    },
+
     props: {
       data: {
         type: Array,

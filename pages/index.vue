@@ -2,13 +2,13 @@
   <div class="flex flex-col px-4 lg:px-0 mt-4">
     <!-- <h3 class="text-xl my-4">猜你喜欢</h3> -->
     <!-- 轮播置顶 -->
-    <the-carousel :itemLen="topArticles.length" :time="6000" width="100%" style="height: 70vh;">
+    <the-carousel :itemLen="topArticles.length" :time="6000" width="100%" style="height: 70vh;" @toggleIndex="(index) => {carouselItemIndex = index}">
       <template #default="{index}">
-        <div
-          v-for="(item) in topArticles"
+        <the-lazybg
+          v-for="(item, itemIndex) in topArticles"
           :key="`${index}-${item.article_id}`"
-          class="w-full h-full bg-no-repeat bg-cover bg-center rounded-lg relative"
-          :style="`backgroundImage: url(https://api.liaoliaojun.com:3000/${item.bg_path})`"
+          :file-url="item.bg_path"
+          :nowreload="carouselItemIndex === itemIndex ? true : false"
         >
           <div class="absolute w-full p-5" style="bottom: 50px;">
             <nuxt-link
@@ -18,7 +18,7 @@
               <h2 class="text-white text-3xl">{{ item.article_title }}</h2>
             </nuxt-link>
           </div>
-        </div>
+        </the-lazybg>
       </template>
     </the-carousel>
 
@@ -32,6 +32,7 @@
 
   import TheArticles from '~/components/articles.vue'
   import TheCarousel from '~/components/carousel.vue'
+  import TheLazybg from '~/components/lazybg.vue'
   // @ts-ignore
   import queryArticle from '~/graphql/query/article.gql'
   // @ts-ignore
@@ -45,11 +46,13 @@
     components: {
       TheArticles,
       TheCarousel,
+      TheLazybg,
     },
 
     data () {
       return {
         isMain: false,
+        carouselItemIndex: 0,
       }
     },
 

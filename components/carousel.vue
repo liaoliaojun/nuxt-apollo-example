@@ -1,5 +1,5 @@
 <template>
-  <div class="carousel-box overflow-hidden relative" :style="`width: ${width};`">
+  <div class="carousel-box overflow-hidden relative rounded-lg" :style="`width: ${width};`">
     <div class="carousel-wrap flex overflow-hidden h-full"
           :style="{
             width: (itemLen * 2 * 100) + '%',
