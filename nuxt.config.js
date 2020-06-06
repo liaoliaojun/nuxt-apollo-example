@@ -20,7 +20,11 @@ export default {
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
     ],
   },
+  render: {
+    resourceHints: false,  // 添加prefetch和preload，以加快初始化页面加载时间。如果有许多页面和路由，可禁用此项
+  },
   router: {
+    prefetchLinks: false,  // 全局禁用所有链接上的预取
     scrollBehavior: (to, from, savedPosition) => {
       return new Promise((resolve) => {
         window.$nuxt.$once('triggerScroll', () => {
@@ -54,6 +58,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    {src: '~/plugins/loading.js'},
     {src: '~/plugins/composition-api'},
   ],
   /*

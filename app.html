@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html {{ HTML_ATTRS }}>
+  <head {{ HEAD_ATTRS }}>
+    {{ HEAD }}
+    <style>#loading-app{display:flex;position:fixed;color:black;top:0;left:0;bottom:0;right:0;z-index:9999;background:#fff;justify-content:center;align-items:center}#loading-app-corners{margin:0 auto;position:relative;width:16px;height:16px;animation:corners 1s ease infinite;border-radius:10px;box-sizing:border-box;background:#5b5777}@keyframes corners{0%{border-radius:50%;transform:rotate(0deg)}25%{border-radius:50% 50% 50% 20%}50%{border-radius:50% 50% 20% 30%}75%{border-radius:50% 50% 20% 30%}100%{border-radius:50% 20% 30% 30%;transform:rotate(-180deg)}}</style>
+  </head>
+  <body {{ BODY_ATTRS }}>
+    {{ APP }}
+    <div id="loading-app">
+      <div>
+        <div id="loading-app-corners"></div>
+      </div>
+    </div>
+  </body>
+</html>
