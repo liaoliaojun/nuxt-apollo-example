@@ -2,13 +2,13 @@
   <div class="flex flex-col px-4 lg:px-0 mt-4">
     <!-- <h3 class="text-xl my-4">猜你喜欢</h3> -->
     <!-- 轮播置顶 -->
-    <the-carousel :itemLen="topArticles.length" :time="6000" width="100%">
+    <the-carousel :itemLen="topArticles.length" :time="6000" width="100%" style="height: 70vh;">
       <template #default="{index}">
         <div
           v-for="(item) in topArticles"
           :key="`${index}-${item.article_id}`"
-          class="w-full bg-no-repeat bg-cover bg-center rounded-lg relative"
-          :style="`height: 70vh; backgroundImage: url(https://api.liaoliaojun.com:3000/${item.bg_path})`"
+          class="w-full h-full bg-no-repeat bg-cover bg-center rounded-lg relative"
+          :style="`backgroundImage: url(https://api.liaoliaojun.com:3000/${item.bg_path})`"
         >
           <div class="absolute w-full p-5" style="bottom: 50px;">
             <nuxt-link
@@ -56,29 +56,31 @@
     props: {},
 
     async asyncData ({app: {apolloProvider}, req}) {
-      // 查询文章列表
-      const articles: Array<Article> = await apolloProvider.defaultClient.query({
-        query: queryArticles,
-      }).then((res: any) => {
-        return (res?.data?.result ?? []).map((item: Article) => {
-          const content = item.article_content.replace(/<[^>]+>/g,'')
-
-          return {
-            ...item,
-            // 去掉html标签
-            article_content: content.length < 155 ? content : content.substring(0, 155) + '...',
-          }
+      const [articles, topArticles]: [Array<Article>, Article] = await Promise.all([
+        // 查询文章列表
+        apolloProvider.defaultClient.query({
+          query: queryArticles,
         })
-      }).catch(() => {
-        return []
-      })
+        .then((res: any) => {
+          return (res?.data?.result ?? []).map((item: Article) => {
+            const content = item.article_content.replace(/<[^>]+>/g,'')
 
-      // 查询置顶文章
-      const topArticles: Article =  await apolloProvider.defaultClient.query({
-        query: queryTops,
-      })
-      .then((x: any) => x?.data?.result ?? [])
-      .catch(() => [])
+            return {
+              ...item,
+              // 去掉html标签
+              article_content: content.length < 155 ? content : content.substring(0, 155) + '...',
+            }
+          })
+        }).catch(() => {
+          return []
+        }),
+        // 查询置顶文章
+        apolloProvider.defaultClient.query({
+          query: queryTops,
+        })
+        .then((x: any) => x?.data?.result ?? [])
+        .catch(() => [])
+      ])
 
       return {
         articles,
