@@ -42,7 +42,7 @@
             <dd :title="domain">{{ domain }}</dd>
           </div> -->
           <div class="flex mr-8 last:mr-0">
-            <dt>合作邮箱：</dt>
+            <dt>联系邮箱：</dt>
             <dd>me@liaoliaojun.com</dd>
           </div>
         </dl>
@@ -73,7 +73,7 @@
             routeName: 'index',
           },
           {
-            name: '留言',
+            name: '留言薄',
             routeName: 'guestbook',
           },
           {
