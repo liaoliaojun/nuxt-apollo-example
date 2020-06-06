@@ -132,7 +132,7 @@
             article_content: compiledMarkdown.value || '',
             article_marked_content: state.article_marked_content || '',
             bg_path: state.bg_path,
-            is_top: state.is_top,
+            is_top: Boolean(state.is_top),
             top_weight: Number(state.top_weight) || 10,
             tags: state.tags || [],
           })
@@ -147,7 +147,7 @@
               article_content: compiledMarkdown.value || '',
               article_marked_content: state.article_marked_content || '',
               bg_path: state.bg_path,
-              is_top: state.is_top,
+              is_top: Boolean(state.is_top),
               top_weight: Number(state.top_weight) || 10,
               tags: state.tags || [],
             },

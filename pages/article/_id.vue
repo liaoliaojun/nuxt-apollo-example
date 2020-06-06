@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col mt-0 lg:mt-4">
+  <div class="flex flex-col flex-auto mt-0 lg:mt-4">
     <!-- <div class="cursor-pointer" @click="addLike">
       点赞{{ likeCount }}
     </div> -->

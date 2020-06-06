@@ -1,8 +1,8 @@
 <template>
-  <div class="article-view h-full">
+  <div class="article-view flex flex-col h-full">
     <div v-if="bgPath" class="w-full bg-cover bg-center bg-no-repeat bg-box" :style="`backgroundImage:url(https://api.liaoliaojun.com:3000/${bgPath})`"></div>
-    <article class="relative text-xl lg:text-2xl xl:text-3xl h-full">
-      <div class="p-8 bg-white leading-10 h-full">
+    <article class="relative text-xl lg:text-2xl xl:text-3xl flex flex-col flex-auto">
+      <div class="p-8 bg-white leading-10 flex-1">
         <h1 class="font-bold">{{ title }}</h1>
         <div class="flex justify-between text-sm text-gray-700">
           <span>{{ date }}</span>

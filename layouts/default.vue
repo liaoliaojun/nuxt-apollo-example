@@ -28,8 +28,8 @@
     </div>
 
     <!-- <nuxt class="flex-auto overflow-y-auto bg-gray-300" /> -->
-    <div id="app-container" class="flex-auto flex flex-col bg-gray-300">
-      <nuxt class="flex-auto body-width mx-auto"/>
+    <div id="app-container" class="flex-auto bg-gray-300 overflow-y-auto overflow-x-hidden">
+      <nuxt keep-alive class="body-width mx-auto"/>
 
       <footer class="body-width mx-auto px-4 lg:px-0">
         <dl class="text-xs md:text-sm flex flex-col lg:flex-row py-2 text-gray-700">
@@ -132,6 +132,14 @@
 </script>
 
 <style lang="scss">
+  // 显示清晰结构css代码 便于开发
+  // * { background-color: rgba(255, 0, 0, .2); }
+  // * * { background-color: rgba(0, 255, 0, .2); }
+  // * * * { background-color: rgba(0, 0, 255, .2); }
+  // * * * * { background-color: rgba(255, 0, 255, .2); }
+  // * * * * * { background-color: rgba(0, 255, 255, .2); }
+  // * * * * * * { background-color: rgba(255, 255, 0, .2); }
+
   .app-header {
     ul .nuxt-link-exact-active {
       @apply bg-gray-400;
