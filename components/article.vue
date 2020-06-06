@@ -1,5 +1,5 @@
 <template>
-  <div class="article-view flex flex-col h-full">
+  <div class="article-view flex flex-col h-full" style="min-height: calc(100vh - 48px - 37px - 0rem);">
     <div v-if="bgPath" class="w-full bg-cover bg-center bg-no-repeat bg-box" :style="`backgroundImage:url(https://api.liaoliaojun.com:3000/${bgPath})`"></div>
     <article class="relative text-xl lg:text-2xl xl:text-3xl flex flex-col flex-auto">
       <div class="p-8 bg-white leading-10 flex-1">

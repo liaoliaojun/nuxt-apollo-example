@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto h-screen flex flex-col">
+  <div class="mx-auto h-screen flex flex-col overflow-hidden">
     <div class="bg-white shadow-lg z-10">
       <header class="app-header body-width mx-auto flex items-center relative justify-center md:justify-between px-4 lg:px-0" style="height: 48px;">
         <!-- 返回按钮 -->
@@ -27,9 +27,9 @@
       </header>
     </div>
 
-    <!-- <nuxt class="flex-auto overflow-y-auto bg-gray-300" /> -->
-    <div id="app-container" class="flex-auto bg-gray-300 overflow-y-auto overflow-x-hidden">
-      <nuxt keep-alive class="body-width mx-auto"/>
+    <!-- <nuxt class="flex-1 overflow-y-auto bg-gray-300" /> -->
+    <div id="app-container" class="flex-auto items-stretch bg-gray-300 overflow-auto">
+      <nuxt keep-alive class="body-width mx-auto h-auto" />
 
       <footer class="body-width mx-auto px-4 lg:px-0">
         <dl class="text-xs md:text-sm flex flex-col lg:flex-row py-2 text-gray-700">
