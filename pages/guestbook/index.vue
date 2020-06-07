@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="px-4 mt-4 lg:p-0">
     留言薄
   </div>
 </template>

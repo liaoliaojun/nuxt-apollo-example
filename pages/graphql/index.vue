@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="px-4 mt-4">
     graphql
     <br>
     {{ data }}

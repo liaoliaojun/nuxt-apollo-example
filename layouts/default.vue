@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto h-screen flex flex-col overflow-hidden">
+  <div class="mx-auto h-screen flex flex-col overflow-hidden relative">
     <div class="bg-white shadow-lg z-10">
       <header class="app-header body-width mx-auto flex items-center relative justify-center md:justify-between px-4 lg:px-0" style="height: 48px;">
         <!-- 返回按钮 -->
@@ -21,7 +21,7 @@
         <!-- 邮箱 -->
         <h4 class="hidden text-xs md:block text-gray-700">合作邮箱：me@liaoliaojun.com</h4>
         <!-- 菜单 -->
-        <button class="block md:hidden" style="position: absolute; right: 1.1rem;">
+        <button class="block md:hidden" style="position: absolute; right: 1.1rem;" @click="showSubnav = true">
           <i class="llj-btn iconfont icon-caidan text-2xl"></i>
         </button>
       </header>
@@ -48,22 +48,32 @@
         </dl>
       </footer>
     </div>
+    {{ showSubnav }}
+
+    <the-subnav :visible.sync="showSubnav" :data="nav" />
   </div>
 </template>
 
 <script lang="ts">
   import {defineComponent, reactive, toRefs, onMounted, ref, Ref, watchEffect} from '@vue/composition-api'
 
+  import TheSubnav from '~/components/subnav.vue'
   import GlobalClick from '~/util/global-click'
   import VisibilityChange from '~/util/visibility-change'
   // @ts-ignore
   import setVisitor from '~/graphql/mutation/set_visitor.gql'
 
   export default defineComponent({
+    components: {
+      TheSubnav,
+    },
+
     props: {},
 
     setup (_, ctx: any) {
       const showBackBtn: Ref<Boolean> = ref(false)
+      const showSubnav: Ref<Boolean> = ref(false)
+
       const state = reactive({
         activeIndex: ctx.root.$route.name || 'index',
         domain: 'liaoliaojun.com',
@@ -124,6 +134,7 @@
 
       return {
         backTo,
+        showSubnav,
         showBackBtn,
         ...toRefs(state),
       }
