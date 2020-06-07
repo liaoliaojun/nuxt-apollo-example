@@ -48,7 +48,6 @@
         </dl>
       </footer>
     </div>
-    {{ showSubnav }}
 
     <the-subnav :visible.sync="showSubnav" :data="nav" />
   </div>
