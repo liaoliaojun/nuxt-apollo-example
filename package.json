@@ -1,6 +1,6 @@
 {
   "name": "my-nuxt",
-  "version": "3.3.1",
+  "version": "3.6.0",
   "description": "这是我的博客，热爱编程。该博客使用的技术栈有 前端：Nuxtjs, ApolloClient/Graphql，TailwindCss，Css，Js，Css/Css3，Canvas, Vue、React。后台：Node，ApolloServer, Docker，Nginx",
   "author": "liaoliao",
   "private": true,
