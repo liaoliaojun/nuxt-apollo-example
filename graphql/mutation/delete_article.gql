@@ -1,3 +1,0 @@
-mutation deleteArticle ($input: deleteArticleInput!) {
-  result: deleteArticle (input: $input)
-}

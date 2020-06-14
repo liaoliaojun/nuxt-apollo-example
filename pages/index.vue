@@ -34,11 +34,11 @@
   import TheCarousel from '~/components/carousel.vue'
   import TheLazybg from '~/components/lazybg.vue'
   // @ts-ignore
-  import queryArticle from '~/graphql/query/article.gql'
+  import queryArticle from '~/graphql/query/article.js'
   // @ts-ignore
-  import queryArticles from '~/graphql/query/articles.gql'
+  import queryArticles from '~/graphql/query/articles.js'
   // @ts-ignore
-  import queryTops from '~/graphql/query/tops.gql'
+  import queryTops from '~/graphql/query/tops.js'
 
   import {Article} from '~/types/index'
 

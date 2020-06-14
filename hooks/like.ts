@@ -1,7 +1,7 @@
 import {Article} from '~/types/index'
 
 // @ts-ignore
-import mutateArticleLike from '~/graphql/mutation/add_article_like.gql'
+import mutateArticleLike from '~/graphql/mutation/add_article_like.js'
 
 export default function useLike (ctx: any): UseReturn {
   const setLike = async (article: Article) => {

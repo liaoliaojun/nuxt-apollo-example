@@ -1,7 +1,6 @@
 import {resolve} from 'path'
 import fs from 'fs'
 import axios from 'axios'
-// import {createApolloFetch} from 'apollo-fetch'
 
 export default {
   mode: 'universal',
@@ -60,6 +59,7 @@ export default {
   plugins: [
     {src: '~/plugins/loading.js'},
     {src: '~/plugins/composition-api'},
+    {src: '~/plugins/provide-apollo-client'},
   ],
   /*
   ** Nuxt.js dev-modules
@@ -73,7 +73,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/apollo',
+    // '@nuxtjs/apollo',
     '@nuxtjs/sitemap',
   ],
   /*
@@ -100,13 +100,13 @@ export default {
     extend () {
     },
   },
-  apollo: {
-    clientConfigs: {
-      default: {
-        httpEndpoint: 'https://api.liaoliaojun.com:3000/graphql',
-      },
-    },
-  },
+  // apollo: {
+  //   clientConfigs: {
+  //     default: {
+  //       httpEndpoint: 'https://api.liaoliaojun.com:3000/graphql',
+  //     },
+  //   },
+  // },
   tailwindcss: {
     configPath: resolve(__dirname, './tailwind.config.js'),
     cssPath: '~/assets/css/tailwind.css',

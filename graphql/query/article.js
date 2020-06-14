@@ -1,4 +1,6 @@
-query queryArticle ($article_id: ID!) {
+import gql from 'graphql-tag'
+
+export default gql`query queryArticle ($article_id: ID!) {
   result: article (article_id: $article_id) {
     # 文章id
     article_id
@@ -25,4 +27,4 @@ query queryArticle ($article_id: ID!) {
     # 标签
     tags
   }
-}
+}`

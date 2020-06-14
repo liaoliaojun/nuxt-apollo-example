@@ -7,9 +7,9 @@
   import {defineComponent, computed, reactive, toRefs} from '@vue/composition-api'
   import AddArticle from '../add.vue'
   // @ts-ignore
-  import queryArticle from '~/graphql/query/article.gql'
+  import queryArticle from '~/graphql/query/article.js'
   // @ts-ignore
-  import MutationUpdateArticle from '~/graphql/mutation/update_article.gql'
+  import MutationUpdateArticle from '~/graphql/mutation/update_article.js'
 
   import {SubmitArticle} from '~/types/index'
 

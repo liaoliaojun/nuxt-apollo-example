@@ -1,4 +1,6 @@
-query queryArticles {
+import gql from 'graphql-tag'
+
+export default gql`query queryArticles {
   result: articles {
     # 文章id
     article_id
@@ -17,4 +19,4 @@ query queryArticles {
     # 背景图地址(/保存至本服务器)
     bg_path
   }
-}
+}`

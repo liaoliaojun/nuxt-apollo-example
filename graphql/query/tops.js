@@ -1,4 +1,6 @@
-query queryTops {
+import gql from 'graphql-tag'
+
+export default gql`query queryTops {
   result: tops {
     # 文章id
     article_id
@@ -19,4 +21,4 @@ query queryTops {
     # 背景图地址(/保存至本服务器)
     bg_path
   }
-}
+}`

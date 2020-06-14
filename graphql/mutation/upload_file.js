@@ -1,4 +1,6 @@
-mutation uploadFile ($file: Upload!, $key: String!) {
+import gql from 'graphql-tag'
+
+export default gql`mutation uploadFile ($file: Upload!, $key: String!) {
   result: singleUpload (file: $file, key: $key) {
     id
     path
@@ -6,4 +8,4 @@ mutation uploadFile ($file: Upload!, $key: String!) {
     mimetype
     encoding
   }
-}
+}`

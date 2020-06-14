@@ -55,7 +55,7 @@
   import marked from 'marked'
   import TheArticle from '~/components/article.vue'
   // @ts-ignore
-  import MutationAddArticle from '~/graphql/mutation/add_article.gql'
+  import MutationAddArticle from '~/graphql/mutation/add_article.js'
 
   import useUpload from '~/hooks/upload'
 

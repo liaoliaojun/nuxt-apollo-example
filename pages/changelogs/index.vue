@@ -8,7 +8,7 @@
   import {defineComponent, computed, ref, Ref, onMounted} from '@vue/composition-api'
   import TheArticle from '~/components/article.vue'
   // @ts-ignore
-  import queryArticle from '~/graphql/query/article.gql'
+  import queryArticle from '~/graphql/query/article.js'
 
   import {Article} from '~/types/index'
 
