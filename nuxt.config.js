@@ -1,6 +1,7 @@
 import {resolve} from 'path'
 import fs from 'fs'
-import axios from 'axios'
+import gql from 'graphql-tag'
+import useApolloClient from './apollo/'
 
 export default {
   mode: 'universal',
@@ -124,9 +125,7 @@ export default {
     path: '/sitemap.xml',
     gzip: true,
     routes: async () => {
-      // https://graphql.org/graphql-js/graphql-clients/
-      // const apolloFetch = createApolloFetch({uri: 'https://api.liaoliaojun.com:3000/graphql'})
-      const query = `
+      const query = gql`
         query queryArticles {
           result: articles {
             # 文章id
@@ -134,14 +133,10 @@ export default {
           }
         }
       `
-      return await axios.post('https://api.liaoliaojun.com:3000/graphql', {query}, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-      })
-      .then(res => {
-        return (res.data.data.result || []).map((article) => `/article/${article.article_id}`)
+      return await useApolloClient().defaultClient.query({
+        query,
+      }).then(res => {
+        return (res.data.result || []).map((article) => `/article/${article.article_id}`)
       }).catch((error) => console.log(`dynamic routes error: ${error}`))
     },
   },
