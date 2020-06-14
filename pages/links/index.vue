@@ -8,5 +8,10 @@
   import {defineComponent} from '@vue/composition-api'
 
   export default defineComponent({
+    head () {
+      return {
+        title: '友邻',
+      }
+    },
   })
 </script>

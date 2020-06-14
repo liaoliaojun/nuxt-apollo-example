@@ -14,6 +14,12 @@
   import useApolloClient from '~/apollo/'
 
   export default defineComponent({
+    head () {
+      return {
+        title: '更新日志',
+      }
+    },
+
     components: {
       TheArticle,
     },
