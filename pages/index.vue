@@ -35,13 +35,13 @@
   import TheCarousel from '~/components/carousel.vue'
   import TheLazybg from '~/components/lazybg.vue'
   // @ts-ignore
-  import queryArticle from '~/graphql/query/article.js'
+  import queryArticle from '~/graphql/query/article'
   // @ts-ignore
-  import queryArticles from '~/graphql/query/articles.js'
+  import queryArticles from '~/graphql/query/articles'
   // @ts-ignore
-  import queryTops from '~/graphql/query/tops.js'
+  import queryTops from '~/graphql/query/tops'
 
-  import useApolloClient from '@/apollo/'
+  import useApolloClient from '~/apollo/'
 
   export default defineComponent({
     components: {

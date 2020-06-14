@@ -8,11 +8,11 @@
   import {SubmitArticle} from '~/types/index'
   import AddArticle from '../add.vue'
   // @ts-ignore
-  import queryArticle from '~/graphql/query/article.js'
+  import queryArticle from '~/graphql/query/article'
   // @ts-ignore
-  import MutationUpdateArticle from '~/graphql/mutation/update_article.js'
+  import MutationUpdateArticle from '~/graphql/mutation/update_article'
 
-  import useApolloClient from '@/apollo/'
+  import useApolloClient from '~/apollo/'
 
   export default defineComponent({
     components: {

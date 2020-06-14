@@ -6,11 +6,12 @@
 
 <script lang="ts">
   import {defineComponent, computed, ref, Ref, onMounted} from '@vue/composition-api'
+  import {Article} from '~/types/index'
   import TheArticle from '~/components/article.vue'
   // @ts-ignore
-  import queryArticle from '~/graphql/query/article.js'
+  import queryArticle from '~/graphql/query/article'
 
-  import {Article} from '~/types/index'
+  import useApolloClient from '~/apollo/'
 
   export default defineComponent({
     components: {
@@ -20,7 +21,7 @@
     props: {},
 
     async asyncData ({app: {apolloProvider}, params}) {
-      const {article_title, article_content, article_id, bg_path, article_date, article_views, article_like_count}: Article = await apolloProvider.defaultClient.query({
+      const {article_title, article_content, article_id, bg_path, article_date, article_views, article_like_count}: Article = await useApolloClient().default.query({
         query: queryArticle,
         fetchPolicy: 'no-cache',
         variables: {

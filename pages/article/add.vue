@@ -55,10 +55,10 @@
   import marked from 'marked'
   import TheArticle from '~/components/article.vue'
   // @ts-ignore
-  import MutationAddArticle from '~/graphql/mutation/add_article.js'
+  import MutationAddArticle from '~/graphql/mutation/add_article'
 
   import useUpload from '~/hooks/upload'
-  import useApolloClient from '@/apollo/'
+  import useApolloClient from '~/apollo/'
 
   export default defineComponent({
     components: {

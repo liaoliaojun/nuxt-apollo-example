@@ -1,9 +1,9 @@
 import {File} from '~/types/index'
 
 // @ts-ignore
-import UPLOAD_FILE from '~/graphql/mutation/upload_file.js'
+import UPLOAD_FILE from '~/graphql/mutation/upload_file'
 // @ts-ignore
-import UPLOAD_FILE_NETWORK from '~/graphql/mutation/upload_file_network.js'
+import UPLOAD_FILE_NETWORK from '~/graphql/mutation/upload_file_network'
 
 export default function useUpload (ctx: any): UseReturn {
 

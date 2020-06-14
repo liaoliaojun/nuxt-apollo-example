@@ -60,7 +60,8 @@
   import GlobalClick from '~/util/global-click'
   import VisibilityChange from '~/util/visibility-change'
   // @ts-ignore
-  import setVisitor from '~/graphql/mutation/set_visitor.js'
+  import setVisitor from '~/graphql/mutation/set_visitor'
+  import useApolloClient from '~/apollo/'
 
   export default defineComponent({
     components: {
@@ -126,9 +127,9 @@
 
         state.domain = window?.location?.hostname ?? 'liaoliaojun.com'
 
-        // ctx.root.$apollo.mutate({
-        //   mutation: setVisitor,
-        // })
+        useApolloClient().defaultClient.mutate({
+          mutation: setVisitor,
+        })
       })
 
       return {

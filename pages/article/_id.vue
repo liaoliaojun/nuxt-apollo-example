@@ -17,11 +17,11 @@
   import {Article} from '~/types/index'
   import TheArticle from '~/components/article.vue'
   // @ts-ignore
-  import queryArticle from '~/graphql/query/article.js'
+  import queryArticle from '~/graphql/query/article'
   // @ts-ignore
-  import mutateDeleteArticle from '~/graphql/mutation/delete_article.js'
+  import mutateDeleteArticle from '~/graphql/mutation/delete_article'
 
-  import useApolloClient from '@/apollo/'
+  import useApolloClient from '~/apollo/'
 
   export default defineComponent({
     components: {
