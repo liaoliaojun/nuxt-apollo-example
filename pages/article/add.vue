@@ -58,6 +58,7 @@
   import MutationAddArticle from '~/graphql/mutation/add_article.js'
 
   import useUpload from '~/hooks/upload'
+  import useApolloClient from '@/apollo/'
 
   export default defineComponent({
     components: {
@@ -138,7 +139,7 @@
           })
           return
         }
-        ctx.root.$apollo.mutate({
+        useApolloClient().defaultClient.mutate({
           mutation: MutationAddArticle,
           variables: {
             input: {

@@ -29,6 +29,7 @@
 
 <script lang="ts">
   import {defineComponent} from '@vue/composition-api'
+  import {Article} from '~/types/index'
 
   import TheArticles from '~/components/articles.vue'
   import TheCarousel from '~/components/carousel.vue'
@@ -40,7 +41,7 @@
   // @ts-ignore
   import queryTops from '~/graphql/query/tops.js'
 
-  import {Article} from '~/types/index'
+  import useApolloClient from '@/apollo/'
 
   export default defineComponent({
     components: {
@@ -61,7 +62,7 @@
     async asyncData ({app: {apolloProvider}, req}) {
       const [articles, topArticles]: [Array<Article>, Article] = await Promise.all([
         // 查询文章列表
-        apolloProvider.defaultClient.query({
+        useApolloClient().defaultClient.query({
           query: queryArticles,
         })
         .then((res: any) => {
@@ -78,7 +79,7 @@
           return []
         }),
         // 查询置顶文章
-        apolloProvider.defaultClient.query({
+        useApolloClient().defaultClient.query({
           query: queryTops,
         })
         .then((x: any) => x?.data?.result ?? [])

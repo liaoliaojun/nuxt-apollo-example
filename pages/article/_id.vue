@@ -14,13 +14,14 @@
 
 <script lang="ts">
   import {defineComponent, computed, ref, Ref, onMounted} from '@vue/composition-api'
+  import {Article} from '~/types/index'
   import TheArticle from '~/components/article.vue'
   // @ts-ignore
   import queryArticle from '~/graphql/query/article.js'
   // @ts-ignore
   import mutateDeleteArticle from '~/graphql/mutation/delete_article.js'
 
-  import {Article} from '~/types/index'
+  import useApolloClient from '@/apollo/'
 
   export default defineComponent({
     components: {
@@ -41,7 +42,7 @@
     props: {},
 
     async asyncData ({store, app: {apolloProvider}, params}) {
-      const {article_title, article_content, article_id, bg_path, article_date, article_views, article_like_count}: Article = await apolloProvider.defaultClient.query({
+      const {article_title, article_content, article_id, bg_path, article_date, article_views, article_like_count}: Article = await useApolloClient().defaultClient.query({
         query: queryArticle,
         fetchPolicy: 'no-cache',
         variables: {
@@ -65,7 +66,7 @@
       const showEntry: Ref<boolean> = ref(false)
       const deleted = async (article_id: string) => {
         if (!article_id) return
-        const isSuccess: boolean|string = await ctx.root.$apollo.mutate({
+        const isSuccess: boolean|string = await useApolloClient().defaultClient.mutate({
           mutation: mutateDeleteArticle,
           variables: {
             input: {

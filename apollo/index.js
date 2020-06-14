@@ -12,12 +12,11 @@ const defaultClient = new ApolloClient({
 
 const apolloClients = {
   default: defaultClient,
+  defaultClient,
 }
 
 export default function useApolloClient (arg) {
-  console.log(12132)
   if (!arg) {
-    console.log(apolloClients)
     return apolloClients
   }
   if (typeof arg === 'string') {

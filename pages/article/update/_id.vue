@@ -5,13 +5,14 @@
 
 <script lang="ts">
   import {defineComponent, computed, reactive, toRefs} from '@vue/composition-api'
+  import {SubmitArticle} from '~/types/index'
   import AddArticle from '../add.vue'
   // @ts-ignore
   import queryArticle from '~/graphql/query/article.js'
   // @ts-ignore
   import MutationUpdateArticle from '~/graphql/mutation/update_article.js'
 
-  import {SubmitArticle} from '~/types/index'
+  import useApolloClient from '@/apollo/'
 
   export default defineComponent({
     components: {
@@ -30,7 +31,7 @@
         tags: [],
       })
       const update = (submitState: SubmitArticle) => {
-        root.$apollo.mutate({
+        useApolloClient().defaultClient.mutate({
           mutation: MutationUpdateArticle,
           variables: {
             input: {
@@ -54,7 +55,7 @@
         })
       }
       const query = async () => {
-        const data = await root.$apollo.query({
+        const data = await useApolloClient().defaultClient.query({
           query: queryArticle,
           fetchPolicy: 'no-cache',
           variables: {
