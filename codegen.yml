@@ -1,0 +1,15 @@
+generates:
+  ./types/schema.ts:
+    schema: https://api.liaoliaojun.com:3000/graphql
+    documents:
+      - 'graphql/**/**.ts'
+      # - '!(src/**/auth/**.gql)'
+    # documents:
+    #     - 'src/**/*.gql'
+    #         loader: my-documents-loader.js
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-vue-apollo
+    config:
+      withHooks: true
