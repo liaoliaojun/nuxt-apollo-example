@@ -66,19 +66,6 @@ export type ArticleType = {
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
-export enum BsAppEnum {
-  /** 元数据 */
-  Mds = 'MDS',
-  Dqs = 'DQS',
-  Ds = 'DS',
-  Dlc = 'DLC',
-  Drd = 'DRD',
-  Drd2 = 'DRD2',
-  Nrd = 'NRD',
-  Mdm = 'MDM',
-  D4A = 'D4A'
-}
-
 export enum CacheControlScope {
   Public = 'PUBLIC',
   Private = 'PRIVATE'

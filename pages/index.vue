@@ -1,6 +1,5 @@
 <template>
   <div class="flex flex-col px-4 lg:px-0 mt-4">
-    <p>--123--{{ owner && owner.result && owner.result.author ? owner.result.author : '11'}}</p>
     <!-- <h3 class="text-xl my-4">猜你喜欢</h3> -->
     <!-- 轮播置顶 -->
     <the-carousel :itemLen="topArticles.length" :time="6000" width="100%" style="height: 70vh;" @toggleIndex="(index) => {carouselItemIndex = index}">
@@ -43,8 +42,6 @@
   import queryTops from '~/graphql/query/tops'
 
   import useApolloClient from '~/apollo/'
-
-  import {useQueryOwnerQuery, OwnerType} from '~/types/schema'
 
   export default defineComponent({
     components: {
@@ -92,30 +89,6 @@
         articles,
         topArticles,
         domain: req?.headers?.host,
-      }
-    },
-
-    setup () {
-      // const owner: Ref<OwnerType> = ref({
-      //   author: 'null',
-      //   email: 'null',
-      //   website: 'null',
-      // })
-
-      // if (process.client) {
-      //   watch(() => result, () => {
-      //     console.log(result)
-      //     if (result?.value?.result) {
-      //       console.log(result?.value?.result)
-      //     }
-      //   })
-      // }
-      const {result} = useQueryOwnerQuery()
-      const owner = computed(() => result.value)
-
-      return {
-        owner,
-        // result,
       }
     },
   })
