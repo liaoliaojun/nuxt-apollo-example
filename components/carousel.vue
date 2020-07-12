@@ -25,12 +25,13 @@
   </div>
 </template>
 
-<script>
-  // import {defineComponent} from '@vue/composition-api'
+<script lang="ts">
+  // @ts-nocheck
+  import {defineComponent} from '@vue/composition-api'
   const Hammer = () => import('hammerjs')
   // import Hammer from 'hammerjs'
 
-  export default {
+  export default defineComponent({
     props: {
       itemLen: {
         type: Number,
@@ -122,7 +123,7 @@
         }, this.time)
       },
     },
-  }
+  })
 </script>
 
 <style lang="scss">
