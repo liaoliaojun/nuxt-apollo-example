@@ -1,6 +1,6 @@
 <template>
   <div
-    ref="vm"
+    ref="el"
     class="w-full h-full bg-gray-400 bg-no-repeat bg-cover bg-center relative"
     :style="style"
   >
@@ -23,7 +23,7 @@
       },
     },
     setup (props, ctx: any) {
-      const vm: Ref<any> = ref(null)
+      const el: Ref<any> = ref(null)
       const style: Ref<string> = ref('')
 
       // 赋值图片
@@ -33,8 +33,8 @@
 
       // 判断是否在视图内
       const watchScroll = () => {
-        if (!process.client || !vm.value) return
-        const {top, bottom, left, right} = vm.value.getBoundingClientRect()
+        if (!process.client || !el.value) return
+        const {top, bottom, left, right} = el.value.getBoundingClientRect()
         // console.log(top, bottom, left, right)
         // 上下在视图内
         if (top <= window.innerHeight && bottom >= 0) {
@@ -66,7 +66,7 @@
       })
 
       return {
-        vm,
+        el,
         style,
       }
     },
