@@ -1,6 +1,5 @@
 <template>
   <div class="flex flex-col px-4 lg:px-0 mt-4">
-    <!-- <h3 class="text-xl my-4">猜你喜欢</h3> -->
     <!-- 轮播置顶 -->
     <the-carousel :itemLen="topArticles.length" :time="6000" width="100%" style="height: 70vh;" @toggleIndex="(index) => {carouselItemIndex = index}">
       <template #default="{index}">
