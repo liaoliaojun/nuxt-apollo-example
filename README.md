@@ -1,7 +1,7 @@
 # nuxt-apollo-example
-Nuxt.js &amp; Apollo Example
+Nuxt.js &amp; Graphql-codegen &amp; Apollo Example
 
-# Blog
+## Blog
 blog address: https://liaoliaojun.com
 
 ## Build Setup
@@ -17,6 +17,9 @@ $ yarn dev
 $ yarn build
 $ yarn start
 
-# generate Graphql-codegen
+# generate graphql-codegen
 $ yarn typeschema
 ```
+
+## graphql-codegen related
+docs: https://www.liaoliaojun.com/article/ZDnI24nky
