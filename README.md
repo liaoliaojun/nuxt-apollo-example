@@ -20,7 +20,7 @@ $ yarn dev
 $ yarn build
 $ yarn start
 
-# generate graphql-codegen
+# regenerate typeschema  graphql-codegen
 $ yarn typeschema
 ```
 
