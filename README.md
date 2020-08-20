@@ -10,6 +10,9 @@ blog address: https://liaoliaojun.com
 # install dependencies
 $ yarn
 
+# set hosts
+127.0.0.1 dev.liaoliaojun.com
+
 # serve with hot reload at https://dev.liaoliaojun.com:3001
 $ yarn dev
 
