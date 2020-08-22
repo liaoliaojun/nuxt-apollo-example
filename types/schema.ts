@@ -2,7 +2,9 @@ import gql from "graphql-tag";
 import * as VueApolloComposable from "@vue/apollo-composable";
 import * as VueCompositionApi from "@vue/composition-api";
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
 export type ReactiveFunction<TParam> = () => TParam;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -334,7 +336,7 @@ export const AddArticleDocument = gql`
  * });
  */
 export function useAddArticleMutation(
-  options: VueApolloComposable.UseMutationOptionsWithVariables<
+  options: VueApolloComposable.UseMutationOptions<
     AddArticleMutation,
     AddArticleMutationVariables
   >
@@ -372,7 +374,7 @@ export const AddArticleLikeDocument = gql`
  * });
  */
 export function useAddArticleLikeMutation(
-  options: VueApolloComposable.UseMutationOptionsWithVariables<
+  options: VueApolloComposable.UseMutationOptions<
     AddArticleLikeMutation,
     AddArticleLikeMutationVariables
   >
@@ -410,7 +412,7 @@ export const DeleteArticleDocument = gql`
  * });
  */
 export function useDeleteArticleMutation(
-  options: VueApolloComposable.UseMutationOptionsWithVariables<
+  options: VueApolloComposable.UseMutationOptions<
     DeleteArticleMutation,
     DeleteArticleMutationVariables
   >
@@ -447,7 +449,7 @@ export const SetVisitorDocument = gql`
  * });
  */
 export function useSetVisitorMutation(
-  options: VueApolloComposable.UseMutationOptionsNoVariables<
+  options: VueApolloComposable.UseMutationOptions<
     SetVisitorMutation,
     SetVisitorMutationVariables
   > = {}
@@ -485,7 +487,7 @@ export const UpdateArticleDocument = gql`
  * });
  */
 export function useUpdateArticleMutation(
-  options: VueApolloComposable.UseMutationOptionsWithVariables<
+  options: VueApolloComposable.UseMutationOptions<
     UpdateArticleMutation,
     UpdateArticleMutationVariables
   >
@@ -530,7 +532,7 @@ export const UploadFileDocument = gql`
  * });
  */
 export function useUploadFileMutation(
-  options: VueApolloComposable.UseMutationOptionsWithVariables<
+  options: VueApolloComposable.UseMutationOptions<
     UploadFileMutation,
     UploadFileMutationVariables
   >
@@ -575,7 +577,7 @@ export const GetImageDocument = gql`
  * });
  */
 export function useGetImageMutation(
-  options: VueApolloComposable.UseMutationOptionsWithVariables<
+  options: VueApolloComposable.UseMutationOptions<
     GetImageMutation,
     GetImageMutationVariables
   >
