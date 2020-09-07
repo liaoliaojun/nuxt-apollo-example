@@ -28,9 +28,9 @@
       TheArticle,
     },
 
+    // @ts-ignore
     head () {
       return {
-        // @ts-ignore
         title: this.title,
         // meta: [
         //   // @ts-ignore
