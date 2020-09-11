@@ -63,6 +63,7 @@
         // 查询文章列表
         useApolloClient().defaultClient.query({
           query: queryArticles,
+          fetchPolicy: 'no-cache',
         })
         .then((res: any) => {
           return (res?.data?.result ?? []).map((item: Article) => {
