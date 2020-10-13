@@ -22,7 +22,7 @@
     "hammerjs": "^2.0.8",
     "marked": "^1.1.0",
     "node-fetch": "^2.6.0",
-    "nuxt": "^2.12.2",
+    "nuxt": "^2.14.6",
     "tailwindcss": "^1.7.3",
     "vue-demi": "latest"
   },
