@@ -46,7 +46,8 @@
     "eslint-plugin-nuxt": ">=0.4.2",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.12"
   },
   "peerDependencies": {
     "@vue/composition-api": "1.0.0-beta.16"
