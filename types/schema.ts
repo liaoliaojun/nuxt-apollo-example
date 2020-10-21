@@ -17,25 +17,30 @@ export type Scalars = {
   Upload: any;
 };
 
-export type ArticleInput = {
-  /** 验证身份 */
-  key: Scalars["String"];
-  /** 文章id */
-  article_id?: Maybe<Scalars["ID"]>;
-  /** 文章标题 */
-  article_title: Scalars["String"];
-  /** 文章内容 */
-  article_content: Scalars["String"];
-  /** marked原文 */
-  article_marked_content?: Maybe<Scalars["String"]>;
-  /** 背景图地址(/保存至本服务器) */
-  bg_path?: Maybe<Scalars["String"]>;
-  /** 是否置顶（放置于首页轮播图） */
-  is_top: Scalars["Boolean"];
-  /** 置顶权重 */
-  top_weight: Scalars["Int"];
-  /** 标签 */
-  tags: Array<Maybe<Scalars["String"]>>;
+export type Query = {
+  __typename?: "Query";
+  /** 查询所有者 */
+  owner: OwnerType;
+  /** 查询置顶文章 */
+  tops: Array<Maybe<ArticleType>>;
+  /** 文章列表 */
+  articles: Array<Maybe<ArticleType>>;
+  /** 查询单个文章 */
+  article: ArticleType;
+};
+
+export type QueryArticleArgs = {
+  article_id: Scalars["ID"];
+};
+
+export type OwnerType = {
+  __typename?: "OwnerType";
+  /** 作者 */
+  author?: Maybe<Scalars["String"]>;
+  /** 邮箱 */
+  email?: Maybe<Scalars["String"]>;
+  /** 网站网址 */
+  website?: Maybe<Scalars["String"]>;
 };
 
 export type ArticleType = {
@@ -66,41 +71,6 @@ export type ArticleType = {
   top_weight?: Maybe<Scalars["Int"]>;
   /** 标签 */
   tags?: Maybe<Array<Maybe<Scalars["String"]>>>;
-};
-
-export enum CacheControlScope {
-  Public = "PUBLIC",
-  Private = "PRIVATE",
-}
-
-export type Comment = {
-  __typename?: "Comment";
-  /** 评论id */
-  comment_id?: Maybe<Scalars["ID"]>;
-  /** 用户信息 */
-  create_user: User;
-  /** 评论内容（转换后） */
-  comment_content: Scalars["String"];
-  /** 评论原文 */
-  comment_marked_content?: Maybe<Scalars["String"]>;
-  /** 评论时间 */
-  create_time?: Maybe<Scalars["String"]>;
-};
-
-export type DeleteArticleInput = {
-  /** 验证身份 */
-  key: Scalars["String"];
-  /** 文章id */
-  article_id: Scalars["ID"];
-};
-
-export type File = {
-  __typename?: "File";
-  id: Scalars["ID"];
-  path: Scalars["String"];
-  filename: Scalars["String"];
-  mimetype: Scalars["String"];
-  encoding: Scalars["String"];
 };
 
 export type Mutation = {
@@ -154,30 +124,55 @@ export type MutationGetImageArgs = {
   key: Scalars["String"];
 };
 
-export type OwnerType = {
-  __typename?: "OwnerType";
-  /** 作者 */
-  author?: Maybe<Scalars["String"]>;
-  /** 邮箱 */
-  email?: Maybe<Scalars["String"]>;
-  /** 网站网址 */
-  website?: Maybe<Scalars["String"]>;
+export type ArticleInput = {
+  /** 验证身份 */
+  key: Scalars["String"];
+  /** 文章id */
+  article_id?: Maybe<Scalars["ID"]>;
+  /** 文章标题 */
+  article_title: Scalars["String"];
+  /** 文章内容 */
+  article_content: Scalars["String"];
+  /** marked原文 */
+  article_marked_content?: Maybe<Scalars["String"]>;
+  /** 背景图地址(/保存至本服务器) */
+  bg_path?: Maybe<Scalars["String"]>;
+  /** 是否置顶（放置于首页轮播图） */
+  is_top: Scalars["Boolean"];
+  /** 置顶权重 */
+  top_weight: Scalars["Int"];
+  /** 标签 */
+  tags: Array<Maybe<Scalars["String"]>>;
 };
 
-export type Query = {
-  __typename?: "Query";
-  /** 查询所有者 */
-  owner: OwnerType;
-  /** 查询置顶文章 */
-  tops: Array<Maybe<ArticleType>>;
-  /** 文章列表 */
-  articles: Array<Maybe<ArticleType>>;
-  /** 查询单个文章 */
-  article: ArticleType;
-};
-
-export type QueryArticleArgs = {
+export type DeleteArticleInput = {
+  /** 验证身份 */
+  key: Scalars["String"];
+  /** 文章id */
   article_id: Scalars["ID"];
+};
+
+export type File = {
+  __typename?: "File";
+  id: Scalars["ID"];
+  path: Scalars["String"];
+  filename: Scalars["String"];
+  mimetype: Scalars["String"];
+  encoding: Scalars["String"];
+};
+
+export type Comment = {
+  __typename?: "Comment";
+  /** 评论id */
+  comment_id?: Maybe<Scalars["ID"]>;
+  /** 用户信息 */
+  create_user: User;
+  /** 评论内容（转换后） */
+  comment_content: Scalars["String"];
+  /** 评论原文 */
+  comment_marked_content?: Maybe<Scalars["String"]>;
+  /** 评论时间 */
+  create_time?: Maybe<Scalars["String"]>;
 };
 
 export type User = {
@@ -186,6 +181,11 @@ export type User = {
   email: Scalars["String"];
   avatar?: Maybe<Scalars["String"]>;
 };
+
+export enum CacheControlScope {
+  Public = "PUBLIC",
+  Private = "PRIVATE",
+}
 
 export type AddArticleMutationVariables = Exact<{
   input: ArticleInput;
@@ -336,10 +336,17 @@ export const AddArticleDocument = gql`
  * });
  */
 export function useAddArticleMutation(
-  options: VueApolloComposable.UseMutationOptions<
-    AddArticleMutation,
-    AddArticleMutationVariables
-  >
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        AddArticleMutation,
+        AddArticleMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          AddArticleMutation,
+          AddArticleMutationVariables
+        >
+      >
 ) {
   return VueApolloComposable.useMutation<
     AddArticleMutation,
@@ -374,10 +381,17 @@ export const AddArticleLikeDocument = gql`
  * });
  */
 export function useAddArticleLikeMutation(
-  options: VueApolloComposable.UseMutationOptions<
-    AddArticleLikeMutation,
-    AddArticleLikeMutationVariables
-  >
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        AddArticleLikeMutation,
+        AddArticleLikeMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          AddArticleLikeMutation,
+          AddArticleLikeMutationVariables
+        >
+      >
 ) {
   return VueApolloComposable.useMutation<
     AddArticleLikeMutation,
@@ -412,10 +426,17 @@ export const DeleteArticleDocument = gql`
  * });
  */
 export function useDeleteArticleMutation(
-  options: VueApolloComposable.UseMutationOptions<
-    DeleteArticleMutation,
-    DeleteArticleMutationVariables
-  >
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        DeleteArticleMutation,
+        DeleteArticleMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          DeleteArticleMutation,
+          DeleteArticleMutationVariables
+        >
+      >
 ) {
   return VueApolloComposable.useMutation<
     DeleteArticleMutation,
@@ -449,10 +470,17 @@ export const SetVisitorDocument = gql`
  * });
  */
 export function useSetVisitorMutation(
-  options: VueApolloComposable.UseMutationOptions<
-    SetVisitorMutation,
-    SetVisitorMutationVariables
-  > = {}
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        SetVisitorMutation,
+        SetVisitorMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          SetVisitorMutation,
+          SetVisitorMutationVariables
+        >
+      > = {}
 ) {
   return VueApolloComposable.useMutation<
     SetVisitorMutation,
@@ -487,10 +515,17 @@ export const UpdateArticleDocument = gql`
  * });
  */
 export function useUpdateArticleMutation(
-  options: VueApolloComposable.UseMutationOptions<
-    UpdateArticleMutation,
-    UpdateArticleMutationVariables
-  >
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        UpdateArticleMutation,
+        UpdateArticleMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          UpdateArticleMutation,
+          UpdateArticleMutationVariables
+        >
+      >
 ) {
   return VueApolloComposable.useMutation<
     UpdateArticleMutation,
@@ -532,10 +567,17 @@ export const UploadFileDocument = gql`
  * });
  */
 export function useUploadFileMutation(
-  options: VueApolloComposable.UseMutationOptions<
-    UploadFileMutation,
-    UploadFileMutationVariables
-  >
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        UploadFileMutation,
+        UploadFileMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          UploadFileMutation,
+          UploadFileMutationVariables
+        >
+      >
 ) {
   return VueApolloComposable.useMutation<
     UploadFileMutation,
@@ -577,10 +619,17 @@ export const GetImageDocument = gql`
  * });
  */
 export function useGetImageMutation(
-  options: VueApolloComposable.UseMutationOptions<
-    GetImageMutation,
-    GetImageMutationVariables
-  >
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        GetImageMutation,
+        GetImageMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          GetImageMutation,
+          GetImageMutationVariables
+        >
+      >
 ) {
   return VueApolloComposable.useMutation<
     GetImageMutation,

@@ -16,3 +16,5 @@ generates:
       - typescript-vue-apollo
     config:
       withHooks: true
+      # vueCompositionApiImportFrom: 'vue-demi'
+      
