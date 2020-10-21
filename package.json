@@ -31,7 +31,7 @@
     "@graphql-codegen/cli": "^1.17.8",
     "@graphql-codegen/typescript": "^1.17.8",
     "@graphql-codegen/typescript-operations": "^1.17.8",
-    "@graphql-codegen/typescript-vue-apollo": "^1.17.8",
+    "@graphql-codegen/typescript-vue-apollo": "^2.1.1",
     "@nuxt/types": "^2.13.3",
     "@nuxt/typescript-build": "^2.0.3",
     "@nuxtjs/eslint-config-typescript": "^1.0.0",
