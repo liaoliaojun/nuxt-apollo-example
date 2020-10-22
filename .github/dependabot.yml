@@ -1,8 +1,12 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
+- package-ecosystem: 'npm'
+  directory: '/'
   schedule:
     interval: daily
-    time: "21:00"
+    # time: "21:00"
   open-pull-requests-limit: 5
+  rebase-strategy: 'auto'
+  labels:
+      - 'automerge'
+      - 'dependencies'
