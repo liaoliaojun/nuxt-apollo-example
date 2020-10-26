@@ -23,7 +23,7 @@
     "marked": "^1.2.2",
     "node-fetch": "^2.6.1",
     "nuxt": "^2.14.7",
-    "tailwindcss": "^1.7.3",
+    "tailwindcss": "^1.9.6",
     "vue-demi": "latest"
   },
   "devDependencies": {
