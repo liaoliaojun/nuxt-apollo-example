@@ -8,5 +8,5 @@ updates:
   open-pull-requests-limit: 5
   rebase-strategy: 'auto'
   labels:
-      - 'automerge'
+      # - 'automerge'
       - 'dependencies'
