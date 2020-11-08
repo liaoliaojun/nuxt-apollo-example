@@ -30,7 +30,7 @@
 
   export default defineComponent({
     setup () {
-      const speed = ref<number>(0)
+      const speed = ref(0)
       const speedWidth = computed(() => speed.value + '%')
       const mainVm = ref(null)
       const datas = reactive([
@@ -78,7 +78,7 @@
         })
       }
 
-      const play = (): number | any => {
+      const play = (): number => {
         return window.setTimeout(() => {
           speed.value = speed.value + 0.5
           animationPlay(speed.value)
