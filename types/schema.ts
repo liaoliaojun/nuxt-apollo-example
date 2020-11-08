@@ -336,10 +336,17 @@ export const AddArticleDocument = gql`
  * });
  */
 export function useAddArticleMutation(
-  options: VueApolloComposable.UseMutationOptions<
-    AddArticleMutation,
-    AddArticleMutationVariables
-  >
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        AddArticleMutation,
+        AddArticleMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          AddArticleMutation,
+          AddArticleMutationVariables
+        >
+      >
 ) {
   return VueApolloComposable.useMutation<
     AddArticleMutation,
@@ -374,10 +381,17 @@ export const AddArticleLikeDocument = gql`
  * });
  */
 export function useAddArticleLikeMutation(
-  options: VueApolloComposable.UseMutationOptions<
-    AddArticleLikeMutation,
-    AddArticleLikeMutationVariables
-  >
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        AddArticleLikeMutation,
+        AddArticleLikeMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          AddArticleLikeMutation,
+          AddArticleLikeMutationVariables
+        >
+      >
 ) {
   return VueApolloComposable.useMutation<
     AddArticleLikeMutation,
@@ -412,10 +426,17 @@ export const DeleteArticleDocument = gql`
  * });
  */
 export function useDeleteArticleMutation(
-  options: VueApolloComposable.UseMutationOptions<
-    DeleteArticleMutation,
-    DeleteArticleMutationVariables
-  >
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        DeleteArticleMutation,
+        DeleteArticleMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          DeleteArticleMutation,
+          DeleteArticleMutationVariables
+        >
+      >
 ) {
   return VueApolloComposable.useMutation<
     DeleteArticleMutation,
@@ -449,10 +470,17 @@ export const SetVisitorDocument = gql`
  * });
  */
 export function useSetVisitorMutation(
-  options: VueApolloComposable.UseMutationOptions<
-    SetVisitorMutation,
-    SetVisitorMutationVariables
-  > = {}
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        SetVisitorMutation,
+        SetVisitorMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          SetVisitorMutation,
+          SetVisitorMutationVariables
+        >
+      > = {}
 ) {
   return VueApolloComposable.useMutation<
     SetVisitorMutation,
@@ -487,10 +515,17 @@ export const UpdateArticleDocument = gql`
  * });
  */
 export function useUpdateArticleMutation(
-  options: VueApolloComposable.UseMutationOptions<
-    UpdateArticleMutation,
-    UpdateArticleMutationVariables
-  >
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        UpdateArticleMutation,
+        UpdateArticleMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          UpdateArticleMutation,
+          UpdateArticleMutationVariables
+        >
+      >
 ) {
   return VueApolloComposable.useMutation<
     UpdateArticleMutation,
@@ -532,10 +567,17 @@ export const UploadFileDocument = gql`
  * });
  */
 export function useUploadFileMutation(
-  options: VueApolloComposable.UseMutationOptions<
-    UploadFileMutation,
-    UploadFileMutationVariables
-  >
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        UploadFileMutation,
+        UploadFileMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          UploadFileMutation,
+          UploadFileMutationVariables
+        >
+      >
 ) {
   return VueApolloComposable.useMutation<
     UploadFileMutation,
@@ -577,10 +619,17 @@ export const GetImageDocument = gql`
  * });
  */
 export function useGetImageMutation(
-  options: VueApolloComposable.UseMutationOptions<
-    GetImageMutation,
-    GetImageMutationVariables
-  >
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        GetImageMutation,
+        GetImageMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          GetImageMutation,
+          GetImageMutationVariables
+        >
+      >
 ) {
   return VueApolloComposable.useMutation<
     GetImageMutation,
