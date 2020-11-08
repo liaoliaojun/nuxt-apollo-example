@@ -20,7 +20,7 @@
     "github-markdown-css": "^4.0.0",
     "graphql-tag": "^2.10.3",
     "hammerjs": "^2.0.8",
-    "marked": "^1.2.2",
+    "marked": "^1.2.3",
     "node-fetch": "^2.6.1",
     "nuxt": "^2.14.7",
     "tailwindcss": "^1.9.6",
