@@ -4,7 +4,7 @@ import gql from 'graphql-tag'
 import useApolloClient from './apollo/'
 
 export default {
-  mode: 'universal',
+  ssr: true,
   /*
   ** Headers of the page
   */
