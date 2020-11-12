@@ -16,7 +16,7 @@
     "@nuxtjs/apollo": "^4.0.0-rc19",
     "@vue/apollo-composable": "^4.0.0-alpha.10",
     "apollo-boost": "^0.4.9",
-    "element-ui": "^2.14.0",
+    "element-ui": "^2.14.1",
     "github-markdown-css": "^4.0.0",
     "graphql-tag": "^2.10.3",
     "hammerjs": "^2.0.8",
