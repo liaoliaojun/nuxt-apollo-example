@@ -42,7 +42,7 @@
     props: {},
 
     async asyncData ({store, app: {apolloProvider}, params}) {
-      const {article_title, article_content, article_id, bg_path, article_date, article_views, article_like_count}: Article = await useApolloClient().defaultClient.query({
+      const {title, content, article_id, bg_path, date, views, like_count}: Article = await useApolloClient().defaultClient.query({
         query: queryArticle,
         fetchPolicy: 'no-cache',
         variables: {
@@ -51,13 +51,13 @@
       }).then((res: any) => {
         return res?.data?.result
       }).catch(() => {
-        return {article_title: '', article_content: ''}
+        return {title: '', content: ''}
       })
-      store.commit('article/setLikeCount', article_like_count || 0)
+      store.commit('article/setLikeCount', like_count || 0)
       return {
-        title: article_title, content: article_content,
-        bgPath: bg_path, date: article_date,
-        views: article_views, likeCount: article_like_count,
+        title: title, content: content,
+        bgPath: bg_path, date: date,
+        views: views, likeCount: like_count,
         id: article_id,
       }
     },

@@ -15,19 +15,19 @@
           </div> -->
           <the-lazybg v-if="item.bg_path" :file-url="item.bg_path" class="bg-box" />
           <div class="bg-white p-5">
-            <h3 class="text-xl">{{ item.article_title }}</h3>
-            <span class="text-sm text-gray-700">{{ item.article_date }}</span>
-            <p class="mt-4">{{ item.article_content }}</p>
+            <h3 class="text-xl">{{ item.title }}</h3>
+            <span class="text-sm text-gray-700">{{ item.date }}</span>
+            <p class="mt-4">{{ item.content }}</p>
             <div class="flex items-center justify-end text-base leading-none cursor-default text-gray-700 mt-4" @click.stop.prevent>
               <i class="iconfont icon-browse_fill text-2xl mr-1"></i>
-              <span>{{ item.article_views || 0 }}</span>
+              <span>{{ item.views || 0 }}</span>
               <i class="iconfont icon-praise_fill text-2xl ml-4 mr-1 cursor-pointer hover:text-gray-800" @click.stop.prevent="setLike(item)"></i>
-              <span>{{ item.article_like_count || 0 }}</span>
+              <span>{{ item.like_count || 0 }}</span>
               <!-- <i class="iconfont icon-message_fill text-2xl ml-4 mr-1"></i>
               <span>3</span> -->
             </div>
           </div>
-          <!-- <span class="ml-2">{{ item.article_date }}</span> -->
+          <!-- <span class="ml-2">{{ item.date }}</span> -->
         </nuxt-link>
       </li>
     </ul>

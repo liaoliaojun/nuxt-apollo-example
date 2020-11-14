@@ -1,12 +1,12 @@
 import {Article} from '~/types/index'
 
 // @ts-ignore
-import mutateArticleLike from '~/graphql/mutation/add_article_like'
+import mutateArticleLike from '~/graphql/mutation/like_article'
 
 export default function useLike (ctx: any): UseReturn {
   const setLike = async (article: Article) => {
-    const {article_like_count} = article
-    article.article_like_count = (article_like_count || 0) + 1
+    const {like_count} = article
+    article.like_count = (like_count || 0) + 1
     const isSuccess: boolean = await ctx.root.$apollo.mutate({
       mutation: mutateArticleLike,
       variables: {
@@ -14,7 +14,7 @@ export default function useLike (ctx: any): UseReturn {
       },
     }).then((x: any) => x.data?.result)
     if (!isSuccess) {
-      article.article_like_count = article_like_count || 0
+      article.like_count = like_count || 0
       alert('您已经点赞过了哦~')
     }
   }

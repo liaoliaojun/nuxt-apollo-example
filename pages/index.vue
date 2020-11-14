@@ -14,7 +14,7 @@
               tag="a"
               :to="'article/' + item.article_id"
             >
-              <h2 class="text-white text-3xl">{{ item.article_title }}</h2>
+              <h2 class="text-white text-3xl">{{ item.title }}</h2>
             </nuxt-link>
           </div>
         </the-lazybg>
@@ -67,12 +67,12 @@
         })
         .then((res: any) => {
           return (res?.data?.result ?? []).map((item: Article) => {
-            const content = item.article_content.replace(/<[^>]+>/g,'')
+            const content = item.content.replace(/<[^>]+>/g,'')
 
             return {
               ...item,
               // 去掉html标签
-              article_content: content.length < 155 ? content : content.substring(0, 155) + '...',
+              content: content.length < 155 ? content : content.substring(0, 155) + '...',
             }
           })
         }).catch(() => {

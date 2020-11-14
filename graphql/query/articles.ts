@@ -5,17 +5,17 @@ export default gql`query queryArticles {
     # 文章id
     article_id
     # 文章标题
-    article_title
+    title
     # # 文章内容
-    article_content
+    content
     # # 浏览量
-    article_views
+    views
     # 发表时间
-    article_date
+    date
     # 文章点赞数
-    article_like_count
+    like_count
     # 点赞的ip地址
-    # article_like_ips
+    # like_ips
     # 背景图地址(/保存至本服务器)
     bg_path
   }

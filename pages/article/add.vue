@@ -1,8 +1,8 @@
 <template>
   <div class="flex px-4 mt-5 relative w-full">
     <form class="flex flex-col mr-4" style="min-width: 48%;" @submit.prevent>
-      <input v-model="state.article_title" type="text" placeholder="请输入标题" class="input-wrapper">
-      <textarea ref="textareaInput" v-model="state.article_marked_content" cols="30" rows="10" placeholder="请输入文章内容" class="p-4 mt-4 textarea-wrapper" @keydown="tab" />
+      <input v-model="state.title" type="text" placeholder="请输入标题" class="input-wrapper">
+      <textarea ref="textareaInput" v-model="state.marked_content" cols="30" rows="10" placeholder="请输入文章内容" class="p-4 mt-4 textarea-wrapper" @keydown="tab" />
 
       <div class="mt-4 text-right">
         <div class="flex">
@@ -42,7 +42,7 @@
       </div>
     </form>
     <div class="flex-auto overflow-y-scroll h-full absolute rounded-lg" style="right: 1rem; min-width: 50%; max-width: 50%;">
-      <the-article :bg-path="state.bg_path" :title="state.article_title" :content="compiledMarkdown" is-main />
+      <the-article :bg-path="state.bg_path" :title="state.title" :content="compiledMarkdown" is-main />
     </div>
   </div>
 </template>
@@ -59,6 +59,7 @@
 
   import useUpload from '~/hooks/upload'
   import useApolloClient from '~/apollo/'
+  import 'element-ui/lib/theme-chalk/index.css'
 
   export default defineComponent({
     components: {
@@ -98,8 +99,8 @@
 
       const state: SubmitArticle = reactive({
         key: '',
-        article_title: '',
-        article_marked_content: '',
+        title: '',
+        marked_content: '',
         bg_path: '',
         is_top: false,
         top_weight: 10,
@@ -111,8 +112,8 @@
       const tagInputValue: Ref<string> = ref('')
   
       const compiledMarkdown = computed(() => {
-        if (state.article_marked_content) {
-          return marked((state.article_marked_content as string), {
+        if (state.marked_content) {
+          return marked((state.marked_content as string), {
             gfm: true,
           })
         } else {
@@ -122,16 +123,16 @@
 
       // 提交文章
       const submit = () => {
-        if (!state.key || !state.article_title || !state.article_marked_content) {
+        if (!state.key || !state.title || !state.marked_content) {
           alert('请填写完整信息')
           return
         }
         if (props.isUpdate) {
           ctx.emit('submit', {
             key: state.key,
-            article_title: state.article_title,
-            article_content: compiledMarkdown.value || '',
-            article_marked_content: state.article_marked_content || '',
+            title: state.title,
+            content: compiledMarkdown.value || '',
+            marked_content: state.marked_content || '',
             bg_path: state.bg_path,
             is_top: Boolean(state.is_top),
             top_weight: Number(state.top_weight) || 10,
@@ -144,9 +145,9 @@
           variables: {
             input: {
               key: state.key,
-              article_title: state.article_title,
-              article_content: compiledMarkdown.value || '',
-              article_marked_content: state.article_marked_content || '',
+              title: state.title,
+              content: compiledMarkdown.value || '',
+              marked_content: state.marked_content || '',
               bg_path: state.bg_path,
               is_top: Boolean(state.is_top),
               top_weight: Number(state.top_weight) || 10,
@@ -217,10 +218,10 @@
       }
 
       watch(() => props.data, () => {
-        if (!props.data?.article_title) return
+        if (!props.data?.title) return
         state.bg_path = props.data.bg_path
-        state.article_title = props.data.article_title
-        state.article_marked_content = props.data.article_marked_content
+        state.title = props.data.title
+        state.marked_content = props.data.marked_content
         state.is_top = props.data.is_top
         state.top_weight = props.data.top_weight
         state.tags = props.data.tags || []
