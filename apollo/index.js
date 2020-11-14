@@ -10,10 +10,11 @@ export function init (graphqlEndpoint) {
   const defaultClient = new ApolloClient({
     uri: graphqlEndpoint,
     fetch,
-    // httpLinkOptions: {
-    //   includeExtensions: true,
-    //   credentials: 'include',
-    // },
+    fetchOptions: {
+      includeExtensions: true,
+      credentials: 'include',
+      // mode: 'no-cors',
+    },
   })
   defaultClient.defaultOptions = {
     watchQuery: {
