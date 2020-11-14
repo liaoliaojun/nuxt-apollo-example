@@ -1,27 +1,31 @@
 import ApolloClient from 'apollo-boost'
 import fetch from 'node-fetch'
 
-const defaultClient = new ApolloClient({
-  uri: 'https://api.liaoliaojun.com:3000/graphql',
-  fetch,
-  // httpLinkOptions: {
-  //   includeExtensions: true,
-  //   credentials: 'include',
-  // },
-})
+const apolloClients = {}
 
-defaultClient.defaultOptions = {
-  watchQuery: {
-    fetchPolicy: 'network-only',
-  },
-  query: {
-    fetchPolicy: 'network-only',
+export function init (graphqlEndpoint) {
+  if (!graphqlEndpoint) {
+    return new Error('no find arguments of graphqlEndpoint')
   }
-}
-
-const apolloClients = {
-  default: defaultClient,
-  defaultClient,
+  const defaultClient = new ApolloClient({
+    uri: graphqlEndpoint,
+    fetch,
+    // httpLinkOptions: {
+    //   includeExtensions: true,
+    //   credentials: 'include',
+    // },
+  })
+  defaultClient.defaultOptions = {
+    watchQuery: {
+      fetchPolicy: 'network-only',
+    },
+    query: {
+      fetchPolicy: 'network-only',
+    }
+  }
+  apolloClients.default = defaultClient
+  apolloClients.defaultClient = defaultClient
+  return apolloClients
 }
 
 export default function useApolloClient (arg) {

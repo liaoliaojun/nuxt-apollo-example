@@ -1,13 +1,14 @@
 import {resolve} from 'path'
-import fs from 'fs'
 import gql from 'graphql-tag'
-import useApolloClient from './apollo/'
+import useApolloClient, {init} from './apollo/'
+
+const graphqlEndpoint = process.env.NODE_ENV === 'production' ? 'https://api.liaoliaojun.com/graphql' : 'http://api.liaoliaojun.com:4000/graphql'
 
 export default {
   ssr: true,
-  /*
-  ** Headers of the page
-  */
+  publicRuntimeConfig: {
+    graphqlEndpoint,
+  },
   head: {
     title: '了了君的小站' || process.env.npm_package_name,
     meta: [
@@ -20,9 +21,9 @@ export default {
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
     ],
   },
-  render: {
-    resourceHints: false,  // 添加prefetch和preload，以加快初始化页面加载时间。如果有许多页面和路由，可禁用此项
-  },
+  // render: {
+  //   resourceHints: false,  // 添加prefetch和preload，以加快初始化页面加载时间。如果有许多页面和路由，可禁用此项
+  // },
   router: {
     prefetchLinks: false,  // 全局禁用所有链接上的预取
     scrollBehavior: (to, from, savedPosition) => {
@@ -50,7 +51,6 @@ export default {
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css',
     '~/assets/css/base.scss',
     '~/assets/font/iconfont.css',
   ],
@@ -115,10 +115,6 @@ export default {
   server: {
     host: '0.0.0.0',
     port: 3001,
-    https: {
-      key: fs.readFileSync(resolve(__dirname, 'ssl/liaoliaojun.com.key')),
-      cert: fs.readFileSync(resolve(__dirname, 'ssl/liaoliaojun.com.crt')),
-    },
   },
   // 设置网站地图
   sitemap: {
@@ -133,6 +129,7 @@ export default {
           }
         }
       `
+      init(graphqlEndpoint)
       return await useApolloClient().defaultClient.query({
         query,
       }).then(res => {
