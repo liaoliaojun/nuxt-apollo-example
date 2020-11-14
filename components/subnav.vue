@@ -8,7 +8,7 @@
     >
       <div class="h-full left-0 top-0 w-2/3 bg-gray-800 text-white overflow-hidden">
         <div class="mt-24 text-center">
-          <img src="https://api.liaoliaojun.com:3000/files/wx_avatar.jpg" alt="avatar" class="w-16 h-16 rounded-full mx-auto mb-3">
+          <img :src="`${$config.httpEndpoint}/files/wx_avatar.jpg`" alt="avatar" class="w-16 h-16 rounded-full mx-auto mb-3">
           <strong class="font-normal text-2xl">了了君</strong>
         </div>
         <ul class="text-xl mt-16 leading-10">

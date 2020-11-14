@@ -2,11 +2,13 @@ import {resolve} from 'path'
 import gql from 'graphql-tag'
 import useApolloClient, {init} from './apollo/'
 
+const httpEndpoint = process.env.NODE_ENV === 'production' ? 'https://api.liaoliaojun.com' : 'http://api.liaoliaojun.com:4000'
 const graphqlEndpoint = process.env.NODE_ENV === 'production' ? 'https://api.liaoliaojun.com/graphql' : 'http://api.liaoliaojun.com:4000/graphql'
 
 export default {
   ssr: true,
   publicRuntimeConfig: {
+    httpEndpoint,
     graphqlEndpoint,
   },
   head: {

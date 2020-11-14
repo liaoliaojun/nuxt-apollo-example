@@ -49,7 +49,7 @@
       </footer>
     </div>
 
-    <the-subnav :visible.sync="showSubnav" :data="nav" />
+    <the-subnav v-if="showSubnav" :visible.sync="showSubnav" :data="nav" />
   </div>
 </template>
 

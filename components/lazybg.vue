@@ -25,10 +25,11 @@
     setup (props, ctx: any) {
       const el: Ref<any> = ref(null)
       const style: Ref<string> = ref('')
+      const httpEndpoint = ctx?.root?.$nuxt?.$config?.httpEndpoint ?? 'https://api.liaoliaojun.com/'
 
       // 赋值图片
       const setStyle = (url: string) => {
-        style.value = props.fileUrl ? `backgroundImage: url(https://api.liaoliaojun.com:3000/${props.fileUrl})` : ''
+        style.value = props.fileUrl ? `backgroundImage: url(${httpEndpoint}/${props.fileUrl})` : ''
       }
 
       // 判断是否在视图内
@@ -49,7 +50,6 @@
       watch(() => props.nowreload, (newVal) => {
         if (newVal) {
           setStyle(props.fileUrl)
-          // ctx.root.$emit('update:nowreload', false)
         }
       })
 
