@@ -52,8 +52,8 @@
       },
     },
 
-    setup (props, ctx: any) {
-      const {setLike} = useLike(ctx)
+    setup (props) {
+      const {setLike} = useLike()
 
       return {
         setLike,
