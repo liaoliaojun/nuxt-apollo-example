@@ -49,9 +49,8 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            DOCKER_NAME=`${{ secrets.DOCKER_USERNAME }}/blog-webapp:latest`
-            OLD_DOCKER_CONTAINER_ID=`docker ps -a |grep $DOCKER_NAME | awk '{ print $1 }'`
-            OLD_DOCKER_IMAGE_ID=`docker images $DOCKER_NAME -q`
+            OLD_DOCKER_CONTAINER_ID=`docker ps -a |grep liaoliaojun/blog-webapp:latest | awk '{ print $1 }'`
+            OLD_DOCKER_IMAGE_ID=`docker images liaoliaojun/blog-webapp:latest -q`
 
             if [ $OLD_DOCKER_CONTAINER_ID ]; then
               docker stop $OLD_DOCKER_CONTAINER_ID
@@ -63,6 +62,6 @@ jobs:
             fi
 
             docker login --username=${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_TOKEN }}
-            docker pull $DOCKER_NAME
-            docker run -d -p 3001:3001 $DOCKER_NAME
+            docker pull liaoliaojun/blog-webapp:latest
+            docker run -d -p 3001:3001 liaoliaojun/blog-webapp:latest
             
