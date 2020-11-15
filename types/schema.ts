@@ -13,84 +13,40 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** The `Upload` scalar type represents a file upload. */
   Upload: any;
 };
 
-export type ArticleInput = {
-  /** 验证身份 */
-  key: Scalars["String"];
-  /** 文章id */
+export type Article = {
+  __typename?: "Article";
   article_id?: Maybe<Scalars["ID"]>;
-  /** 文章标题 */
-  article_title: Scalars["String"];
-  /** 文章内容 */
-  article_content: Scalars["String"];
-  /** marked原文 */
-  article_marked_content?: Maybe<Scalars["String"]>;
-  /** 背景图地址(/保存至本服务器) */
+  title: Scalars["String"];
+  content: Scalars["String"];
+  marked_content?: Maybe<Scalars["String"]>;
+  views?: Maybe<Scalars["Int"]>;
+  date?: Maybe<Scalars["String"]>;
+  time_stamp?: Maybe<Scalars["Int"]>;
+  like_count?: Maybe<Scalars["Int"]>;
+  like_ips?: Maybe<Array<Scalars["String"]>>;
   bg_path?: Maybe<Scalars["String"]>;
-  /** 是否置顶（放置于首页轮播图） */
-  is_top: Scalars["Boolean"];
-  /** 置顶权重 */
-  top_weight: Scalars["Int"];
-  /** 标签 */
-  tags: Array<Maybe<Scalars["String"]>>;
-};
-
-export type ArticleType = {
-  __typename?: "ArticleType";
-  /** 文章id */
-  article_id?: Maybe<Scalars["ID"]>;
-  /** 文章标题 */
-  article_title: Scalars["String"];
-  /** 文章内容 */
-  article_content: Scalars["String"];
-  /** marked原文 */
-  article_marked_content?: Maybe<Scalars["String"]>;
-  /** 浏览量 */
-  article_views?: Maybe<Scalars["Int"]>;
-  /** 创建文章时间 */
-  article_date?: Maybe<Scalars["String"]>;
-  /** 创建文章时间戳 */
-  article_time_stamp?: Maybe<Scalars["Int"]>;
-  /** 文章点赞数 */
-  article_like_count?: Maybe<Scalars["Int"]>;
-  /** 点赞的ip地址 */
-  article_like_ips?: Maybe<Array<Scalars["String"]>>;
-  /** 背景图地址(/保存至本服务器) */
-  bg_path?: Maybe<Scalars["String"]>;
-  /** 是否置顶（放置于首页轮播图） */
   is_top?: Maybe<Scalars["Boolean"]>;
-  /** 置顶权重 */
   top_weight?: Maybe<Scalars["Int"]>;
-  /** 标签 */
   tags?: Maybe<Array<Maybe<Scalars["String"]>>>;
 };
 
-export enum CacheControlScope {
-  Public = "PUBLIC",
-  Private = "PRIVATE",
-}
-
-export type Comment = {
-  __typename?: "Comment";
-  /** 评论id */
-  comment_id?: Maybe<Scalars["ID"]>;
-  /** 用户信息 */
-  create_user: User;
-  /** 评论内容（转换后） */
-  comment_content: Scalars["String"];
-  /** 评论原文 */
-  comment_marked_content?: Maybe<Scalars["String"]>;
-  /** 评论时间 */
-  create_time?: Maybe<Scalars["String"]>;
+export type ArticleInput = {
+  key: Scalars["String"];
+  article_id?: Maybe<Scalars["ID"]>;
+  title: Scalars["String"];
+  content: Scalars["String"];
+  marked_content?: Maybe<Scalars["String"]>;
+  bg_path?: Maybe<Scalars["String"]>;
+  is_top?: Maybe<Scalars["Boolean"]>;
+  top_weight?: Maybe<Scalars["Int"]>;
+  tags?: Maybe<Array<Maybe<Scalars["String"]>>>;
 };
 
 export type DeleteArticleInput = {
-  /** 验证身份 */
   key: Scalars["String"];
-  /** 文章id */
   article_id: Scalars["ID"];
 };
 
@@ -105,22 +61,14 @@ export type File = {
 
 export type Mutation = {
   __typename?: "Mutation";
-  /** 添加文章 */
   addArticle: Scalars["ID"];
-  /** 更新文章 */
   updateArticle: Scalars["ID"];
-  /** 删除文章 */
   deleteArticle: Scalars["ID"];
-  /** 点赞文章 */
-  addArticleLike: Scalars["Boolean"];
-  /** 设置访客 */
-  setVisitor: Scalars["Boolean"];
-  /** 单文件上传 */
+  likeArticle: Scalars["Boolean"];
+  saveVisitor: Scalars["Boolean"];
   singleUpload: File;
-  /** 多文件上传 */
   multipleUpload: Array<File>;
-  /** 获取网络图片 */
-  getImage: File;
+  downImage: File;
 };
 
 export type MutationAddArticleArgs = {
@@ -135,7 +83,7 @@ export type MutationDeleteArticleArgs = {
   input: DeleteArticleInput;
 };
 
-export type MutationAddArticleLikeArgs = {
+export type MutationLikeArticleArgs = {
   article_id: Scalars["ID"];
 };
 
@@ -149,42 +97,28 @@ export type MutationMultipleUploadArgs = {
   key: Scalars["String"];
 };
 
-export type MutationGetImageArgs = {
+export type MutationDownImageArgs = {
   fileUrl: Scalars["String"];
   key: Scalars["String"];
 };
 
 export type OwnerType = {
   __typename?: "OwnerType";
-  /** 作者 */
   author?: Maybe<Scalars["String"]>;
-  /** 邮箱 */
   email?: Maybe<Scalars["String"]>;
-  /** 网站网址 */
   website?: Maybe<Scalars["String"]>;
 };
 
 export type Query = {
   __typename?: "Query";
-  /** 查询所有者 */
+  article: Article;
+  articles: Array<Maybe<Article>>;
+  tops: Array<Maybe<Article>>;
   owner: OwnerType;
-  /** 查询置顶文章 */
-  tops: Array<Maybe<ArticleType>>;
-  /** 文章列表 */
-  articles: Array<Maybe<ArticleType>>;
-  /** 查询单个文章 */
-  article: ArticleType;
 };
 
 export type QueryArticleArgs = {
   article_id: Scalars["ID"];
-};
-
-export type User = {
-  __typename?: "User";
-  name: Scalars["String"];
-  email: Scalars["String"];
-  avatar?: Maybe<Scalars["String"]>;
 };
 
 export type AddArticleMutationVariables = Exact<{
@@ -195,14 +129,6 @@ export type AddArticleMutation = { __typename?: "Mutation" } & {
   result: Mutation["addArticle"];
 };
 
-export type AddArticleLikeMutationVariables = Exact<{
-  article_id: Scalars["ID"];
-}>;
-
-export type AddArticleLikeMutation = { __typename?: "Mutation" } & {
-  result: Mutation["addArticleLike"];
-};
-
 export type DeleteArticleMutationVariables = Exact<{
   input: DeleteArticleInput;
 }>;
@@ -211,10 +137,18 @@ export type DeleteArticleMutation = { __typename?: "Mutation" } & {
   result: Mutation["deleteArticle"];
 };
 
-export type SetVisitorMutationVariables = Exact<{ [key: string]: never }>;
+export type LikeArticleMutationVariables = Exact<{
+  article_id: Scalars["ID"];
+}>;
 
-export type SetVisitorMutation = { __typename?: "Mutation" } & {
-  result: Mutation["setVisitor"];
+export type LikeArticleMutation = { __typename?: "Mutation" } & {
+  result: Mutation["likeArticle"];
+};
+
+export type SaveVisitorMutationVariables = Exact<{ [key: string]: never }>;
+
+export type SaveVisitorMutation = { __typename?: "Mutation" } & {
+  result: Mutation["saveVisitor"];
 };
 
 export type UpdateArticleMutationVariables = Exact<{
@@ -237,12 +171,12 @@ export type UploadFileMutation = { __typename?: "Mutation" } & {
   >;
 };
 
-export type GetImageMutationVariables = Exact<{
+export type DownImageMutationVariables = Exact<{
   fileUrl: Scalars["String"];
   key: Scalars["String"];
 }>;
 
-export type GetImageMutation = { __typename?: "Mutation" } & {
+export type DownImageMutation = { __typename?: "Mutation" } & {
   result: { __typename?: "File" } & Pick<
     File,
     "id" | "path" | "filename" | "mimetype" | "encoding"
@@ -254,16 +188,16 @@ export type QueryArticleQueryVariables = Exact<{
 }>;
 
 export type QueryArticleQuery = { __typename?: "Query" } & {
-  result: { __typename?: "ArticleType" } & Pick<
-    ArticleType,
+  result: { __typename?: "Article" } & Pick<
+    Article,
     | "article_id"
-    | "article_title"
-    | "article_content"
-    | "article_marked_content"
-    | "article_views"
-    | "article_date"
-    | "article_like_count"
-    | "article_like_ips"
+    | "title"
+    | "content"
+    | "marked_content"
+    | "views"
+    | "date"
+    | "like_count"
+    | "like_ips"
     | "bg_path"
     | "is_top"
     | "top_weight"
@@ -276,14 +210,14 @@ export type QueryArticlesQueryVariables = Exact<{ [key: string]: never }>;
 export type QueryArticlesQuery = { __typename?: "Query" } & {
   result: Array<
     Maybe<
-      { __typename?: "ArticleType" } & Pick<
-        ArticleType,
+      { __typename?: "Article" } & Pick<
+        Article,
         | "article_id"
-        | "article_title"
-        | "article_content"
-        | "article_views"
-        | "article_date"
-        | "article_like_count"
+        | "title"
+        | "content"
+        | "views"
+        | "date"
+        | "like_count"
         | "bg_path"
       >
     >
@@ -304,9 +238,9 @@ export type QueryTopsQueryVariables = Exact<{ [key: string]: never }>;
 export type QueryTopsQuery = { __typename?: "Query" } & {
   result: Array<
     Maybe<
-      { __typename?: "ArticleType" } & Pick<
-        ArticleType,
-        "article_id" | "article_title" | "bg_path"
+      { __typename?: "Article" } & Pick<
+        Article,
+        "article_id" | "title" | "bg_path"
       >
     >
   >;
@@ -331,7 +265,7 @@ export const AddArticleDocument = gql`
  * @example
  * const { mutate, loading, error, onDone } = useAddArticleMutation({
  *   variables: {
- *      input: // value for 'input'
+ *     input: // value for 'input'
  *   },
  * });
  */
@@ -357,53 +291,8 @@ export type AddArticleMutationCompositionFunctionResult = VueApolloComposable.Us
   AddArticleMutation,
   AddArticleMutationVariables
 >;
-export const AddArticleLikeDocument = gql`
-  mutation addArticleLike($article_id: ID!) {
-    result: addArticleLike(article_id: $article_id)
-  }
-`;
-
-/**
- * __useAddArticleLikeMutation__
- *
- * To run a mutation, you first call `useAddArticleLikeMutation` within a Vue component and pass it any options that fit your needs.
- * When your component renders, `useAddArticleLikeMutation` returns an object that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
- *
- * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
- *
- * @example
- * const { mutate, loading, error, onDone } = useAddArticleLikeMutation({
- *   variables: {
- *      article_id: // value for 'article_id'
- *   },
- * });
- */
-export function useAddArticleLikeMutation(
-  options:
-    | VueApolloComposable.UseMutationOptions<
-        AddArticleLikeMutation,
-        AddArticleLikeMutationVariables
-      >
-    | ReactiveFunction<
-        VueApolloComposable.UseMutationOptions<
-          AddArticleLikeMutation,
-          AddArticleLikeMutationVariables
-        >
-      >
-) {
-  return VueApolloComposable.useMutation<
-    AddArticleLikeMutation,
-    AddArticleLikeMutationVariables
-  >(AddArticleLikeDocument, options);
-}
-export type AddArticleLikeMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
-  AddArticleLikeMutation,
-  AddArticleLikeMutationVariables
->;
 export const DeleteArticleDocument = gql`
-  mutation deleteArticle($input: deleteArticleInput!) {
+  mutation deleteArticle($input: DeleteArticleInput!) {
     result: deleteArticle(input: $input)
   }
 `;
@@ -421,7 +310,7 @@ export const DeleteArticleDocument = gql`
  * @example
  * const { mutate, loading, error, onDone } = useDeleteArticleMutation({
  *   variables: {
- *      input: // value for 'input'
+ *     input: // value for 'input'
  *   },
  * });
  */
@@ -447,49 +336,91 @@ export type DeleteArticleMutationCompositionFunctionResult = VueApolloComposable
   DeleteArticleMutation,
   DeleteArticleMutationVariables
 >;
-export const SetVisitorDocument = gql`
-  mutation setVisitor {
-    result: setVisitor
+export const LikeArticleDocument = gql`
+  mutation likeArticle($article_id: ID!) {
+    result: likeArticle(article_id: $article_id)
   }
 `;
 
 /**
- * __useSetVisitorMutation__
+ * __useLikeArticleMutation__
  *
- * To run a mutation, you first call `useSetVisitorMutation` within a Vue component and pass it any options that fit your needs.
- * When your component renders, `useSetVisitorMutation` returns an object that includes:
+ * To run a mutation, you first call `useLikeArticleMutation` within a Vue component and pass it any options that fit your needs.
+ * When your component renders, `useLikeArticleMutation` returns an object that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
  *
  * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
  *
  * @example
- * const { mutate, loading, error, onDone } = useSetVisitorMutation({
+ * const { mutate, loading, error, onDone } = useLikeArticleMutation({
  *   variables: {
+ *     article_id: // value for 'article_id'
  *   },
  * });
  */
-export function useSetVisitorMutation(
+export function useLikeArticleMutation(
   options:
     | VueApolloComposable.UseMutationOptions<
-        SetVisitorMutation,
-        SetVisitorMutationVariables
+        LikeArticleMutation,
+        LikeArticleMutationVariables
       >
     | ReactiveFunction<
         VueApolloComposable.UseMutationOptions<
-          SetVisitorMutation,
-          SetVisitorMutationVariables
+          LikeArticleMutation,
+          LikeArticleMutationVariables
+        >
+      >
+) {
+  return VueApolloComposable.useMutation<
+    LikeArticleMutation,
+    LikeArticleMutationVariables
+  >(LikeArticleDocument, options);
+}
+export type LikeArticleMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
+  LikeArticleMutation,
+  LikeArticleMutationVariables
+>;
+export const SaveVisitorDocument = gql`
+  mutation saveVisitor {
+    result: saveVisitor
+  }
+`;
+
+/**
+ * __useSaveVisitorMutation__
+ *
+ * To run a mutation, you first call `useSaveVisitorMutation` within a Vue component and pass it any options that fit your needs.
+ * When your component renders, `useSaveVisitorMutation` returns an object that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
+ *
+ * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
+ *
+ * @example
+ * const { mutate, loading, error, onDone } = useSaveVisitorMutation();
+ */
+export function useSaveVisitorMutation(
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        SaveVisitorMutation,
+        SaveVisitorMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          SaveVisitorMutation,
+          SaveVisitorMutationVariables
         >
       > = {}
 ) {
   return VueApolloComposable.useMutation<
-    SetVisitorMutation,
-    SetVisitorMutationVariables
-  >(SetVisitorDocument, options);
+    SaveVisitorMutation,
+    SaveVisitorMutationVariables
+  >(SaveVisitorDocument, options);
 }
-export type SetVisitorMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
-  SetVisitorMutation,
-  SetVisitorMutationVariables
+export type SaveVisitorMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
+  SaveVisitorMutation,
+  SaveVisitorMutationVariables
 >;
 export const UpdateArticleDocument = gql`
   mutation updateArticle($input: ArticleInput!) {
@@ -510,7 +441,7 @@ export const UpdateArticleDocument = gql`
  * @example
  * const { mutate, loading, error, onDone } = useUpdateArticleMutation({
  *   variables: {
- *      input: // value for 'input'
+ *     input: // value for 'input'
  *   },
  * });
  */
@@ -561,8 +492,8 @@ export const UploadFileDocument = gql`
  * @example
  * const { mutate, loading, error, onDone } = useUploadFileMutation({
  *   variables: {
- *      file: // value for 'file'
- *      key: // value for 'key'
+ *     file: // value for 'file'
+ *     key: // value for 'key'
  *   },
  * });
  */
@@ -588,9 +519,9 @@ export type UploadFileMutationCompositionFunctionResult = VueApolloComposable.Us
   UploadFileMutation,
   UploadFileMutationVariables
 >;
-export const GetImageDocument = gql`
-  mutation getImage($fileUrl: String!, $key: String!) {
-    result: getImage(fileUrl: $fileUrl, key: $key) {
+export const DownImageDocument = gql`
+  mutation downImage($fileUrl: String!, $key: String!) {
+    result: downImage(fileUrl: $fileUrl, key: $key) {
       id
       path
       filename
@@ -601,56 +532,56 @@ export const GetImageDocument = gql`
 `;
 
 /**
- * __useGetImageMutation__
+ * __useDownImageMutation__
  *
- * To run a mutation, you first call `useGetImageMutation` within a Vue component and pass it any options that fit your needs.
- * When your component renders, `useGetImageMutation` returns an object that includes:
+ * To run a mutation, you first call `useDownImageMutation` within a Vue component and pass it any options that fit your needs.
+ * When your component renders, `useDownImageMutation` returns an object that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
  *
  * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
  *
  * @example
- * const { mutate, loading, error, onDone } = useGetImageMutation({
+ * const { mutate, loading, error, onDone } = useDownImageMutation({
  *   variables: {
- *      fileUrl: // value for 'fileUrl'
- *      key: // value for 'key'
+ *     fileUrl: // value for 'fileUrl'
+ *     key: // value for 'key'
  *   },
  * });
  */
-export function useGetImageMutation(
+export function useDownImageMutation(
   options:
     | VueApolloComposable.UseMutationOptions<
-        GetImageMutation,
-        GetImageMutationVariables
+        DownImageMutation,
+        DownImageMutationVariables
       >
     | ReactiveFunction<
         VueApolloComposable.UseMutationOptions<
-          GetImageMutation,
-          GetImageMutationVariables
+          DownImageMutation,
+          DownImageMutationVariables
         >
       >
 ) {
   return VueApolloComposable.useMutation<
-    GetImageMutation,
-    GetImageMutationVariables
-  >(GetImageDocument, options);
+    DownImageMutation,
+    DownImageMutationVariables
+  >(DownImageDocument, options);
 }
-export type GetImageMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
-  GetImageMutation,
-  GetImageMutationVariables
+export type DownImageMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
+  DownImageMutation,
+  DownImageMutationVariables
 >;
 export const QueryArticleDocument = gql`
   query queryArticle($article_id: ID!) {
     result: article(article_id: $article_id) {
       article_id
-      article_title
-      article_content
-      article_marked_content
-      article_views
-      article_date
-      article_like_count
-      article_like_ips
+      title
+      content
+      marked_content
+      views
+      date
+      like_count
+      like_ips
       bg_path
       is_top
       top_weight
@@ -666,14 +597,13 @@ export const QueryArticleDocument = gql`
  * When your component renders, `useQueryArticleQuery` returns an object from Apollo Client that contains result, loading and error properties
  * you can use to render your UI.
  *
+ * @param variables that will be passed into the query
  * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
  *
  * @example
- * const { result, loading, error } = useQueryArticleQuery(
- *   {
- *      article_id: // value for 'article_id'
- *   }
- * );
+ * const { result, loading, error } = useQueryArticleQuery({
+ *   article_id: // value for 'article_id'
+ * });
  */
 export function useQueryArticleQuery(
   variables:
@@ -711,11 +641,11 @@ export const QueryArticlesDocument = gql`
   query queryArticles {
     result: articles {
       article_id
-      article_title
-      article_content
-      article_views
-      article_date
-      article_like_count
+      title
+      content
+      views
+      date
+      like_count
       bg_path
     }
   }
@@ -731,10 +661,7 @@ export const QueryArticlesDocument = gql`
  * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
  *
  * @example
- * const { result, loading, error } = useQueryArticlesQuery(
- *   {
- *   }
- * );
+ * const { result, loading, error } = useQueryArticlesQuery();
  */
 export function useQueryArticlesQuery(
   options:
@@ -755,11 +682,10 @@ export function useQueryArticlesQuery(
         >
       > = {}
 ) {
-  return VueApolloComposable.useQuery<QueryArticlesQuery, undefined>(
-    QueryArticlesDocument,
-    undefined,
-    options
-  );
+  return VueApolloComposable.useQuery<
+    QueryArticlesQuery,
+    QueryArticlesQueryVariables
+  >(QueryArticlesDocument, {}, options);
 }
 export type QueryArticlesQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
   QueryArticlesQuery,
@@ -785,10 +711,7 @@ export const QueryOwnerDocument = gql`
  * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
  *
  * @example
- * const { result, loading, error } = useQueryOwnerQuery(
- *   {
- *   }
- * );
+ * const { result, loading, error } = useQueryOwnerQuery();
  */
 export function useQueryOwnerQuery(
   options:
@@ -809,11 +732,10 @@ export function useQueryOwnerQuery(
         >
       > = {}
 ) {
-  return VueApolloComposable.useQuery<QueryOwnerQuery, undefined>(
-    QueryOwnerDocument,
-    undefined,
-    options
-  );
+  return VueApolloComposable.useQuery<
+    QueryOwnerQuery,
+    QueryOwnerQueryVariables
+  >(QueryOwnerDocument, {}, options);
 }
 export type QueryOwnerQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
   QueryOwnerQuery,
@@ -823,7 +745,7 @@ export const QueryTopsDocument = gql`
   query queryTops {
     result: tops {
       article_id
-      article_title
+      title
       bg_path
     }
   }
@@ -839,10 +761,7 @@ export const QueryTopsDocument = gql`
  * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
  *
  * @example
- * const { result, loading, error } = useQueryTopsQuery(
- *   {
- *   }
- * );
+ * const { result, loading, error } = useQueryTopsQuery();
  */
 export function useQueryTopsQuery(
   options:
@@ -863,9 +782,9 @@ export function useQueryTopsQuery(
         >
       > = {}
 ) {
-  return VueApolloComposable.useQuery<QueryTopsQuery, undefined>(
+  return VueApolloComposable.useQuery<QueryTopsQuery, QueryTopsQueryVariables>(
     QueryTopsDocument,
-    undefined,
+    {},
     options
   );
 }
