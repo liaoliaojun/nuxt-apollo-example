@@ -8,7 +8,7 @@
         </a>
         <!-- logo -->
         <h2 class="text-xl block font-bold llj-btn cursor-pointer">
-          <nuxt-link tag="a" to="/">了了君</nuxt-link>
+          <nuxt-link tag="a" to="/">了了君的小站</nuxt-link>
         </h2>
         <!-- 导航栏 -->
         <ul class="hidden text-sm md:text-base md:flex">
