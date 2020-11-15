@@ -63,5 +63,5 @@ jobs:
 
             docker login --username=${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_TOKEN }}
             docker pull liaoliaojun/blog-webapp:latest
-            docker run -d -p 3001:3001 blog-webapp:latest
+            docker run -d -p 3001:3001 liaoliaojun/blog-webapp:latest
 
