@@ -39,7 +39,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: blog-webapp:latest
+          tags: user/blog-webapp:latest
 
 #       docker ps -a |grep blog-web | awk '{print $1}'
 #       - name: Deploy 
