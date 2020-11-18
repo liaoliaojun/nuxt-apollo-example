@@ -4,8 +4,8 @@
     class="w-full h-full bg-gray-400 bg-no-repeat bg-cover bg-center relative"
   >
     <img :src="thumbnailUrl" width="100%" class="h-full object-cover" style="filter: blur(20px);">
-    <img v-if="originUrl" :src="originUrl" width="100%" class="h-full object-cover absolute left-0 top-0 z-10" onerror="this.style.display = 'none'">
-    <slot class="absolute z-20" />
+    <img v-if="originUrl" :src="originUrl" width="100%" class="h-full object-cover absolute left-0 top-0" onerror="this.style.display = 'none'">
+    <slot />
   </div>
 </template>
 
