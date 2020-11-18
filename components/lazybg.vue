@@ -5,7 +5,7 @@
   >
     <img :src="thumbnailUrl" width="100%" class="h-full object-cover" style="filter: blur(20px);">
     <img v-if="originUrl" :src="originUrl" width="100%" class="h-full object-cover absolute left-0 top-0 z-10" onerror="this.style.display = 'none'">
-    <slot />
+    <slot class="absolute z-20" />
   </div>
 </template>
 
