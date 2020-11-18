@@ -1,6 +1,6 @@
 <template>
   <div class="article-view flex flex-col h-full" style="min-height: calc(100vh - 48px - 37px - 0rem);">
-    <div v-if="bgPath" class="w-full bg-cover bg-center bg-no-repeat bg-box" :style="`backgroundImage:url(https://api.liaoliaojun.com:3000/${bgPath})`"></div>
+    <the-lazybg :file-url="bgPath" class="bg-box"/>
     <article class="relative text-xl lg:text-2xl xl:text-3xl flex flex-col flex-auto">
       <div class="p-8 bg-white leading-10 flex-1">
         <h1 class="font-bold">{{ title }}</h1>
@@ -21,8 +21,12 @@
 
 <script lang="ts">
   import {defineComponent, computed} from '@vue/composition-api'
+  import TheLazybg from '~/components/lazybg.vue'
 
   export default defineComponent({
+    components: {
+      TheLazybg,
+    },
     props: {
       title: {
         type: String,
