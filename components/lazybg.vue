@@ -2,14 +2,15 @@
   <div
     ref="el"
     class="w-full h-full bg-gray-400 bg-no-repeat bg-cover bg-center relative"
-    :style="style"
   >
+    <img :src="thumbnailUrl" width="100%" class="h-full object-cover" style="filter: blur(20px);">
+    <img v-if="originUrl" :src="originUrl" width="100%" class="h-full object-cover absolute left-0 top-0 z-10" onerror="this.style.display = 'none'">
     <slot />
   </div>
 </template>
 
 <script lang="ts">
-  import {defineComponent, computed, ref, Ref, watch,onMounted, onBeforeUnmount} from '@vue/composition-api'
+  import {defineComponent, computed, ref, Ref, watch, onMounted, onBeforeUnmount} from '@vue/composition-api'
 
   export default defineComponent({
     props: {
@@ -23,13 +24,20 @@
       },
     },
     setup (props, ctx: any) {
-      const el: Ref<any> = ref(null)
-      const style: Ref<string> = ref('')
+      const el = ref<HTMLElement | null>(null)
+      const originUrl = ref('')
       const httpEndpoint = ctx?.root?.$nuxt?.$config?.httpEndpoint ?? 'https://api.liaoliaojun.com/'
 
+      // 拼写缩略图地址
+      const thumbnailUrl = computed(() => {
+        const [_dir, fileName] = props.fileUrl.split('files/')
+        if (!fileName) return ''
+        return `${httpEndpoint}/files/thumbnails/${fileName}`
+      })
+
       // 赋值图片
-      const setStyle = (url: string) => {
-        style.value = props.fileUrl ? `backgroundImage: url(${httpEndpoint}/${props.fileUrl})` : ''
+      const setOriginUrl = (url: string) => {
+        originUrl.value = props.fileUrl ? `${httpEndpoint}/${props.fileUrl}` : ''
       }
 
       // 判断是否在视图内
@@ -41,7 +49,7 @@
         if (top <= window.innerHeight && bottom >= 0) {
           // 左右在视图内
           if (right <= window.innerWidth && left >= 0) {
-            setStyle(props.fileUrl)
+            setOriginUrl(props.fileUrl)
           }
         }
       }
@@ -49,7 +57,7 @@
       // 手动触发
       watch(() => props.nowreload, (newVal) => {
         if (newVal) {
-          setStyle(props.fileUrl)
+          setOriginUrl(props.fileUrl)
         }
       })
 
@@ -67,7 +75,8 @@
 
       return {
         el,
-        style,
+        originUrl,
+        thumbnailUrl,
       }
     },
   })
