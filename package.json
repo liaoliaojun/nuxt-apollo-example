@@ -30,7 +30,7 @@
     "@babel/runtime-corejs3": "^7.12.5",
     "@graphql-codegen/cli": "^1.19.1",
     "@graphql-codegen/typescript": "^1.17.11",
-    "@graphql-codegen/typescript-operations": "^1.17.8",
+    "@graphql-codegen/typescript-operations": "^1.17.10",
     "@graphql-codegen/typescript-vue-apollo": "^2.2.1",
     "@nuxt/types": "^2.14.7",
     "@nuxt/typescript-build": "^2.0.3",
