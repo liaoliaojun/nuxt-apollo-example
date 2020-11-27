@@ -35,8 +35,8 @@
   export default defineComponent({
     props: {},
 
-    setup (_, ctx: any) {
-      const {urlUpload, localUpload} = useUpload(ctx)
+    setup () {
+      const {urlUpload, localUpload} = useUpload()
 
       const files: Ref<Array<File>> = ref([])
       const fileUrl: Ref<string> = ref('')

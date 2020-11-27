@@ -1,16 +1,17 @@
 import {File} from '~/types/index'
+import useApolloClient from '~/apollo/'
 
 // @ts-ignore
 import UPLOAD_FILE from '~/graphql/mutation/upload_file'
 // @ts-ignore
 import UPLOAD_FILE_NETWORK from '~/graphql/mutation/upload_file_network'
 
-export default function useUpload (ctx: any): UseReturn {
+export default function useUpload (): UseReturn {
 
   const urlUpload = async (fileUrl: String) => {
     if (!fileUrl) return null
 
-    const file:File = await ctx.root.$apollo.mutate({
+    const file:File = await useApolloClient().defaultClient.mutate({
       mutation: UPLOAD_FILE_NETWORK,
       variables: {
         fileUrl,
@@ -22,7 +23,7 @@ export default function useUpload (ctx: any): UseReturn {
 
   const localUpload = async ({target}: any) => {
     if (!target.validity.valid) return null
-    const file:File = await ctx.root.$apollo.mutate({
+    const file:File = await useApolloClient().defaultClient.mutate({
       mutation: UPLOAD_FILE,
       variables: {
         file: target.files[0],
