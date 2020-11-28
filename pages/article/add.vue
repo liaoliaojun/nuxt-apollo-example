@@ -94,7 +94,7 @@
     },
 
     setup (props, ctx: any) {
-      const {urlUpload} = useUpload(ctx)
+      const {urlUpload} = useUpload()
       const imageUrl: Ref<string> = ref('')
 
       const state: SubmitArticle = reactive({
