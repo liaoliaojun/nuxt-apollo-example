@@ -1,5 +1,7 @@
 import fetch from 'node-fetch'
 import {ApolloClient, InMemoryCache, ApolloLink, HttpLink} from '@apollo/client/core'
+import {BatchHttpLink} from '@apollo/client/link/batch-http'
+import {createUploadLink} from 'apollo-upload-client'
 
 const apolloClients = {}
 
@@ -8,13 +10,40 @@ export function init (graphqlEndpoint) {
     return new Error('no find arguments of graphqlEndpoint')
   }
 
+  const httpOptions = {
+    uri: graphqlEndpoint || '/graphql',
+  }
+  if (process.server) {
+    httpOptions.fetch = fetch
+  }
+  const httpLink = ApolloLink.split(
+    operation => operation.getContext().hasUpload,
+    // graphql-upload related https://dev.to/marvinrabe/file-upload-with-vue-apollo-client-and-graphql-5emb
+    createUploadLink({...httpOptions}),
+    new BatchHttpLink({...httpOptions})
+  )
+
   const client = new ApolloClient({
     cache: new InMemoryCache(),
     link: ApolloLink.from([
-      new HttpLink({
-        fetch,
-        uri: graphqlEndpoint || '/graphql',
-      }),
+      new HttpLink({...httpOptions}),
+    ]),
+    includeExtensions: true,
+    credentials: 'include',
+    defaultOptions: {
+      watchQuery: {
+        fetchPolicy: 'network-only',
+      },
+      query: {
+        fetchPolicy: 'network-only',
+      },
+    },
+  })
+
+  const uploadClient = new ApolloClient({
+    cache: new InMemoryCache(),
+    link: ApolloLink.from([
+      httpLink,
     ]),
     includeExtensions: true,
     credentials: 'include',
@@ -30,6 +59,7 @@ export function init (graphqlEndpoint) {
 
   apolloClients.default = client
   apolloClients.defaultClient = client
+  apolloClients.uploadClient = uploadClient
   return apolloClients
 }
 

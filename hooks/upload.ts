@@ -23,11 +23,15 @@ export default function useUpload (): UseReturn {
 
   const localUpload = async ({target}: any) => {
     if (!target.validity.valid) return null
-    const file:File = await useApolloClient().defaultClient.mutate({
+
+    const file:File = await useApolloClient().uploadClient.mutate({
       mutation: UPLOAD_FILE,
       variables: {
         file: target.files[0],
         key: localStorage.getItem('app-key'),
+      },
+      context: {
+        hasUpload: true,
       },
     }).then((x: any) => x.data.result)
     return file
