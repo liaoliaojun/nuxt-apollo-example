@@ -3,7 +3,7 @@ hooks:
     - prettier --write
 generates:
   ./types/schema.ts:
-    schema: http://api.liaoliaojun.com:4000/graphql
+    schema: https://api.liaoliaojun.com/graphql
     documents:
       - 'graphql/**/**.ts'
       # - '!(src/**/auth/**.gql)'

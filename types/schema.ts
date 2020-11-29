@@ -5,6 +5,10 @@ export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
 };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]: Maybe<T[SubKey]> };
 export type ReactiveFunction<TParam> = () => TParam;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -13,6 +17,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** The `Upload` scalar type represents a file upload. */
   Upload: any;
 };
 
@@ -159,12 +164,12 @@ export type UpdateArticleMutation = { __typename?: "Mutation" } & {
   result: Mutation["updateArticle"];
 };
 
-export type UploadFileMutationVariables = Exact<{
+export type SingleUploadMutationVariables = Exact<{
   file: Scalars["Upload"];
   key: Scalars["String"];
 }>;
 
-export type UploadFileMutation = { __typename?: "Mutation" } & {
+export type SingleUploadMutation = { __typename?: "Mutation" } & {
   result: { __typename?: "File" } & Pick<
     File,
     "id" | "path" | "filename" | "mimetype" | "encoding"
@@ -467,8 +472,8 @@ export type UpdateArticleMutationCompositionFunctionResult = VueApolloComposable
   UpdateArticleMutation,
   UpdateArticleMutationVariables
 >;
-export const UploadFileDocument = gql`
-  mutation uploadFile($file: Upload!, $key: String!) {
+export const SingleUploadDocument = gql`
+  mutation singleUpload($file: Upload!, $key: String!) {
     result: singleUpload(file: $file, key: $key) {
       id
       path
@@ -480,44 +485,44 @@ export const UploadFileDocument = gql`
 `;
 
 /**
- * __useUploadFileMutation__
+ * __useSingleUploadMutation__
  *
- * To run a mutation, you first call `useUploadFileMutation` within a Vue component and pass it any options that fit your needs.
- * When your component renders, `useUploadFileMutation` returns an object that includes:
+ * To run a mutation, you first call `useSingleUploadMutation` within a Vue component and pass it any options that fit your needs.
+ * When your component renders, `useSingleUploadMutation` returns an object that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
  *
  * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
  *
  * @example
- * const { mutate, loading, error, onDone } = useUploadFileMutation({
+ * const { mutate, loading, error, onDone } = useSingleUploadMutation({
  *   variables: {
  *     file: // value for 'file'
  *     key: // value for 'key'
  *   },
  * });
  */
-export function useUploadFileMutation(
+export function useSingleUploadMutation(
   options:
     | VueApolloComposable.UseMutationOptions<
-        UploadFileMutation,
-        UploadFileMutationVariables
+        SingleUploadMutation,
+        SingleUploadMutationVariables
       >
     | ReactiveFunction<
         VueApolloComposable.UseMutationOptions<
-          UploadFileMutation,
-          UploadFileMutationVariables
+          SingleUploadMutation,
+          SingleUploadMutationVariables
         >
       >
 ) {
   return VueApolloComposable.useMutation<
-    UploadFileMutation,
-    UploadFileMutationVariables
-  >(UploadFileDocument, options);
+    SingleUploadMutation,
+    SingleUploadMutationVariables
+  >(SingleUploadDocument, options);
 }
-export type UploadFileMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
-  UploadFileMutation,
-  UploadFileMutationVariables
+export type SingleUploadMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
+  SingleUploadMutation,
+  SingleUploadMutationVariables
 >;
 export const DownImageDocument = gql`
   mutation downImage($fileUrl: String!, $key: String!) {
