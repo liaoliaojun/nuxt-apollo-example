@@ -28,13 +28,15 @@ export default {
   // },
   router: {
     prefetchLinks: false,  // 全局禁用所有链接上的预取
-    scrollBehavior: (to, from, savedPosition) => {
+    scrollBehavior: () => {
       return new Promise((resolve) => {
+        // @ts-ignore
         window.$nuxt.$once('triggerScroll', () => {
           // 跳转时，滚动至顶部
           if (document.querySelector('#app-container')) {
             try {
               // scroll to anchor by returning the selector
+              // @ts-ignore
               document.querySelector('#app-container').scrollTop = 0
             } catch (e) {
               console.warn('Failed to save scroll position. Please add CSS.escape() polyfill (https://github.com/mathiasbynens/CSS.escape).')
@@ -60,9 +62,9 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    {src: '~/plugins/loading.js'},
-    {src: '~/plugins/composition-api'},
-    {src: '~/plugins/provide-apollo-client'},
+    {src: '~/plugins/loading.ts'},
+    {src: '~/plugins/composition-api.ts'},
+    {src: '~/plugins/provide-apollo-client.ts'},
   ],
   /*
   ** Nuxt.js dev-modules
@@ -134,7 +136,7 @@ export default {
       init(graphqlEndpoint)
       return await useApolloClient().defaultClient.query({
         query,
-      }).then(res => {
+      }).then((res) => {
         return (res.data.result || []).map((article) => `/article/${article.article_id}`)
       }).catch((error) => console.log(`dynamic routes error: ${error}`))
     },

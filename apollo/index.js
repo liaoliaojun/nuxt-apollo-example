@@ -1,6 +1,7 @@
 import fetch from 'node-fetch'
 import {ApolloClient, InMemoryCache, ApolloLink, HttpLink} from '@apollo/client/core'
 import {BatchHttpLink} from '@apollo/client/link/batch-http'
+// @ts-ignore
 import {createUploadLink} from 'apollo-upload-client'
 
 const apolloClients = {}
@@ -14,6 +15,7 @@ export function init (graphqlEndpoint) {
     uri: graphqlEndpoint || '/graphql',
   }
   if (process.server) {
+    // @ts-ignore
     httpOptions.fetch = fetch
   }
   const httpLink = ApolloLink.split(
@@ -28,6 +30,7 @@ export function init (graphqlEndpoint) {
     link: ApolloLink.from([
       new HttpLink({...httpOptions}),
     ]),
+    // @ts-ignore
     includeExtensions: true,
     credentials: 'include',
     defaultOptions: {
@@ -45,6 +48,7 @@ export function init (graphqlEndpoint) {
     link: ApolloLink.from([
       httpLink,
     ]),
+    // @ts-ignore
     includeExtensions: true,
     credentials: 'include',
     defaultOptions: {
