@@ -13,7 +13,7 @@
     "typeschema": "graphql-codegen"
   },
   "dependencies": {
-    "@apollo/client": "^3.2.9",
+    "@apollo/client": "^3.3.3",
     "@nuxtjs/apollo": "^4.0.0-rc19",
     "@vue/apollo-composable": "^4.0.0-alpha.12",
     "apollo-upload-client": "^14.1.3",
