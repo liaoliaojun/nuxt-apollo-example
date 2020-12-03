@@ -38,7 +38,7 @@
     "@nuxtjs/eslint-config-typescript": "^5.0.0",
     "@nuxtjs/eslint-module": "^3.0.1",
     "@nuxtjs/sitemap": "^2.4.0",
-    "@nuxtjs/tailwindcss": "^3.2.0",
+    "@nuxtjs/tailwindcss": "^3.3.0",
     "@types/marked": "^1.2.0",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "babel-eslint": "^10.0.1",
