@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col px-4 lg:px-0 mt-4">
     <!-- 轮播置顶 -->
-    <the-carousel :itemLen="topArticles.length" :time="6000" width="100%" style="height: 70vh;" @toggleIndex="(index) => {carouselItemIndex = index}">
+    <the-carousel :itemLen="topArticles.length" :time="12000" width="100%" style="height: 70vh;" @toggleIndex="(index) => {carouselItemIndex = index}">
       <template #default="{index}">
         <the-lazybg
           v-for="(item, itemIndex) in topArticles"
