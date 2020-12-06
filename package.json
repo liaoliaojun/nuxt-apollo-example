@@ -15,14 +15,14 @@
   "dependencies": {
     "@apollo/client": "^3.3.3",
     "@nuxtjs/apollo": "^4.0.0-rc19",
-    "@vue/apollo-composable": "^4.0.0-alpha.10",
+    "@vue/apollo-composable": "4.0.0-alpha.10",
     "apollo-upload-client": "^14.1.3",
+    "cross-fetch": "^3.0.6",
     "element-ui": "^2.14.1",
     "github-markdown-css": "^4.0.0",
     "graphql-tag": "^2.10.3",
     "hammerjs": "^2.0.8",
     "marked": "^1.2.5",
-    "node-fetch": "^2.6.1",
     "nuxt": "^2.14.7",
     "tailwindcss": "^1.9.6",
     "vue-demi": "latest"

@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import fetch from 'cross-fetch'
 import {ApolloClient, InMemoryCache, ApolloLink, HttpLink} from '@apollo/client/core'
 import {BatchHttpLink} from '@apollo/client/link/batch-http'
 // @ts-ignore
