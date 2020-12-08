@@ -1,7 +1,0 @@
-version: '3'
-services:
-  webapp:
-    build: .
-    image: nuxt-app
-    ports:
-      - '443:3001'
