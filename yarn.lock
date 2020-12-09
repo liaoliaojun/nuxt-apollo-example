@@ -2434,10 +2434,10 @@
     minimatch "^3.0.4"
     sitemap "^4.1.1"
 
-"@nuxtjs/tailwindcss@^3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/tailwindcss/-/tailwindcss-3.3.0.tgz#50f2652ca4e70a08ece51495629d13777d7bd476"
-  integrity sha512-qnYP2gb5TM702QmYvQdMYtaFHlCerlvDiSBW5x8IDxj1l/hZH5p5JC54WMTDRvL6pSa2ap+2+GJ//IDuOWpBsQ==
+"@nuxtjs/tailwindcss@^3.3.3":
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/tailwindcss/-/tailwindcss-3.3.3.tgz#f1c238b7c817423043dcde231d6bf062663a5b5f"
+  integrity sha512-IAWyKm9iXGlok0GgNcjEuoMvPIAmOrUmlAFJVlpZBTySr1Bs0aeZhNqfiTUSQAEaSDLFw+gwZvxRPrHytR3J0w==
   dependencies:
     clear-module "^4.1.1"
     consola "^2.15.0"
