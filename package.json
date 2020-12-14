@@ -33,7 +33,7 @@
     "@graphql-codegen/typescript": "^1.18.1",
     "@graphql-codegen/typescript-operations": "^1.17.12",
     "@graphql-codegen/typescript-vue-apollo": "^2.3.1",
-    "@nuxt/types": "^2.14.10",
+    "@nuxt/types": "^2.14.11",
     "@nuxt/typescript-build": "^2.0.3",
     "@nuxtjs/eslint-config-typescript": "^5.0.0",
     "@nuxtjs/eslint-module": "^3.0.1",
