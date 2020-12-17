@@ -22,7 +22,7 @@
     "github-markdown-css": "^4.0.0",
     "graphql-tag": "^2.10.3",
     "hammerjs": "^2.0.8",
-    "marked": "^1.2.5",
+    "marked": "^1.2.7",
     "nuxt": "^2.14.11",
     "tailwindcss": "^1.9.6",
     "vue-demi": "latest"
