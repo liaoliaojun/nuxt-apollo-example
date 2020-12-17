@@ -1,9 +1,9 @@
 <template>
   <div
     ref="el"
-    class="w-full h-full bg-gray-400 bg-no-repeat bg-cover bg-center relative"
+    class="lazybg-box w-full h-full bg-gray-400 bg-no-repeat bg-cover bg-center relative"
   >
-    <img :src="thumbnailUrl" width="100%" class="h-full object-cover" style="filter: blur(20px);">
+    <img :src="thumbnailUrl" width="100%" class="h-full object-cover filter-blur-img" :style="!originUrl && `filter: blur(20px);`">
     <img v-if="originUrl" :src="originUrl" width="100%" class="h-full object-cover absolute left-0 top-0" onerror="this.style.display = 'none'">
     <slot />
   </div>
@@ -82,3 +82,15 @@
     },
   })
 </script>
+
+<style lang="scss">
+  .lazybg-box {
+    .filter-blur-img {
+      transition: filter 300ms;
+    }
+
+    &:hover .filter-blur-img {
+      filter: blur(8px);
+    }
+  }
+</style>

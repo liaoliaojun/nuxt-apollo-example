@@ -4,7 +4,7 @@
     <ul>
       <li v-for="(item, index) in data" :key="index" class="mt-5">
         <nuxt-link
-          class="block cursor-pointer overflow-hidden rounded-lg hover:text-blue"
+          class="block cursor-pointer rounded-lg"
           tag="a"
           :to="'article/' + item.article_id"
         >
