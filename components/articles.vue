@@ -19,9 +19,9 @@
             <span class="text-sm text-gray-700">{{ item.date }}</span>
             <p class="mt-4">{{ item.content }}</p>
             <div class="flex items-center justify-end text-base leading-none cursor-default text-gray-700 mt-4" @click.stop.prevent>
-              <i class="iconfont icon-browse_fill text-2xl mr-1"></i>
+              <i class="iconfont icon-browse_fill text-2xl mr-1" />
               <span>{{ item.views || 0 }}</span>
-              <i class="iconfont icon-praise_fill text-2xl ml-4 mr-1 cursor-pointer hover:text-gray-800" @click.stop.prevent="setLike(item)"></i>
+              <i class="iconfont icon-praise_fill text-2xl ml-4 mr-1 cursor-pointer hover:text-gray-800" @click.stop.prevent="setLike(item)" />
               <span>{{ item.like_count || 0 }}</span>
               <!-- <i class="iconfont icon-message_fill text-2xl ml-4 mr-1"></i>
               <span>3</span> -->
@@ -52,7 +52,7 @@
       },
     },
 
-    setup (props) {
+    setup (_props) {
       const {setLike} = useLike()
 
       return {

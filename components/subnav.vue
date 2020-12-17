@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-  import {defineComponent, computed} from '@vue/composition-api'
+  import {defineComponent} from '@vue/composition-api'
 
   export default defineComponent({
     props: {
@@ -37,8 +37,8 @@
         default: () => [],
       },
     },
-    
-    setup (props, ctx: any) {
+
+    setup (_props, ctx: any) {
       const close = () => {
         console.log('close')
         ctx.emit('update:visible', false)

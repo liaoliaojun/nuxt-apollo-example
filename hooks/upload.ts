@@ -6,8 +6,12 @@ import UPLOAD_FILE from '~/graphql/mutation/upload_file'
 // @ts-ignore
 import UPLOAD_FILE_NETWORK from '~/graphql/mutation/upload_file_network'
 
-export default function useUpload (): UseReturn {
+interface UseReturn {
+  urlUpload (fileUrl: String): Promise<File|null>
+  localUpload ({target}: any): Promise<File|null>
+}
 
+export default function useUpload (): UseReturn {
   const urlUpload = async (fileUrl: String) => {
     if (!fileUrl) return null
 
@@ -41,9 +45,4 @@ export default function useUpload (): UseReturn {
     localUpload,
     urlUpload,
   }
-}
-
-interface UseReturn {
-  urlUpload (fileUrl: String): Promise<File|null>
-  localUpload ({target}: any): Promise<File|null>
 }

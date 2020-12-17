@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-  import {defineComponent, ref, onMounted} from '@vue/composition-api'
+  import {defineComponent, ref, onMounted, SetupContext} from '@vue/composition-api'
   import {Article} from '~/types/index'
   import TheArticle from '~/components/article.vue'
   // @ts-ignore
@@ -28,41 +28,9 @@
       TheArticle,
     },
 
-    // @ts-ignore
-    head () {
-      return {
-        title: this.title,
-        // meta: [
-        //   // @ts-ignore
-        //   {hid: this.id, name: 'description', content: '这是我的博客，热爱编程。该博客使用的技术栈有 前端：Nuxtjs, ApolloClient/Graphql，TailwindCss，Css，Js，Css/Css3，Canvas, Vue、React。后台：Node，ApolloServer, Docker，Nginx'},
-        // ],
-      }
-    },
-
     props: {},
 
-    async asyncData ({store, app: {apolloProvider}, params}) {
-      const {title, content, article_id, bg_path, date, views, like_count}: Article = await useApolloClient().defaultClient.query({
-        query: queryArticle,
-        fetchPolicy: 'no-cache',
-        variables: {
-          article_id: params.id,
-        },
-      }).then((res: any) => {
-        return res?.data?.result
-      }).catch(() => {
-        return {title: '', content: ''}
-      })
-      store.commit('article/setLikeCount', like_count || 0)
-      return {
-        title: title, content: content,
-        bgPath: bg_path, date: date,
-        views: views, likeCount: like_count,
-        id: article_id,
-      }
-    },
-
-    setup (_, ctx: any) {
+    setup (_, _ctx: SetupContext) {
       const showEntry = ref(false)
       const deleted = async (article_id: string) => {
         if (!article_id) return
@@ -87,6 +55,41 @@
       return {
         deleted,
         showEntry,
+      }
+    },
+
+    async asyncData ({store, app: {apolloProvider: _apolloProvider}, params}) {
+      const {title, content, article_id, bg_path, date, views, like_count}: Article = await useApolloClient().defaultClient.query({
+        query: queryArticle,
+        fetchPolicy: 'no-cache',
+        variables: {
+          article_id: params.id,
+        },
+      }).then((res: any) => {
+        return res?.data?.result
+      }).catch(() => {
+        return {title: '', content: ''}
+      })
+      store.commit('article/setLikeCount', like_count || 0)
+      return {
+        title,
+        content,
+        bgPath: bg_path,
+        date,
+        views,
+        likeCount: like_count,
+        id: article_id,
+      }
+    },
+
+    // @ts-ignore
+    head () {
+      return {
+        title: this.title,
+        // meta: [
+        //   // @ts-ignore
+        //   {hid: this.id, name: 'description', content: '这是我的博客，热爱编程。该博客使用的技术栈有 前端：Nuxtjs, ApolloClient/Graphql，TailwindCss，Css，Js，Css/Css3，Canvas, Vue、React。后台：Node，ApolloServer, Docker，Nginx'},
+        // ],
       }
     },
   })

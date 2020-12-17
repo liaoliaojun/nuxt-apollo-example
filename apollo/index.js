@@ -22,7 +22,7 @@ export function init (graphqlEndpoint) {
     operation => operation.getContext().hasUpload,
     // graphql-upload related https://dev.to/marvinrabe/file-upload-with-vue-apollo-client-and-graphql-5emb
     createUploadLink({...httpOptions}),
-    new BatchHttpLink({...httpOptions})
+    new BatchHttpLink({...httpOptions}),
   )
 
   const client = new ApolloClient({

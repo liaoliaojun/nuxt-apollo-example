@@ -27,7 +27,7 @@ export default {
   //   resourceHints: false,  // 添加prefetch和preload，以加快初始化页面加载时间。如果有许多页面和路由，可禁用此项
   // },
   router: {
-    prefetchLinks: false,  // 全局禁用所有链接上的预取
+    prefetchLinks: false, // 全局禁用所有链接上的预取
     scrollBehavior: () => {
       return new Promise((resolve) => {
         // @ts-ignore
@@ -86,7 +86,7 @@ export default {
   */
   build: {
     babel: {
-      presets({isServer}) {
+      presets ({isServer}) {
         return [
           [
             require.resolve('@nuxt/babel-preset-app'),

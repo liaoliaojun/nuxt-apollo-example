@@ -8,7 +8,6 @@
 
 <script lang="ts">
   import Vue from 'vue'
-  import gql from 'graphql-tag'
   import {useQueryOwnerQuery} from '~/types/schema'
 
   export default Vue.extend({

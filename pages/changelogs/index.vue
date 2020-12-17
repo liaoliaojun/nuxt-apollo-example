@@ -14,11 +14,6 @@
   import useApolloClient from '~/apollo/'
 
   export default defineComponent({
-    head () {
-      return {
-        title: '更新日志',
-      }
-    },
 
     components: {
       TheArticle,
@@ -26,7 +21,7 @@
 
     props: {},
 
-    async asyncData ({app: {apolloProvider}, params}) {
+    async asyncData ({app: {apolloProvider: _apolloProvider}}) {
       const {title, content, article_id, bg_path, date, views, like_count}: Article = await useApolloClient().default.query({
         query: queryArticle,
         fetchPolicy: 'no-cache',
@@ -39,10 +34,18 @@
         return {title: '', content: ''}
       })
       return {
-        title: title, content: content,
-        bgPath: bg_path, date: date,
-        views: views, likeCount: like_count,
+        title,
+        content,
+        bgPath: bg_path,
+        date,
+        views,
+        likeCount: like_count,
         id: article_id,
+      }
+    },
+    head () {
+      return {
+        title: '更新日志',
       }
     },
   })

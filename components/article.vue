@@ -1,13 +1,13 @@
 <template>
   <div class="article-view flex flex-col h-full" style="min-height: calc(100vh - 48px - 37px - 0rem);">
-    <the-lazybg :file-url="bgPath" class="bg-box"/>
+    <the-lazybg :file-url="bgPath" class="bg-box" />
     <article class="relative text-xl lg:text-2xl xl:text-3xl flex flex-col flex-auto">
       <div class="p-8 bg-white leading-10 flex-1">
         <h1 class="font-bold">{{ title }}</h1>
         <div class="flex justify-between text-sm text-gray-700">
           <span>{{ date }}</span>
           <div class="flex items-center">
-            <i class="iconfont icon-browse_fill text-2xl mr-1"></i>
+            <i class="iconfont icon-browse_fill text-2xl mr-1" />
             <span>{{ views }}</span>
           </div>
         </div>
@@ -58,7 +58,7 @@
         default: 0,
       },
     },
-    
+
     setup (props) {
       const contentHTML = computed(() => '&nbsp;&emsp;' + props.content)
 

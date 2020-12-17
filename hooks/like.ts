@@ -3,6 +3,9 @@ import useApolloClient from '~/apollo/'
 
 // @ts-ignore
 import mutateArticleLike from '~/graphql/mutation/like_article'
+interface UseReturn {
+  setLike (T: Article): Promise<void>
+}
 
 export default function useLike (): UseReturn {
   const setLike = async (article: Article) => {
@@ -23,8 +26,4 @@ export default function useLike (): UseReturn {
   return {
     setLike,
   }
-}
-
-interface UseReturn {
-  setLike (article: Article): void
 }

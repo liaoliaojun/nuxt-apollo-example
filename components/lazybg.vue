@@ -30,13 +30,14 @@
 
       // 拼写缩略图地址
       const thumbnailUrl = computed(() => {
-        const [_dir, fileName] = props.fileUrl.split('files/')
+        /* eslint-disable no-unused-vars */
+        const [_, fileName] = props.fileUrl.split('files/')
         if (!fileName) return ''
         return `${httpEndpoint}/files/thumbnails/${fileName}`
       })
 
       // 赋值图片
-      const setOriginUrl = (url: string) => {
+      const setOriginUrl = () => {
         originUrl.value = props.fileUrl ? `${httpEndpoint}/${props.fileUrl}` : ''
       }
 
@@ -49,15 +50,15 @@
         if (top <= window.innerHeight && bottom >= 0) {
           // 左右在视图内
           if (right <= window.innerWidth && left >= 0) {
-            setOriginUrl(props.fileUrl)
+            setOriginUrl()
           }
         }
       }
 
       // 手动触发
-      watch(() => props.nowreload, (newVal) => {
+      watch(() => props.nowreload, (newVal: boolean) => {
         if (newVal) {
-          setOriginUrl(props.fileUrl)
+          setOriginUrl()
         }
       })
 

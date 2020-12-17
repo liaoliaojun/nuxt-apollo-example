@@ -3,7 +3,7 @@ import {provide} from '@vue/composition-api'
 import {ApolloClients} from '@vue/apollo-composable'
 import useApolloClient, {init} from '@/apollo/'
 
-export default function apolloClient({app, $config}: Context) {
+export default function apolloClient ({app, $config}: Context) {
   init($config.graphqlEndpoint)
 
   app.setup = () => {

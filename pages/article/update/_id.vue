@@ -4,9 +4,9 @@
 </template>
 
 <script lang="ts">
-  import {defineComponent, computed, reactive, toRefs, SetupContext} from '@vue/composition-api'
-  import {SubmitArticle} from '~/types/index'
+  import {defineComponent, computed, reactive, SetupContext} from '@vue/composition-api'
   import AddArticle from '../add.vue'
+  import {SubmitArticle} from '~/types/index'
   // @ts-ignore
   import queryArticle from '~/graphql/query/article'
   // @ts-ignore

@@ -4,7 +4,7 @@
       <header class="app-header body-width mx-auto flex items-center relative justify-center md:justify-between px-4 lg:px-0" style="height: 48px;">
         <!-- 返回按钮 -->
         <a v-show="showBackBtn" class="cursor-pointer block md:hidden" style="position: absolute; left: 1.1rem;" @click="backTo">
-          <i class="llj-btn iconfont icon-fanhui text-xl"></i>
+          <i class="llj-btn iconfont icon-fanhui text-xl" />
         </a>
         <!-- logo -->
         <h2 class="text-xl block font-bold llj-btn cursor-pointer">
@@ -22,7 +22,7 @@
         <h4 class="hidden text-xs md:block text-gray-700">合作邮箱：me@liaoliaojun.com</h4>
         <!-- 菜单 -->
         <button class="block md:hidden" style="position: absolute; right: 1.1rem;" @click="showSubnav = true">
-          <i class="llj-btn iconfont icon-caidan text-2xl"></i>
+          <i class="llj-btn iconfont icon-caidan text-2xl" />
         </button>
       </header>
     </div>
@@ -54,7 +54,7 @@
 </template>
 
 <script lang="ts">
-  import {defineComponent, reactive, toRefs, onMounted, ref, Ref, watchEffect} from '@vue/composition-api'
+  import {defineComponent, reactive, toRefs, onMounted, ref, watchEffect} from '@vue/composition-api'
 
   import TheSubnav from '~/components/subnav.vue'
   import GlobalClick from '~/util/global-click'
@@ -71,8 +71,8 @@
     props: {},
 
     setup (_, ctx: any) {
-      const showBackBtn: Ref<Boolean> = ref(false)
-      const showSubnav: Ref<Boolean> = ref(false)
+      const showBackBtn = ref(false)
+      const showSubnav = ref(false)
 
       const state = reactive({
         activeIndex: ctx.root.$route.name || 'index',
@@ -101,7 +101,6 @@
         const {$route, $router} = ctx.root
         if ($route.matched.length === 0) {
           $router.push({name: 'index'})
-          return 
         } else {
           $router.go(-1)
         }
@@ -113,7 +112,7 @@
         if (process.server) return
         await new Promise<void>((resolve) => {
           setTimeout(() => {
-            showBackBtn.value = routeName === 'index' ? false : true
+            showBackBtn.value = routeName === 'index'
             resolve()
           }, 500)
         })

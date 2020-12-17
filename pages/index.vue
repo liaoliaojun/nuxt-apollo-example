@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col px-4 lg:px-0 mt-4">
     <!-- 轮播置顶 -->
-    <the-carousel :itemLen="topArticles.length" :time="12000" width="100%" style="height: 70vh;" @toggleIndex="(index) => {carouselItemIndex = index}">
+    <the-carousel :item-len="topArticles.length" :time="12000" width="100%" style="height: 70vh;" @toggleIndex="(index) => {carouselItemIndex = index}">
       <template #default="{index}">
         <the-lazybg
           v-for="(item, itemIndex) in topArticles"
@@ -27,14 +27,14 @@
 </template>
 
 <script lang="ts">
-  import {defineComponent, watch, computed} from '@vue/composition-api'
+  import {defineComponent} from '@vue/composition-api'
   import {Article} from '~/types/index'
 
   import TheArticles from '~/components/articles.vue'
   import TheCarousel from '~/components/carousel.vue'
   import TheLazybg from '~/components/lazybg.vue'
   // @ts-ignore
-  import queryArticle from '~/graphql/query/article'
+  // import queryArticle from '~/graphql/query/article'
   // @ts-ignore
   import queryArticles from '~/graphql/query/articles'
   // @ts-ignore
@@ -49,46 +49,44 @@
       TheLazybg,
     },
 
-    data () {
-      return {
-        isMain: false,
-        carouselItemIndex: 0,
-      }
-    },
-
-    props: {},
-
-    async asyncData ({app: {apolloProvider}, req}) {
+    async asyncData ({req}: {req: any}) {
       const [articles, topArticles]: [Array<Article>, Article] = await Promise.all([
         // 查询文章列表
         useApolloClient().defaultClient.query({
           query: queryArticles,
           fetchPolicy: 'no-cache',
         })
-        .then((res: any) => {
-          return (res?.data?.result ?? []).map((item: Article) => {
-            const content = item.content.replace(/<[^>]+>/g,'')
+          .then((res: any) => {
+            return (res?.data?.result ?? []).map((item: Article) => {
+              const content = item.content.replace(/<[^>]+>/g, '')
 
-            return {
-              ...item,
-              // 去掉html标签
-              content: content.length < 155 ? content : content.substring(0, 155) + '...',
-            }
-          })
-        }).catch(() => {
-          return []
-        }),
+              return {
+                ...item,
+                // 去掉html标签
+                content: content.length < 155 ? content : content.substring(0, 155) + '...',
+              }
+            })
+          }).catch(() => {
+            return []
+          }),
         // 查询置顶文章
         useApolloClient().defaultClient.query({
           query: queryTops,
         })
-        .then((x: any) => x?.data?.result ?? [])
-        .catch(() => [])
+          .then((x: any) => x?.data?.result ?? [])
+          .catch(() => []),
       ])
       return {
         articles,
         topArticles,
         domain: req?.headers?.host,
+      }
+    },
+
+    data () {
+      return {
+        isMain: false,
+        carouselItemIndex: 0,
       }
     },
   })

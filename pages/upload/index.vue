@@ -27,8 +27,8 @@
 </template>
 
 <script lang="ts">
-  import {File} from '~/types/index'
   import {defineComponent, ref} from '@vue/composition-api'
+  import {File} from '~/types/index'
 
   import useUpload from '~/hooks/upload'
 
@@ -38,7 +38,7 @@
     setup () {
       const {urlUpload, localUpload} = useUpload()
 
-      const files= ref<Array<File>>([])
+      const files = ref<Array<File>>([])
       const fileUrl = ref('')
 
       const onUploadImage = async ({target}: any) => {

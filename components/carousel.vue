@@ -1,20 +1,23 @@
 <template>
   <div class="carousel-box overflow-hidden relative rounded-lg" :style="`width: ${width};`">
-    <div class="carousel-wrap flex overflow-hidden h-full"
-          :style="{
-            width: (itemLen * 2 * 100) + '%',
-            transform: `translateX(${translateX})`,
-            transition: duration ? `transform ${duration}ms` : '',
-          }"
-          @mouseover="mouseover"
-          @mouseleave="mouseleave">
+    <div
+      class="carousel-wrap flex overflow-hidden h-full"
+      :style="{
+        width: (itemLen * 2 * 100) + '%',
+        transform: `translateX(${translateX})`,
+        transition: duration ? `transform ${duration}ms` : '',
+      }"
+      @mouseover="mouseover"
+      @mouseleave="mouseleave"
+    >
       <slot index="1" />
       <slot index="2" />
     </div>
 
     <ul class="point-box flex justify-center">
       <li
-        v-for="(item, index) in itemLen" :key="index"
+        v-for="(item, index) in itemLen"
+        :key="index"
         class="point-item llj-btn ml-6 first:ml-0"
         :class="{'active': index === activeIndex || index === activeIndex - itemLen}"
         @click="pointToggle(index)"
@@ -69,10 +72,10 @@
 
         // Add the recognizer to the manager
         hammerEl.add(Swipe)
-        hammerEl.on('swipeleft', (e) => {
+        hammerEl.on('swipeleft', () => {
           this.toggle(this.activeIndex + 1)
         })
-        hammerEl.on('swiperight', (e) => {
+        hammerEl.on('swiperight', () => {
           this.toggle(this.activeIndex > 0 ? this.activeIndex - 1 : this.itemLen - 1)
         })
       },

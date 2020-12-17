@@ -20,21 +20,20 @@
               :key="tag"
               size="medium"
               closable
-              @close="handleClose(tag)"
               class="ml-4 first:ml-0"
+              @close="handleClose(tag)"
             >
               {{ tag }}
             </el-tag>
             <el-input
               v-if="tagInputVisible"
-              v-model="tagInputValue"
               ref="tagInput"
+              v-model="tagInputValue"
               size="small"
               class="input-new-tag w-40 mt-3"
               @keyup.enter.native="handleInputConfirm"
               @blur="handleInputConfirm"
-            >
-            </el-input>
+            />
             <el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
           </div>
         </div>
@@ -49,10 +48,10 @@
 
 <script lang="ts">
   import {Tag as ElTag, Switch as ElSwitch, Input as ElInput, Button as ElButton} from 'element-ui'
-  import {SubmitArticle, File} from '~/types/index'
   import {defineComponent, reactive, ref, computed, watch, onMounted, SetupContext} from '@vue/composition-api'
 
   import marked from 'marked'
+  import {SubmitArticle, File} from '~/types/index'
   import TheArticle from '~/components/article.vue'
   // @ts-ignore
   import MutationAddArticle from '~/graphql/mutation/add_article'
@@ -110,7 +109,7 @@
       // 标签相关状态
       const tagInputVisible = ref(false)
       const tagInputValue = ref('')
-  
+
       const compiledMarkdown = computed(() => {
         if (state.marked_content) {
           return marked((state.marked_content as string), {
@@ -195,7 +194,7 @@
         alert('上传网络图片成功')
       }
 
-      // 删除标签 
+      // 删除标签
       const handleClose = (tag: string) => {
         state.tags.splice(state.tags.indexOf(tag), 1)
       }
