@@ -48,7 +48,7 @@
 
 <script lang="ts">
   import {Tag as ElTag, Switch as ElSwitch, Input as ElInput, Button as ElButton} from 'element-ui'
-  import {defineComponent, reactive, ref, computed, watch, onMounted, SetupContext} from '@vue/composition-api'
+  import {defineComponent, reactive, ref, computed, watch, onMounted, SetupContext, nextTick} from '@vue/composition-api'
 
   import marked from 'marked'
   import {SubmitArticle, File} from '~/types/index'
@@ -92,7 +92,7 @@
       // },
     },
 
-    setup (props, ctx: SetupContext) {
+    setup (props, {refs, emit, root}: SetupContext) {
       const {urlUpload} = useUpload()
       const imageUrl = ref('')
 
@@ -127,7 +127,7 @@
           return
         }
         if (props.isUpdate) {
-          ctx.emit('submit', {
+          emit('submit', {
             key: state.key,
             title: state.title,
             content: compiledMarkdown.value || '',
@@ -164,10 +164,9 @@
 
       const tab = (e: any) => {
         if (e.keyCode === 9) {
-          // @ts-ignore
-          const textarea = ctx.refs.textareaInput
+          const textarea = refs.textareaInput as HTMLInputElement
 
-          const start = textarea.selectionStart
+          const start = textarea.selectionStart ?? 0
           const end = textarea.selectionEnd
 
           const target = e.target
@@ -202,11 +201,10 @@
       // 显示输入框
       const showInput = () => {
         tagInputVisible.value = true
-        ctx.root.$nextTick(() => {
-          // @ts-ignore
-          if (!ctx.root.$refs?.tagInput?.input) return
-          // @ts-ignore
-          ctx.root.$refs?.tagInput?.input.focus()
+        nextTick(() => {
+          // if (!refs?.tagInput?.input) return
+          if (!((refs.tagInput as any).input as ElInput)) return
+          ((refs.tagInput as any).input as ElInput).focus()
         })
       }
 
