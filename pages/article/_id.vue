@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-  import {defineComponent, computed, ref, Ref, onMounted} from '@vue/composition-api'
+  import {defineComponent, ref, onMounted} from '@vue/composition-api'
   import {Article} from '~/types/index'
   import TheArticle from '~/components/article.vue'
   // @ts-ignore
@@ -63,7 +63,7 @@
     },
 
     setup (_, ctx: any) {
-      const showEntry: Ref<boolean> = ref(false)
+      const showEntry = ref(false)
       const deleted = async (article_id: string) => {
         if (!article_id) return
         const isSuccess: boolean|string = await useApolloClient().defaultClient.mutate({

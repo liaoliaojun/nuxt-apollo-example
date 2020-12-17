@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-  import {defineComponent, computed, ref, Ref, watch, onMounted, onBeforeUnmount} from '@vue/composition-api'
+  import {defineComponent, computed, ref, watch, onMounted, onBeforeUnmount} from '@vue/composition-api'
 
   export default defineComponent({
     props: {

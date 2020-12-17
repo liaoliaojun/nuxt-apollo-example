@@ -111,7 +111,7 @@
       watchEffect(async () => {
         const routeName = ctx.root.$route.name
         if (process.server) return
-        await new Promise((resolve) => {
+        await new Promise<void>((resolve) => {
           setTimeout(() => {
             showBackBtn.value = routeName === 'index' ? false : true
             resolve()

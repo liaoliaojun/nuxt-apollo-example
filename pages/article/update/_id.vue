@@ -4,7 +4,7 @@
 </template>
 
 <script lang="ts">
-  import {defineComponent, computed, reactive, toRefs} from '@vue/composition-api'
+  import {defineComponent, computed, reactive, toRefs, SetupContext} from '@vue/composition-api'
   import {SubmitArticle} from '~/types/index'
   import AddArticle from '../add.vue'
   // @ts-ignore
@@ -19,8 +19,7 @@
       AddArticle,
     },
 
-    setup (_, vm: any) {
-      const {root} = vm
+    setup (_, {root}: SetupContext) {
       const id = computed(() => root.$route?.params?.id)
       const state = reactive({
         title: '',

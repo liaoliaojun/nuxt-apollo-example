@@ -28,7 +28,7 @@
 
 <script lang="ts">
   import {File} from '~/types/index'
-  import {defineComponent, ref, Ref} from '@vue/composition-api'
+  import {defineComponent, ref} from '@vue/composition-api'
 
   import useUpload from '~/hooks/upload'
 
@@ -38,8 +38,8 @@
     setup () {
       const {urlUpload, localUpload} = useUpload()
 
-      const files: Ref<Array<File>> = ref([])
-      const fileUrl: Ref<string> = ref('')
+      const files= ref<Array<File>>([])
+      const fileUrl = ref('')
 
       const onUploadImage = async ({target}: any) => {
         const data = await localUpload({target})

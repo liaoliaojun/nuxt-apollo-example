@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-  import {defineComponent, computed, ref, Ref, onMounted} from '@vue/composition-api'
+  import {defineComponent} from '@vue/composition-api'
   import {Article} from '~/types/index'
   import TheArticle from '~/components/article.vue'
   // @ts-ignore

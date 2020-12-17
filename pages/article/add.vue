@@ -50,7 +50,7 @@
 <script lang="ts">
   import {Tag as ElTag, Switch as ElSwitch, Input as ElInput, Button as ElButton} from 'element-ui'
   import {SubmitArticle, File} from '~/types/index'
-  import {defineComponent, reactive, ref, Ref, computed, watch, onMounted} from '@vue/composition-api'
+  import {defineComponent, reactive, ref, computed, watch, onMounted, SetupContext} from '@vue/composition-api'
 
   import marked from 'marked'
   import TheArticle from '~/components/article.vue'
@@ -93,9 +93,9 @@
       // },
     },
 
-    setup (props, ctx: any) {
+    setup (props, ctx: SetupContext) {
       const {urlUpload} = useUpload()
-      const imageUrl: Ref<string> = ref('')
+      const imageUrl = ref('')
 
       const state: SubmitArticle = reactive({
         key: '',
@@ -108,8 +108,8 @@
       })
 
       // 标签相关状态
-      const tagInputVisible: Ref<boolean> = ref(false)
-      const tagInputValue: Ref<string> = ref('')
+      const tagInputVisible = ref(false)
+      const tagInputValue = ref('')
   
       const compiledMarkdown = computed(() => {
         if (state.marked_content) {
@@ -165,6 +165,7 @@
 
       const tab = (e: any) => {
         if (e.keyCode === 9) {
+          // @ts-ignore
           const textarea = ctx.refs.textareaInput
 
           const start = textarea.selectionStart
@@ -203,7 +204,9 @@
       const showInput = () => {
         tagInputVisible.value = true
         ctx.root.$nextTick(() => {
+          // @ts-ignore
           if (!ctx.root.$refs?.tagInput?.input) return
+          // @ts-ignore
           ctx.root.$refs?.tagInput?.input.focus()
         })
       }

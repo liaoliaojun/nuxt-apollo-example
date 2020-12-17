@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-  import {defineComponent, Ref, ref, watch, computed} from '@vue/composition-api'
+  import {defineComponent, watch, computed} from '@vue/composition-api'
   import {Article} from '~/types/index'
 
   import TheArticles from '~/components/articles.vue'
