@@ -3,6 +3,7 @@ MAINTAINER liaoliaojun
 COPY . /app
 WORKDIR /app
 RUN yarn
+RUN yarn lint
 RUN yarn build
 ENV NUXT_HOST 0.0.0.0
 ENV NUXT_PORT 3001
