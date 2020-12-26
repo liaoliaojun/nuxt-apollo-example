@@ -55,16 +55,16 @@ export default function useImagePreview () {
 
   const showPreview = (src: string = '') => {
     if (!src) return
+    // init loading
+    cratedLoading()
 
     if (!wrapInstance.value || !innerInstance.value) {
       initInstance()
     }
     // 清空旧的图片
-    if (innerInstance.value) {
-      // 创建loading
-      innerInstance.value.innerHTML = ''
-      innerInstance.value.append(cratedLoading())
-    }
+    if (innerInstance.value) innerInstance.value.innerHTML = ''
+    // 图片是否加载完毕
+    let loaded = false
     // 加载新图片
     imageEl = new Image()
     // 屏幕高度
@@ -82,6 +82,7 @@ export default function useImagePreview () {
       if (innerInstance.value) {
         innerInstance.value.innerHTML = ''
         innerInstance.value.append(imageEl)
+        loaded = true
       }
     }
     imageEl.onerror = function () {
@@ -89,6 +90,12 @@ export default function useImagePreview () {
     }
     imageEl.src = src
     isShow.value = true
+    // 如果500ms内, 图片为记载完成, 则加载loading
+    setTimeout(() => {
+      if (!loaded && innerInstance.value) {
+        innerInstance.value.append(loadingEl)
+      }
+    }, 380)
   }
 
   const addEvent = (elName: string = '') => {
