@@ -84,6 +84,9 @@ export default function useImagePreview () {
         innerInstance.value.append(imageEl)
       }
     }
+    imageEl.onerror = function () {
+      isShow.value = false
+    }
     imageEl.src = src
     isShow.value = true
   }
