@@ -42,7 +42,7 @@ export default function useImagePreview () {
     return isShow.value
   }
 
-  const showPreview = (src = '') => {
+  const showPreview = (src: string = '') => {
     if (!src) return
 
     if (!wrapInstance.value || !innerInstance.value) {
