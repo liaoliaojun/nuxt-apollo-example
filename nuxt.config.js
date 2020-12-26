@@ -2,8 +2,11 @@ import {resolve} from 'path'
 import gql from 'graphql-tag'
 import useApolloClient, {init} from './apollo/'
 
-const httpEndpoint = process.env.NODE_ENV === 'production' ? 'https://api.liaoliaojun.com' : 'http://dev.api.liaoliaojun.com:3000'
-const graphqlEndpoint = process.env.NODE_ENV === 'production' ? 'https://api.liaoliaojun.com/graphql' : 'http://dev.api.liaoliaojun.com:3000/graphql'
+// const httpEndpoint = process.env.NODE_ENV === 'production' ? 'https://api.liaoliaojun.com' : 'http://dev.api.liaoliaojun.com:3000'
+// const graphqlEndpoint = process.env.NODE_ENV === 'production' ? 'https://api.liaoliaojun.com/graphql' : 'http://dev.api.liaoliaojun.com:3000/graphql'
+
+const httpEndpoint = 'https://api.liaoliaojun.com'
+const graphqlEndpoint = 'https://api.liaoliaojun.com/graphql'
 
 export default {
   ssr: true,
