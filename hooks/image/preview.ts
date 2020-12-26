@@ -1,9 +1,10 @@
 import {ref, watchEffect} from '@vue/composition-api'
 
-const isShow = ref(false)
+let imageEl: HTMLImageElement
+let loadingEl: HTMLImageElement
 const wrapInstance = ref<HTMLDivElement>()
 const innerInstance = ref<HTMLDivElement>()
-let imageEl: HTMLImageElement
+const isShow = ref(false)
 
 // 创建dom元素并挂载到bdoy下
 const initInstance = () => {
@@ -23,6 +24,16 @@ const initInstance = () => {
     })
   }
   return wrapInstance.value
+}
+
+const cratedLoading = () => {
+  if (loadingEl) return loadingEl
+  loadingEl = new Image()
+  loadingEl.src = require('./spinner.gif')
+  // client-height/2 - paddingTop - loadingEl height/2
+  // 50vh - 20px - 20px
+  loadingEl.style.margin = 'calc(50vh - 40px) auto 0 auto'
+  return loadingEl
 }
 
 // 状态更新, 同步至dom事件
@@ -50,11 +61,12 @@ export default function useImagePreview () {
     }
     // 清空旧的图片
     if (innerInstance.value) {
+      // 创建loading
       innerInstance.value.innerHTML = ''
+      innerInstance.value.append(cratedLoading())
     }
     // 加载新图片
     imageEl = new Image()
-    imageEl.src = src
     // 屏幕高度
     const clientHeight = document.body.clientHeight
     // 等待图片加载完成
@@ -68,9 +80,11 @@ export default function useImagePreview () {
         imageEl.style.transform = 'translateY(calc(50vh - 50%))'
       }
       if (innerInstance.value) {
+        innerInstance.value.innerHTML = ''
         innerInstance.value.append(imageEl)
       }
     }
+    imageEl.src = src
     isShow.value = true
   }
 
