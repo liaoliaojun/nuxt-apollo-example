@@ -42,7 +42,7 @@
     "@nuxtjs/tailwindcss": "^3.4.2",
     "@types/marked": "^1.2.1",
     "core-js": "3",
-    "eslint": "^7.15.0",
+    "eslint": "^7.16.0",
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.0"
   }
