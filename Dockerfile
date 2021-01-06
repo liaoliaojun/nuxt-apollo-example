@@ -2,6 +2,7 @@ FROM node:lts
 MAINTAINER liaoliaojun
 COPY . /app
 WORKDIR /app
+RUN node -v
 RUN yarn
 RUN yarn lint
 RUN yarn build
