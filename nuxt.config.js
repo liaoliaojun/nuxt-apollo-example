@@ -88,6 +88,12 @@ export default {
   ** Build configuration
   */
   build: {
+    postcss: {
+      plugins: {
+        tailwindcss: resolve(__dirname, './tailwind.config.js'),
+        autoprefixer: {},
+      },
+    },
     babel: {
       presets ({isServer}) {
         return [
