@@ -13631,9 +13631,9 @@ vue-client-only@^2.0.0:
   integrity sha1-3a2NZ17gLHYaFCKfDkQOIZ3h2hw=
 
 vue-demi@latest:
-  version "0.5.3"
-  resolved "https://registry.npm.taobao.org/vue-demi/download/vue-demi-0.5.3.tgz#ec0f10b2c56d5958f31363afaa2ef8b8b9c4e6ec"
-  integrity sha1-7A8QssVtWVjzE2Ovqi74uLnE5uw=
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.6.0.tgz#e314282f704cb449119b9fd002cbbc0e39f591fe"
+  integrity sha512-8GEJa0mHJpYJeGeq5fD1pJct2kfdl30PHfmL1NaJ97mgKPyKojlIRt/3inGBK4Y0ylCI6T5vOo3chwpqDOq/Hw==
 
 vue-draggable-resizable@^2.2.0:
   version "2.3.0"
