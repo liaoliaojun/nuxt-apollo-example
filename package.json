@@ -19,7 +19,7 @@
     "@vue/composition-api": "1.0.0-beta.26",
     "apollo-upload-client": "^14.1.3",
     "cross-fetch": "^3.0.6",
-    "element-ui": "^2.14.1",
+    "element-ui": "^2.15.0",
     "github-markdown-css": "^4.0.0",
     "graphql-tag": "^2.10.3",
     "hammerjs": "^2.0.8",
