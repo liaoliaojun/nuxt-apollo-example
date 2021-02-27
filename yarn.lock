@@ -2739,13 +2739,13 @@
   resolved "https://registry.npm.taobao.org/@ungap/global-this/download/@ungap/global-this-0.4.2.tgz#bc59a79799862e3e0cf647c090fd3f3f2285cf56"
   integrity sha1-vFmnl5mGLj4M9kfAkP0/PyKFz1Y=
 
-"@vue/apollo-composable@4.0.0-alpha.10":
-  version "4.0.0-alpha.10"
-  resolved "https://registry.npm.taobao.org/@vue/apollo-composable/download/@vue/apollo-composable-4.0.0-alpha.10.tgz#17ad81552f55adde205cad982560ff120e92da87"
-  integrity sha1-F62BVS9Vrd4gXK2YJWD/Eg6S2oc=
+"@vue/apollo-composable@4.0.0-alpha.12":
+  version "4.0.0-alpha.12"
+  resolved "https://registry.yarnpkg.com/@vue/apollo-composable/-/apollo-composable-4.0.0-alpha.12.tgz#5aab61bf9703a039e95ef60ecb2293e1da80c87f"
+  integrity sha512-BhCHhDgcDPkKOE3ILb7xIGI98dAsX2Ao3TvOjcMlr89IOK3TuD5B9xgPTsFdctTbupWIVdR/n0FDVXjha7g5iA==
   dependencies:
-    throttle-debounce "^2.1.0"
-    vue-demi latest
+    throttle-debounce "^2.3.0"
+    vue-demi "^0.4.0"
 
 "@vue/babel-helper-vue-jsx-merge-props@^1.2.1":
   version "1.2.1"
@@ -11676,10 +11676,10 @@ throttle-debounce@^1.0.1:
   resolved "https://registry.npm.taobao.org/throttle-debounce/download/throttle-debounce-1.1.0.tgz#51853da37be68a155cb6e827b3514a3c422e89cd"
   integrity sha1-UYU9o3vmihVctugns1FKPEIuic0=
 
-throttle-debounce@^2.1.0:
+throttle-debounce@^2.3.0:
   version "2.3.0"
-  resolved "https://registry.npm.taobao.org/throttle-debounce/download/throttle-debounce-2.3.0.tgz#fd31865e66502071e411817e241465b3e9c372e2"
-  integrity sha1-/TGGXmZQIHHkEYF+JBRls+nDcuI=
+  resolved "https://registry.yarnpkg.com/throttle-debounce/-/throttle-debounce-2.3.0.tgz#fd31865e66502071e411817e241465b3e9c372e2"
+  integrity sha512-H7oLPV0P7+jgvrk+6mwwwBDmxTaxnu9HMXmloNLXwnNO0ZxZ31Orah2n8lU1eMPvsaowP2CX+USCgyovXfdOFQ==
 
 through2@^2.0.0:
   version "2.0.5"
@@ -12235,10 +12235,10 @@ vue-client-only@^2.0.0:
   resolved "https://registry.npm.taobao.org/vue-client-only/download/vue-client-only-2.0.0.tgz#ddad8d675ee02c761a14229f0e440e219de1da1c"
   integrity sha1-3a2NZ17gLHYaFCKfDkQOIZ3h2hw=
 
-vue-demi@latest:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.6.0.tgz#e314282f704cb449119b9fd002cbbc0e39f591fe"
-  integrity sha512-8GEJa0mHJpYJeGeq5fD1pJct2kfdl30PHfmL1NaJ97mgKPyKojlIRt/3inGBK4Y0ylCI6T5vOo3chwpqDOq/Hw==
+vue-demi@^0.4.0:
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.4.5.tgz#ea422a4468cb6321a746826a368a770607f87791"
+  integrity sha512-51xf1B6hV2PfjnzYHO/yUForFCRQ49KS8ngQb5T6l1HDEmfghTFtsxtRa5tbx4eqQsH76ll/0gIxuf1gei0ubw==
 
 vue-draggable-resizable@^2.2.0:
   version "2.3.0"
