@@ -2485,10 +2485,10 @@
   resolved "https://registry.npm.taobao.org/@types/less/download/@types/less-3.0.2.tgz?cache=0&sync_timestamp=1607063786935&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fless%2Fdownload%2F%40types%2Fless-3.0.2.tgz#2761d477678c8374cb9897666871662eb1d1115e"
   integrity sha1-J2HUd2eMg3TLmJdmaHFmLrHREV4=
 
-"@types/marked@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.npm.taobao.org/@types/marked/download/@types/marked-1.2.1.tgz#9864ecc10d0edb72e7be4e94acb5fcc607c15eed"
-  integrity sha1-mGTswQ0O23Lnvk6UrLX8xgfBXu0=
+"@types/marked@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/marked/-/marked-2.0.0.tgz#9319de90410be0ba43d5cad0ede2c26e57edb9eb"
+  integrity sha512-kSOVa3R6HJvFdd3UIbTYvrSBTPHjXhNErh7/8oSCKOwqdOkk4Oj8N77n+f6dsgd1jW3j3SU5EhnmRxPhNKOmtQ==
 
 "@types/memory-fs@*":
   version "0.3.2"
@@ -4401,11 +4401,6 @@ connect@^3.7.0:
     utils-merge "1.0.1"
 
 consola@^2.10.0, consola@^2.13.0, consola@^2.15.0, consola@^2.15.3, consola@^2.6.0, consola@^2.9.0:
-  version "2.15.3"
-  resolved "https://registry.yarnpkg.com/consola/-/consola-2.15.3.tgz#2e11f98d6a4be71ff72e0bdf07bd23e12cb61550"
-  integrity sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==
-
-consola@^2.15.3:
   version "2.15.3"
   resolved "https://registry.yarnpkg.com/consola/-/consola-2.15.3.tgz#2e11f98d6a4be71ff72e0bdf07bd23e12cb61550"
   integrity sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==
