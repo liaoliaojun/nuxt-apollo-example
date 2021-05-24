@@ -23,7 +23,7 @@
     "graphql": "^15.5.0",
     "graphql-tag": "^2.12.1",
     "hammerjs": "^2.0.8",
-    "marked": "^2.0.0",
+    "marked": "^2.0.5",
     "nuxt": "^2.15.2"
   },
   "devDependencies": {
