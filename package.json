@@ -39,7 +39,7 @@
     "@nuxtjs/sitemap": "^2.4.0",
     "@nuxtjs/tailwindcss": "^3.4.2",
     "@tailwindcss/postcss7-compat": "^2.0.3",
-    "@types/marked": "^1.2.1",
+    "@types/marked": "^2.0.3",
     "autoprefixer": "9",
     "core-js": "^3.9.0",
     "eslint": "^7.18.0",
