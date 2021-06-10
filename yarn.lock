@@ -1264,12 +1264,12 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/runtime-corejs3@^7.12.5":
-  version "7.12.5"
-  resolved "https://registry.npm.taobao.org/@babel/runtime-corejs3/download/@babel/runtime-corejs3-7.12.5.tgz?cache=0&sync_timestamp=1604441322458&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Fruntime-corejs3%2Fdownload%2F%40babel%2Fruntime-corejs3-7.12.5.tgz#ffee91da0eb4c6dae080774e94ba606368e414f4"
-  integrity sha1-/+6R2g60xtrggHdOlLpgY2jkFPQ=
+"@babel/runtime-corejs3@^7.14.5":
+  version "7.14.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.14.5.tgz#0d9bf00d59c0b73185c462c323efffd0f4c37283"
+  integrity sha512-cBbwXj3F2xjnQJ0ERaFRLjxhUSBYsQPXJ7CERz/ecx6q6hzQ99eTflAPFC3ks4q/IG4CWupNVdflc4jlFBJVsg==
   dependencies:
-    core-js-pure "^3.0.0"
+    core-js-pure "^3.14.0"
     regenerator-runtime "^0.13.4"
 
 "@babel/runtime@^7.0.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.8.4":
@@ -4519,10 +4519,10 @@ core-js-compat@^3.8.1, core-js-compat@^3.9.0:
     browserslist "^4.16.3"
     semver "7.0.0"
 
-core-js-pure@^3.0.0:
-  version "3.8.1"
-  resolved "https://registry.npm.taobao.org/core-js-pure/download/core-js-pure-3.8.1.tgz?cache=0&sync_timestamp=1607216144126&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcore-js-pure%2Fdownload%2Fcore-js-pure-3.8.1.tgz#23f84048f366fdfcf52d3fd1c68fec349177d119"
-  integrity sha1-I/hASPNm/fz1LT/Rxo/sNJF30Rk=
+core-js-pure@^3.14.0:
+  version "3.14.0"
+  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.14.0.tgz#72bcfacba74a65ffce04bf94ae91d966e80ee553"
+  integrity sha512-YVh+LN2FgNU0odThzm61BsdkwrbrchumFq3oztnE9vTKC4KS2fvnPmcx8t6jnqAyOTCTF4ZSiuK8Qhh7SNcL4g==
 
 core-js@^2.4.0, core-js@^2.6.5:
   version "2.6.12"
