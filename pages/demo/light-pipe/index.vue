@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-blue-700 flex h-screen justify-center" style="width: 100%;">
+  <div class="bg-blue-400 flex h-screen justify-center" style="width: 100%;">
     <div class="light-pipe flex items-center" style="width: 1000px; height: 500px;">
       <div ref="mainVm" class="main-line">
         <div class="light-line" :style="`width: ${speedWidth};`" />
