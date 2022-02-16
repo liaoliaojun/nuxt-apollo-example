@@ -13,7 +13,8 @@
 </template>
 
 <script lang="ts">
-  import {defineComponent, ref, onMounted, SetupContext} from '@vue/composition-api'
+  import {defineComponent, ref, onMounted} from '@vue/composition-api'
+  import type {SetupContext} from '@vue/composition-api'
   import {Article} from '~/types/index'
   import TheArticle from '~/components/article.vue'
   // @ts-ignore

@@ -4,7 +4,8 @@
 </template>
 
 <script lang="ts">
-  import {defineComponent, computed, reactive, SetupContext} from '@vue/composition-api'
+  import {defineComponent, computed, reactive} from '@vue/composition-api'
+  import type {SetupContext} from '@vue/composition-api'
   import AddArticle from '../add.vue'
   import {SubmitArticle} from '~/types/index'
   // @ts-ignore

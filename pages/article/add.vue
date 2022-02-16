@@ -48,7 +48,8 @@
 
 <script lang="ts">
   import {Tag as ElTag, Switch as ElSwitch, Input as ElInput, Button as ElButton} from 'element-ui'
-  import {defineComponent, reactive, ref, computed, watch, onMounted, SetupContext, nextTick} from '@vue/composition-api'
+  import {defineComponent, reactive, ref, computed, watch, onMounted, nextTick} from '@vue/composition-api'
+  import type {SetupContext} from '@vue/composition-api'
 
   import marked from 'marked'
   import {SubmitArticle, File} from '~/types/index'

@@ -1,4 +1,4 @@
-import gql from 'graphql-tag'
+import {gql} from 'graphql-tag'
 
 export default gql`query queryArticle ($article_id: ID!) {
   result: article (article_id: $article_id) {
